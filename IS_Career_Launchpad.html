@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IS Career Launchpad</title>
+<style>
+:root{
+  --navy:#002E5D; --blue:#1A73E8; --sky:#EAF3FF; --ink:#152238;
+  --muted:#64748B; --line:#DCE5EF; --white:#fff; --bg:#F6F9FC;
+  --green:#14804A; --greenbg:#EAF8F0; --gold:#B7791F; --goldbg:#FFF7E6;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+button{font:inherit;cursor:pointer}
+.nav{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:sticky;top:0;z-index:20}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;color:var(--navy);font-size:18px}
+.logoMark{width:38px;height:38px;border-radius:11px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900}
+.navlinks{display:flex;gap:8px}.navlinks button{border:0;background:transparent;color:#526275;padding:10px 14px;border-radius:9px;font-weight:650}.navlinks button:hover,.navlinks .active{background:var(--sky);color:var(--navy)}
+.hero{background:linear-gradient(135deg,#002E5D 0%,#07599B 55%,#1A73E8 100%);color:#fff;padding:78px 6% 88px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:480px;height:480px;border-radius:50%;right:-120px;top:-180px;background:rgba(255,255,255,.08)}
+.heroInner{max-width:1100px;margin:auto;position:relative;z-index:1}
+.eyebrow{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:750;letter-spacing:.04em}
+h1{font-size:clamp(42px,6vw,70px);line-height:1.02;margin:22px 0 18px;max-width:760px;letter-spacing:-.04em}
+.hero p{font-size:19px;line-height:1.65;max-width:680px;color:#EAF4FF}
+.heroBtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{border:0;border-radius:11px;padding:13px 18px;font-weight:800;transition:.18s;box-shadow:0 2px 5px rgba(0,0,0,.08)}
+.btn:hover{transform:translateY(-1px)}.primary{background:#fff;color:var(--navy)}.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.container{max-width:1100px;margin:auto;padding:62px 6%}
+.sectionHead{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:25px}.sectionHead h2{margin:0;font-size:32px;letter-spacing:-.03em}.sectionHead p{margin:7px 0 0;color:var(--muted);line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 8px 24px rgba(15,35,60,.04);transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,35,60,.08)}
+.careerIcon{width:46px;height:46px;border-radius:13px;background:var(--sky);display:grid;place-items:center;font-size:22px;margin-bottom:18px}
+.card h3{margin:0 0 8px;font-size:21px}.card p{color:var(--muted);line-height:1.55;margin:0 0 18px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}.tag{background:#F1F5F9;color:#405168;border-radius:999px;padding:6px 9px;font-size:12px;font-weight:700}
+.linkBtn{border:0;background:transparent;padding:0;color:var(--blue);font-weight:800}
+.feature{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:25px}
+.feature h3{margin:0 0 7px;font-size:22px}.feature p{color:var(--muted);line-height:1.55}
+.featureItem{padding:18px;border-radius:13px;background:#F8FAFC}.featureItem b{display:block;margin-bottom:5px}
+.view{display:none}.view.active{display:block}
+.back{border:0;background:transparent;color:var(--blue);font-weight:800;padding:0;margin-bottom:20px}
+.detailHero{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;margin-bottom:18px}.detailTop{display:flex;gap:18px;align-items:flex-start}.detailIcon{width:58px;height:58px;background:var(--sky);border-radius:15px;display:grid;place-items:center;font-size:27px;flex:none}.detailHero h2{margin:0 0 7px;font-size:34px}.detailHero p{margin:0;color:var(--muted);line-height:1.55}
+.detailGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.detailBox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}.detailBox h3{margin:0 0 13px}.detailBox ul{margin:0;padding-left:19px;color:#526275;line-height:1.8}
+.salary{font-size:29px;font-weight:850;color:var(--navy);margin:6px 0}.small{font-size:13px;color:var(--muted)}
+.interviewWrap{max-width:850px;margin:auto}.selector{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.selectBtn{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-weight:750;color:#536276}.selectBtn.selected{background:var(--navy);color:#fff;border-color:var(--navy)}
+.interviewCard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;box-shadow:0 10px 28px rgba(15,35,60,.05)}
+.progressRow{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;font-weight:750;margin-bottom:9px}.progress{height:8px;background:#E7EDF4;border-radius:99px;overflow:hidden}.progress>div{height:100%;background:var(--blue);transition:.3s}
+.questionType{display:inline-block;margin-top:25px;padding:6px 10px;border-radius:999px;background:var(--sky);color:var(--navy);font-size:12px;font-weight:850;text-transform:uppercase}
+.question{font-size:25px;line-height:1.35;font-weight:800;margin:15px 0 20px;letter-spacing:-.015em}
+textarea{width:100%;min-height:155px;border:1px solid #C9D5E2;border-radius:12px;padding:15px;font:inherit;resize:vertical;outline:none}textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,115,232,.1)}
+.actionRow{display:flex;justify-content:space-between;align-items:center;margin-top:15px;gap:10px}.darkBtn{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:12px 17px;font-weight:800}.ghost{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-weight:750}
+.feedback{display:none;margin-top:22px;border-top:1px solid var(--line);padding-top:22px}.feedback.show{display:block}.feedbackGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.feedbackBox{padding:18px;border-radius:13px;background:#F8FAFC}.feedbackBox.good{background:var(--greenbg)}.feedbackBox h4{margin:0 0 8px}.feedbackBox p{margin:0;color:#526275;line-height:1.6}
+.score{font-size:28px;font-weight:900;color:var(--green)}
+.tip{margin-top:14px;padding:14px;border-radius:11px;background:var(--goldbg);color:#74501A;font-size:14px;line-height:1.5}
+footer{background:#0B2038;color:#D9E6F3;padding:35px 6%;text-align:center}.footerTitle{font-weight:850;color:#fff}.footerSmall{font-size:13px;margin-top:6px;opacity:.8}
+@media(max-width:700px){.nav{padding:0 4%}.navlinks button{padding:8px}.grid,.detailGrid,.feature,.feedbackGrid{grid-template-columns:1fr}.container{padding:45px 5%}.hero{padding:60px 5% 70px}.sectionHead{display:block}.navlinks{gap:0}.navlinks button{font-size:13px;padding:8px 7px}.question{font-size:21px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="logo"><div class="logoMark">IS</div>Career Launchpad</div>
+  <div class="navlinks">
+    <button id="navHome" class="active" onclick="showView('home')">Home</button>
+    <button id="navCareers" onclick="showView('careers')">Explore Careers</button>
+    <button id="navInterview" onclick="showView('interview')">Practice Interviews</button>
+  </div>
+</nav>
+
+<main>
+<section id="home" class="view active">
+  <div class="hero">
+    <div class="heroInner">
+      <span class="eyebrow">BYU INFORMATION SYSTEMS • CAREER EXPLORATION</span>
+      <h1>Find your path.<br>Build your future.</h1>
+      <p>IS Career Launchpad helps Information Systems students discover career options and practice the technical and behavioral interviews that lead to internships and entry-level jobs.</p>
+      <div class="heroBtns">
+        <button class="btn primary" onclick="showView('careers')">Explore Career Paths →</button>
+        <button class="btn secondary" onclick="showView('interview')">Practice an Interview</button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="sectionHead"><div><h2>One degree. Many paths.</h2><p>Explore four common IS career tracks and learn what it takes to become a strong candidate.</p></div></div>
+    <div id="homeCards" class="grid"></div>
+    <div class="feature">
+      <div class="featureItem"><b>01 • Discover</b><span>Compare roles, industries, skills, tools, salaries, and growth opportunities.</span></div>
+      <div class="featureItem"><b>02 • Prepare</b><span>Practice realistic behavioral and technical questions before your interview.</span></div>
+      <div class="featureItem"><b>03 • Improve</b><span>Get targeted feedback and compare your response with a strong example.</span></div>
+      <div class="featureItem"><b>04 • Launch</b><span>Turn your IS coursework into an internship-ready career story.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="careers" class="view">
+  <div class="container">
+    <button class="back" onclick="showView('home')">← Back to home</button>
+    <div class="sectionHead"><div><h2>Explore Career Paths</h2><p>Start with a role that interests you. You can always explore another path.</p></div></div>
+    <div id="careerCards" class="grid"></div>
+  </div>
+</section>
+
+<section id="detail" class="view">
+  <div class="container">
+    <button class="back" onclick="showView('careers')">← Back to careers</button>
+    <div id="detailContent"></div>
+  </div>
+</section>
+
+<section id="interview" class="view">
+  <div class="container">
+    <button class="back" onclick="showView('home')">← Back to home</button>
+    <div class="interviewWrap">
+      <div class="sectionHead"><div><h2>Practice Interviews</h2><p>Choose a career and work through realistic entry-level interview questions.</p></div></div>
+      <div id="careerSelector" class="selector"></div>
+      <div class="interviewCard">
+        <div class="progressRow"><span id="progressText">Question 1 of 8</span><span id="scoreText">0 completed</span></div>
+        <div class="progress"><div id="progressBar" style="width:12.5%"></div></div>
+        <span id="questionType" class="questionType">Technical</span>
+        <div id="question" class="question"></div>
+        <textarea id="answer" placeholder="Type your answer here..."></textarea>
+        <div class="actionRow">
+          <button class="ghost" onclick="nextQuestion(true)">Skip</button>
+          <button id="submitBtn" class="darkBtn" onclick="submitAnswer()">Submit Answer</button>
+        </div>
+        <div id="feedback" class="feedback">
+          <div class="feedbackGrid">
+            <div class="feedbackBox good"><h4>✓ What you did well</h4><p id="goodText"></p></div>
+            <div class="feedbackBox"><h4>→ How to improve</h4><p id="improveText"></p></div>
+          </div>
+          <div class="feedbackBox" style="margin-top:14px"><h4>Strong Answer Example</h4><p id="strongText"></p></div>
+          <div class="tip"><b>Interview tip:</b> <span id="tipText"></span></div>
+          <div style="text-align:right;margin-top:17px"><button class="darkBtn" onclick="nextQuestion(false)">Next Question →</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="footerTitle">IS Career Launchpad</div><div class="footerSmall">A BYU Information Systems Junior Core Case Competition prototype • 2026</div></footer>
+
+<script>
+const careers = {
+ developer:{
+  name:"Software Developer", icon:"💻", short:"Design, build, test, and maintain software applications.",
+  day:["Write and review code","Build features and APIs","Debug and test applications","Work with designers, analysts, and other developers"],
+  skills:["Programming fundamentals","Object-oriented programming","SQL & databases","Git / version control","APIs & web fundamentals"],
+  tools:["Python","Java","JavaScript","Git / GitHub","SQL","VS Code"],
+  entry:["Be comfortable writing small programs","Understand basic data structures and algorithms","Know how to use Git","Be able to explain a class or personal project","Show problem-solving ability"],
+  salary:"$65K–$90K", growth:"Developer → Software Engineer → Senior Engineer → Tech Lead / Engineering Manager",
+  candidate:"Strong candidates can explain their projects clearly, solve problems methodically, and demonstrate that they can learn unfamiliar technologies quickly."
+ },
+ data:{
+  name:"Data Analyst", icon:"📊", short:"Turn business data into insights that help organizations make better decisions.",
+  day:["Clean and organize datasets","Write SQL queries","Build reports and dashboards","Identify trends and communicate findings"],
+  skills:["SQL","Excel / spreadsheets","Data visualization","Statistics fundamentals","Business communication"],
+  tools:["SQL","Excel","Tableau / Power BI","Python","Google Sheets"],
+  entry:["Write SELECT, JOIN, GROUP BY queries","Understand basic descriptive statistics","Clean messy data","Create a useful visualization","Explain findings to a nontechnical audience"],
+  salary:"$55K–$80K", growth:"Data Analyst → Senior Analyst → Analytics Manager → Analytics / Data Lead",
+  candidate:"Strong candidates connect technical analysis to a business question instead of simply producing charts or numbers."
+ },
+ cyber:{
+  name:"Cybersecurity Analyst", icon:"🔐", short:"Protect systems, data, and users by identifying and responding to security risks.",
+  day:["Monitor security alerts","Investigate suspicious activity","Review logs and access controls","Document incidents and recommend controls"],
+  skills:["Networking basics","Operating systems","Security principles","Risk analysis","Incident response"],
+  tools:["Wireshark","Linux","SIEM platforms","Python","PowerShell"],
+  entry:["Understand IP addresses, ports, and common protocols","Know basic authentication and authorization concepts","Recognize common attack types","Be able to investigate a simple security event","Explain security tradeoffs clearly"],
+  salary:"$60K–$90K", growth:"Security Analyst → Security Engineer → Senior Analyst → Security Architect / Manager",
+  candidate:"Strong candidates demonstrate curiosity, attention to detail, ethical judgment, and a structured approach to investigating problems."
+ },
+ analyst:{
+  name:"Business Systems Analyst", icon:"🧩", short:"Bridge business needs and technology by translating problems into effective systems solutions.",
+  day:["Meet with stakeholders","Document business requirements","Map processes and workflows","Translate needs for technical teams","Test proposed solutions"],
+  skills:["Requirements gathering","Process modeling","SQL basics","Communication","Problem solving"],
+  tools:["SQL","Excel","Jira","Confluence","Visio / Lucidchart"],
+  entry:["Know how to ask effective stakeholder questions","Create basic process diagrams","Understand relational databases","Translate a business problem into requirements","Communicate clearly with technical and nontechnical people"],
+  salary:"$60K–$85K", growth:"Business Analyst → Systems Analyst → Senior Analyst → Product / Program / Consulting roles",
+  candidate:"Strong candidates can listen carefully, ask clarifying questions, and turn ambiguous business problems into specific, testable requirements."
+ }
+};
+
+const questions = {
+ developer:[
+  ["Technical","What is the difference between an array and a linked list?","Mention that arrays provide indexed access and contiguous-style storage, while linked lists connect nodes through references; discuss tradeoffs.","A good answer compares access and insertion tradeoffs. Arrays typically provide O(1) indexed access, while linked lists generally require traversal for indexed access but can make insertion/removal efficient when the node position is known.","Define each structure, give one tradeoff, and connect it to a practical use case."],
+  ["Technical","What is an API, and why would an application use one?","Explain that an API provides a defined way for software components to communicate and exchange data.","An API is an interface that lets one piece of software request functionality or data from another system through defined rules. For example, a web app can call an API to retrieve customer or weather data without knowing how the underlying service is implemented.","Avoid saying an API is simply 'a database.' Focus on communication between systems."],
+  ["Technical","What is version control and why is Git useful?","Mention tracking changes, collaboration, branches, and the ability to restore earlier versions.","Version control records changes to files over time. Git lets developers create branches, collaborate without overwriting one another, review changes, and return to earlier versions when needed.","Tie Git to a team project you have actually worked on if possible."],
+  ["Behavioral","Tell me about a technical problem you had to solve. What did you do?","Look for a clear situation, your specific actions, and a measurable or concrete result.","A strong response uses STAR: explain the situation, the task, the actions you personally took, and the result. The best answers show persistence and learning rather than pretending the problem was easy.","Spend most of your answer on what YOU did, not what the team did."],
+  ["Technical","What is a primary key in a relational database?","State that it uniquely identifies a row and should be unique and non-null.","A primary key uniquely identifies each record in a table. It allows other tables to reference that record and helps maintain data integrity.","A quick example such as StudentID can make the answer memorable."],
+  ["Behavioral","Describe a time you had to learn a new technology quickly.","Show a learning strategy: define the goal, find resources, practice, and apply the skill.","Strong candidates explain exactly how they learned: they identify what they needed to accomplish, use documentation or trusted resources, build a small example, and then apply the new skill to the real task.","Connect this to a class, project, job, or personal build."],
+  ["Technical","What is the purpose of testing software?","Explain that testing finds defects and verifies expected behavior before release.","Testing checks whether software behaves as expected and helps catch defects before users encounter them. Different tests can validate individual components, integrations, or complete user workflows.","Mention a specific example of a test if you can."],
+  ["Behavioral","Tell me about a time you received critical feedback.","Show that you listened, acted on the feedback, and improved.","A strong answer demonstrates coachability: describe the feedback without becoming defensive, explain what you changed, and give evidence that the change improved your work.","Never blame the person who gave you feedback."]
+ ],
+ data:[
+  ["Technical","What is the difference between WHERE and HAVING in SQL?","Explain that WHERE filters rows before grouping, while HAVING filters groups after aggregation.","WHERE filters individual rows before GROUP BY is applied. HAVING filters grouped results, often using aggregate functions such as COUNT or AVG.","A simple example makes this much stronger."],
+  ["Technical","What makes a data visualization effective?","Mention choosing the right chart, reducing clutter, labeling clearly, and matching the visualization to the question.","An effective visualization makes the intended comparison or trend easy to see. The chart type should fit the data, labels should be clear, unnecessary decoration should be removed, and the visualization should answer a specific business question.","Start with the question, then choose the chart."],
+  ["Technical","What is a JOIN in SQL?","Explain that JOIN combines rows from tables based on a related field.","A JOIN combines data from two or more tables using a related column. For example, a customer table and an orders table could be joined through CustomerID.","Know the difference between INNER JOIN and LEFT JOIN at a basic level."],
+  ["Behavioral","Tell me about a time you used data to make a decision.","Focus on the decision, the data you used, your analysis, and the outcome.","A strong response explains the business question first, then the relevant data, the analysis you performed, the insight you found, and how that insight influenced the decision.","Don't just describe making a chart; explain what changed because of your analysis."],
+  ["Technical","How would you handle a dataset with missing values?","Say that you would first understand why values are missing before deciding whether to remove, impute, or flag them.","I would inspect the amount and pattern of missingness and understand why the values are missing. Depending on the context, I might remove records, impute values, or keep a missing category, while documenting the decision.","There is no universal fix; context matters."],
+  ["Behavioral","How would you explain a technical finding to a nontechnical manager?","Emphasize business impact, plain language, and a concise visual.","I would lead with the business implication rather than the technical method, use plain language and one or two useful visuals, then provide technical detail if the manager wants it.","Practice explaining one SQL result without using SQL jargon."],
+  ["Technical","What is the difference between correlation and causation?","Explain that correlation indicates association but does not prove one variable causes another.","Correlation means two variables move together in some way. Causation means a change in one variable produces a change in another. A correlation alone does not prove causation because other variables may explain the relationship.","Use a real-world example if asked to elaborate."],
+  ["Behavioral","Tell me about a time your analysis changed after you found an error.","Show ownership, verification, correction, and prevention.","A strong response shows that you verified the result, acknowledged the mistake, corrected the analysis, communicated the impact, and changed your process to reduce the chance of repeating it.","Own mistakes directly. Analysts are evaluated on accuracy and integrity."]
+ ],
+ cyber:[
+  ["Technical","What is the difference between authentication and authorization?","Authentication verifies identity; authorization determines what an authenticated user is allowed to access.","Authentication answers 'Who are you?' Authorization answers 'What are you allowed to do?' A user may successfully authenticate but still lack authorization to access a particular system or file.","A simple login example is enough."],
+  ["Technical","What is phishing and how would you recognize it?","Mention suspicious links, urgency, unexpected requests, spoofed domains, and requests for credentials.","Phishing is a social-engineering technique that attempts to trick users into revealing information or taking an unsafe action. Warning signs include unusual urgency, unexpected attachments, suspicious links, requests for credentials, or a lookalike sender domain.","Avoid relying on grammar alone; sophisticated phishing can look professional."],
+  ["Technical","What is a firewall used for?","Explain that it controls network traffic according to security rules.","A firewall monitors and controls network traffic based on defined rules. It can restrict unwanted connections while allowing approved traffic between systems or networks.","Mention that a firewall is one layer of a broader security strategy."],
+  ["Behavioral","Tell me about a time you noticed something others missed.","Highlight observation, verification, communication, and impact.","A strong response shows attention to detail but also restraint: you noticed an anomaly, verified that it was meaningful, communicated it appropriately, and helped resolve it.","Security work rewards careful investigation, not jumping to conclusions."],
+  ["Technical","What is the principle of least privilege?","Explain giving users or systems only the access necessary to perform their tasks.","Least privilege means users, applications, and systems receive only the permissions they need to perform their intended function. Limiting access reduces the potential impact if an account or system is compromised.","Give a concrete example such as a student employee not needing administrator rights."],
+  ["Technical","Why are logs important in cybersecurity?","Explain detection, investigation, timelines, and evidence.","Logs provide records of system and user activity. Security teams can use them to detect suspicious behavior, investigate incidents, reconstruct timelines, and identify patterns.","Mention that logs are most useful when they are centralized, retained, and monitored appropriately."],
+  ["Behavioral","Describe a time you had to handle a problem carefully under pressure.","Show a calm process rather than rushing.","A strong answer explains how you separated facts from assumptions, prioritized the risk, communicated with the right people, and documented the outcome.","In security, accuracy under pressure is often more valuable than speed alone."],
+  ["Technical","What is multi-factor authentication and why does it help?","Explain using two or more different factor categories and how it reduces account takeover risk.","MFA requires more than one type of authentication factor, such as something you know and something you have. If a password is stolen, the additional factor can make unauthorized access significantly harder.","Don't describe two passwords as two-factor authentication."]
+ ],
+ analyst:[
+  ["Technical","What is a business requirement?","Explain it as a need or outcome the business expects the solution to satisfy.","A business requirement describes what the organization needs to accomplish, such as reducing manual order entry time. It focuses on the desired business outcome rather than prescribing a specific technical implementation.","Separate the need from the solution."],
+  ["Behavioral","Tell me about a time you had to resolve conflicting stakeholder needs.","Show listening, clarification, prioritization, and a mutually understood decision.","A strong answer explains how you identified the underlying needs, clarified constraints, compared options against agreed criteria, and helped stakeholders reach a decision.","Avoid framing one stakeholder as 'wrong.'"],
+  ["Technical","What is the purpose of a process flowchart?","Explain that it visually represents steps, decisions, handoffs, and bottlenecks.","A process flowchart shows how work moves through a process, including activities, decisions, and handoffs. It helps analysts find inefficiencies, unclear ownership, and opportunities for improvement.","Mention how a diagram helps create a shared understanding."],
+  ["Technical","Why would a systems analyst need to know SQL?","Connect SQL to validating data, understanding systems, and investigating issues.","SQL helps an analyst retrieve and validate data, investigate system behavior, test requirements, and communicate more effectively with technical teams.","You don't need to be a database administrator; you need enough SQL to investigate and validate."],
+  ["Behavioral","Describe a time you had to ask difficult questions to understand a problem.","Show curiosity and respectful clarification.","A strong answer demonstrates that you didn't accept an ambiguous request at face value. You asked targeted questions, confirmed assumptions, and used the answers to define the real problem.","Good analysts are comfortable saying, 'Can you give me an example?'"],
+  ["Technical","What is the difference between a requirement and a feature?","Explain that a requirement states a need or constraint, while a feature is a product capability that addresses it.","A requirement describes what the business or user needs or what constraint must be satisfied. A feature is a capability of the system that may be designed to satisfy that requirement.","Requirements should be specific enough to test or validate."],
+  ["Behavioral","Tell me about a time you improved a process.","Quantify the before/after when possible.","A strong response identifies the original pain point, explains how you mapped or analyzed the process, describes the change you helped make, and gives a measurable or observable improvement.","Time saved, errors reduced, or satisfaction improved are useful results."],
+  ["Technical","What makes a requirement 'good'?","Mention clarity, specificity, testability, relevance, and lack of unnecessary solution bias.","A good requirement is clear, specific, relevant, and testable. Different people should interpret it consistently, and it should describe the needed outcome without unnecessarily locking the team into one technical solution.","Ask: 'How would we know this requirement has been satisfied?'"]
+ ]
+};
+
+let selectedCareer="developer", qIndex=0, completed=0, lastSubmitted=false;
+
+function cardHTML(key){
+ const c=careers[key];
+ return `<div class="card"><div class="careerIcon">${c.icon}</div><h3>${c.name}</h3><p>${c.short}</p><div class="tags">${c.tools.slice(0,4).map(x=>`<span class="tag">${x}</span>`).join("")}</div><br><button class="linkBtn" onclick="openCareer('${key}')">View career path →</button></div>`;
+}
+function renderCards(){
+ document.getElementById("homeCards").innerHTML=Object.keys(careers).map(cardHTML).join("");
+ document.getElementById("careerCards").innerHTML=Object.keys(careers).map(cardHTML).join("");
+}
+function openCareer(key){
+ const c=careers[key];
+ document.getElementById("detailContent").innerHTML=`
+  <div class="detailHero"><div class="detailTop"><div class="detailIcon">${c.icon}</div><div><h2>${c.name}</h2><p>${c.short}</p></div></div></div>
+  <div class="detailGrid">
+   <div class="detailBox"><h3>Day-to-Day</h3><ul>${c.day.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+   <div class="detailBox"><h3>Technical Skills</h3><ul>${c.skills.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+   <div class="detailBox"><h3>Tools & Technologies</h3><div class="tags">${c.tools.map(x=>`<span class="tag">${x}</span>`).join("")}</div></div>
+   <div class="detailBox"><h3>What Interns Should Know</h3><ul>${c.entry.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+   <div class="detailBox"><h3>Salary Snapshot</h3><div class="salary">${c.salary}</div><div class="small">Typical U.S. early-career range; use current job postings and authoritative labor-market sources to validate specific claims.</div></div>
+   <div class="detailBox"><h3>Career Growth</h3><p style="color:#526275;line-height:1.7">${c.growth}</p></div>
+   <div class="detailBox" style="grid-column:1/-1"><h3>What Makes a Strong Candidate?</h3><p style="color:#526275;line-height:1.7;margin:0">${c.candidate}</p></div>
+  </div>
+  <div style="margin-top:18px;text-align:right"><button class="darkBtn" onclick="startInterview('${key}')">Practice ${c.name} Interview →</button></div>`;
+ showView("detail");
+}
+function showView(id){
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".navlinks button").forEach(b=>b.classList.remove("active"));
+ if(id==="home") document.getElementById("navHome").classList.add("active");
+ if(id==="careers"||id==="detail") document.getElementById("navCareers").classList.add("active");
+ if(id==="interview") document.getElementById("navInterview").classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function setupSelector(){
+ document.getElementById("careerSelector").innerHTML=Object.keys(careers).map(k=>`<button class="selectBtn ${k===selectedCareer?"selected":""}" onclick="startInterview('${k}')">${careers[k].icon} ${careers[k].name}</button>`).join("");
+}
+function startInterview(key){
+ selectedCareer=key;qIndex=0;completed=0;lastSubmitted=false;setupSelector();showView("interview");renderQuestion();
+}
+function renderQuestion(){
+ const qs=questions[selectedCareer], q=qs[qIndex];
+ document.getElementById("progressText").textContent=`Question ${qIndex+1} of ${qs.length}`;
+ document.getElementById("scoreText").textContent=`${completed} completed`;
+ document.getElementById("progressBar").style.width=((qIndex+1)/qs.length*100)+"%";
+ document.getElementById("questionType").textContent=q[0];
+ document.getElementById("question").textContent=q[1];
+ document.getElementById("answer").value="";
+ document.getElementById("answer").disabled=false;
+ document.getElementById("submitBtn").style.display="inline-block";
+ document.getElementById("feedback").classList.remove("show");
+ lastSubmitted=false;
+}
+function submitAnswer(){
+ const answer=document.getElementById("answer").value.trim();
+ if(!answer){alert("Write a response before submitting.");return;}
+ const q=questions[selectedCareer][qIndex];
+ const words=answer.split(/\s+/).filter(Boolean).length;
+ let score=words<15?2:words<35?3:4;
+ if(q[0]==="Technical" && /because|example|for example|however|difference|means|used|allows|helps/i.test(answer)) score=Math.min(5,score+1);
+ if(q[0]==="Behavioral" && /I |we |result|learn|improv|STAR|situation|task|action/i.test(answer)) score=Math.min(5,score+1);
+ const good=score>=4 ? "Your response has useful substance and shows that you are engaging with the question." : "You started with a relevant idea. The next step is making your answer more specific and complete.";
+ const improve=score>=4 ? "Make your strongest point first, then support it with a concrete example. Keep the answer focused and interview-ready." : "Add a clear explanation, a specific example, and the result or practical implication. Avoid one-sentence answers.";
+ document.getElementById("goodText").textContent=good;
+ document.getElementById("improveText").textContent=improve;
+ document.getElementById("strongText").textContent=q[3];
+ document.getElementById("tipText").textContent=q[4];
+ document.getElementById("feedback").classList.add("show");
+ document.getElementById("answer").disabled=true;
+ document.getElementById("submitBtn").style.display="none";
+ if(!lastSubmitted){completed++;lastSubmitted=true;document.getElementById("scoreText").textContent=`${completed} completed`;}
+}
+function nextQuestion(skipped){
+ if(qIndex<questions[selectedCareer].length-1){qIndex++;renderQuestion();}
+ else{
+  const c=careers[selectedCareer];
+  document.getElementById("question").innerHTML=`<span style="color:var(--green)">Interview complete! 🎉</span>`;
+  document.getElementById("questionType").textContent="Complete";
+  document.getElementById("answer").style.display="none";
+  document.querySelector(".actionRow").innerHTML=`<button class="ghost" onclick="startInterview('${selectedCareer}')">Restart Interview</button><button class="darkBtn" onclick="showView('careers')">Explore Another Career</button>`;
+  document.getElementById("feedback").classList.remove("show");
+  document.getElementById("progressText").textContent=`${questions[selectedCareer].length} of ${questions[selectedCareer].length}`;
+  document.getElementById("progressBar").style.width="100%";
+ }
+}
+renderCards();setupSelector();renderQuestion();
+</script>
+</body>
+</html>
