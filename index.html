@@ -684,6 +684,157 @@ footer{
   #aiAdvisorPanel{right:15px;bottom:84px;width:calc(100vw - 30px);height:min(560px,calc(100vh - 105px))}
 }
 
+
+.summary{
+  margin:6px 0 22px;
+  display:none;
+}
+
+.sumStats{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+
+.sumStat{
+  flex:1;
+  min-width:96px;
+  background:var(--sky);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px 14px;
+  text-align:center;
+}
+
+.sumStat strong{
+  display:block;
+  font-size:26px;
+  color:var(--navy);
+  line-height:1.1;
+}
+
+.sumStat span{
+  font-size:12px;
+  color:var(--muted);
+  font-weight:750;
+}
+
+.sumChips{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.sumChip{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:5px 11px;
+  font-size:12px;
+  font-weight:750;
+  color:#536276;
+}
+
+.sumNote{
+  font-size:13px;
+  line-height:1.55;
+  color:#6B5A33;
+  background:var(--goldbg);
+  border:1px solid #F0E2C4;
+  border-radius:12px;
+  padding:12px 14px;
+  margin:0 0 18px;
+}
+
+.sumRow{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 16px;
+  margin-bottom:10px;
+  background:#fff;
+}
+
+.sumHead{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:7px;
+}
+
+.sumNum{
+  font-weight:850;
+  color:var(--navy);
+  font-size:13px;
+}
+
+.sumType{
+  font-size:11px;
+  font-weight:850;
+  text-transform:uppercase;
+  color:var(--navy);
+  background:var(--sky);
+  border-radius:999px;
+  padding:3px 9px;
+}
+
+.sumBadge{
+  margin-left:auto;
+  font-size:12px;
+  font-weight:800;
+  border-radius:999px;
+  padding:4px 11px;
+}
+
+.sumGood{background:var(--greenbg);color:var(--green)}
+.sumMid{background:var(--goldbg);color:var(--gold)}
+.sumLow{background:#FDECEC;color:#B42318}
+.sumSkip{background:#EEF2F7;color:#64748B}
+
+.sumQ{
+  font-size:15px;
+  font-weight:750;
+  line-height:1.4;
+  margin-bottom:8px;
+}
+
+.summary details{
+  border-top:1px solid var(--line);
+  padding-top:9px;
+}
+
+.summary summary{
+  cursor:pointer;
+  font-size:13px;
+  font-weight:750;
+  color:var(--blue);
+}
+
+.sumLabel{
+  font-size:11px;
+  font-weight:850;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-top:12px;
+}
+
+.summary details p{
+  margin:5px 0 0;
+  font-size:14px;
+  line-height:1.55;
+}
+
+.sumMeta{
+  color:var(--muted);
+  font-size:12px !important;
+}
+
+.sumEmpty{
+  color:var(--muted);
+  font-style:italic;
+}
+
 </style>
 </head>
 
@@ -1894,6 +2045,7 @@ let selectedCareer = "developer";
 let qIndex = 0;
 let completed = 0;
 let lastSubmitted = false;
+let sessionLog = [];
 
 
 function cardHTML(key){
@@ -2289,6 +2441,7 @@ function resetInterviewUI(){
     answer.value = "";
   }
   if(feedback) feedback.classList.remove("show");
+  hideSummary();
 }
 
 function startInterview(key){
@@ -2300,6 +2453,8 @@ function startInterview(key){
   completed = 0;
 
   lastSubmitted = false;
+
+  sessionLog = [];
 
   // Rebuild controls that are replaced by the completion screen.
   // This makes every new/restarted interview a completely fresh session.
@@ -2352,6 +2507,8 @@ function renderQuestion(){
 
   document.getElementById("feedback")
     .classList.remove("show");
+
+  hideSummary();
 
   lastSubmitted = false;
 
@@ -2472,6 +2629,18 @@ function submitAnswer(){
     .style.display = "none";
 
 
+  sessionLog[qIndex] = {
+    type: q[0],
+    question: q[1],
+    answer: answer,
+    words: words,
+    score: score,
+    strong: q[3],
+    tip: q[4],
+    skipped: false
+  };
+
+
   if(!lastSubmitted){
 
     completed++;
@@ -2487,6 +2656,24 @@ function submitAnswer(){
 
 
 function nextQuestion(skipped){
+
+  if(!sessionLog[qIndex]){
+
+    const sq = questions[selectedCareer][qIndex];
+
+    sessionLog[qIndex] = {
+      type: sq[0],
+      question: sq[1],
+      answer: "",
+      words: 0,
+      score: 0,
+      strong: sq[3],
+      tip: sq[4],
+      skipped: true
+    };
+
+  }
+
 
   if(
     qIndex <
@@ -2524,6 +2711,9 @@ function nextQuestion(skipped){
       .style.display = "none";
 
 
+    renderSummary();
+
+
     document.querySelector(".actionRow").innerHTML = `
 
       <button
@@ -2559,6 +2749,145 @@ function nextQuestion(skipped){
       .style.width = "100%";
 
   }
+
+}
+
+
+const STRENGTH_BANDS = {
+  5: ["Well structured", "sumGood"],
+  4: ["Solid", "sumGood"],
+  3: ["Developing", "sumMid"],
+  2: ["Brief", "sumLow"]
+};
+
+
+function escapeHTML(str){
+
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+
+}
+
+
+function getSummaryBox(){
+
+  let box = document.getElementById("summaryBox");
+
+  if(!box){
+
+    box = document.createElement("div");
+    box.id = "summaryBox";
+    box.className = "summary";
+
+    const q = document.getElementById("question");
+    q.parentNode.insertBefore(box, q.nextSibling);
+
+  }
+
+  return box;
+
+}
+
+
+function hideSummary(){
+
+  const box = document.getElementById("summaryBox");
+
+  if(box) box.style.display = "none";
+
+}
+
+
+function renderSummary(){
+
+  const log = sessionLog;
+
+  const total = log.length;
+
+  const answered = log.filter(e => e && !e.skipped).length;
+
+  const skipped = total - answered;
+
+
+  const byType = {};
+
+  log.forEach(e => {
+
+    if(!e) return;
+
+    if(!byType[e.type]) byType[e.type] = { answered:0, total:0 };
+
+    byType[e.type].total++;
+
+    if(!e.skipped) byType[e.type].answered++;
+
+  });
+
+
+  const chips = Object.keys(byType).map(t =>
+    `<span class="sumChip">${escapeHTML(t)}: ${byType[t].answered} of ${byType[t].total} answered</span>`
+  ).join("");
+
+
+  const rows = log.map((e, i) => {
+
+    if(!e) return "";
+
+    const band = e.skipped
+      ? ["Skipped", "sumSkip"]
+      : (STRENGTH_BANDS[e.score] || ["Brief", "sumLow"]);
+
+    const yours = e.skipped
+      ? `<p class="sumEmpty">You skipped this one.</p>`
+      : `<p>${escapeHTML(e.answer)}</p><p class="sumMeta">${e.words} words</p>`;
+
+    return `
+      <div class="sumRow">
+        <div class="sumHead">
+          <span class="sumNum">Q${i+1}</span>
+          <span class="sumType">${escapeHTML(e.type)}</span>
+          <span class="sumBadge ${band[1]}">${band[0]}</span>
+        </div>
+        <div class="sumQ">${escapeHTML(e.question)}</div>
+        <details>
+          <summary>Compare with a strong answer</summary>
+          <div class="sumLabel">Your answer</div>
+          ${yours}
+          <div class="sumLabel">Suggested strong answer</div>
+          <p>${escapeHTML(e.strong)}</p>
+          <div class="sumLabel">Interview tip</div>
+          <p>${escapeHTML(e.tip)}</p>
+        </details>
+      </div>`;
+
+  }).join("");
+
+
+  const box = getSummaryBox();
+
+  box.innerHTML = `
+    <div class="sumStats">
+      <div class="sumStat"><strong>${answered}</strong><span>answered</span></div>
+      <div class="sumStat"><strong>${skipped}</strong><span>skipped</span></div>
+      <div class="sumStat"><strong>${total}</strong><span>questions</span></div>
+    </div>
+
+    <div class="sumChips">${chips}</div>
+
+    <p class="sumNote">
+      These labels describe how developed and well structured each response was —
+      its length, its specificity, and whether a behavioral answer named your own
+      actions and the result. They do not check whether what you said was correct.
+      Open any question to compare what you wrote against the suggested strong answer.
+    </p>
+
+    ${rows}
+  `;
+
+  box.style.display = "block";
 
 }
 
