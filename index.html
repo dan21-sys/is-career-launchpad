@@ -80,8 +80,14 @@ footer{background:#0B2038;color:#D9E6F3;padding:35px 6%;text-align:center}.foote
     </div>
   </div>
   <div class="container">
-    <div class="sectionHead"><div><h2>One degree. Many paths.</h2><p>Explore four common IS career tracks and learn what it takes to become a strong candidate.</p></div></div>
+    <div class="sectionHead"><div><h2>One degree. Many paths.</h2><p>Explore six common IS career tracks and learn what it takes to become a strong candidate.</p></div></div>
     <div id="homeCards" class="grid"></div>
+    <div class="feature" style="margin-bottom:18px">
+      <div class="featureItem" style="grid-column:1/-1">
+        <b>Research Methodology</b>
+        <span>Career descriptions and labor-market statistics are based on publicly available U.S. Bureau of Labor Statistics Occupational Outlook Handbook data. Role descriptions are informed by BLS occupation profiles; role-specific skills and interview guidance are educational recommendations synthesized for entry-level IS students. Interview questions are not claimed to be verbatim employer questions.</span>
+      </div>
+    </div>
     <div class="feature">
       <div class="featureItem"><b>01 • Discover</b><span>Compare roles, industries, skills, tools, salaries, and growth opportunities.</span></div>
       <div class="featureItem"><b>02 • Prepare</b><span>Practice realistic behavioral and technical questions before your interview.</span></div>
@@ -137,7 +143,8 @@ footer{background:#0B2038;color:#D9E6F3;padding:35px 6%;text-align:center}.foote
 </section>
 </main>
 
-<footer><div class="footerTitle">IS Career Launchpad</div><div class="footerSmall">A BYU Information Systems Junior Core Case Competition prototype • 2026</div></footer>
+<footer><div class="footerTitle">IS Career Launchpad</div><div class="footerSmall">A BYU Information Systems Junior Core Case Competition prototype • 2026</div>
+<div class="footerSmall">Labor-market statistics: U.S. Bureau of Labor Statistics Occupational Outlook Handbook • Accessed September 2026</div></footer>
 
 <script>
 const careers = {
@@ -147,7 +154,7 @@ const careers = {
   skills:["Programming fundamentals","Object-oriented programming","SQL & databases","Git / version control","APIs & web fundamentals"],
   tools:["Python","Java","JavaScript","Git / GitHub","SQL","VS Code"],
   entry:["Be comfortable writing small programs","Understand basic data structures and algorithms","Know how to use Git","Be able to explain a class or personal project","Show problem-solving ability"],
-  salary:"$65K–$90K", growth:"Developer → Software Engineer → Senior Engineer → Tech Lead / Engineering Manager",
+  salary:"$135,980", outlook:"10%", source:"U.S. Bureau of Labor Statistics — Software Developers", sourceUrl:"https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm", growth:"Developer → Software Engineer → Senior Engineer → Tech Lead / Engineering Manager",
   candidate:"Strong candidates can explain their projects clearly, solve problems methodically, and demonstrate that they can learn unfamiliar technologies quickly."
  },
  data:{
@@ -156,7 +163,7 @@ const careers = {
   skills:["SQL","Excel / spreadsheets","Data visualization","Statistics fundamentals","Business communication"],
   tools:["SQL","Excel","Tableau / Power BI","Python","Google Sheets"],
   entry:["Write SELECT, JOIN, GROUP BY queries","Understand basic descriptive statistics","Clean messy data","Create a useful visualization","Explain findings to a nontechnical audience"],
-  salary:"$55K–$80K", growth:"Data Analyst → Senior Analyst → Analytics Manager → Analytics / Data Lead",
+  salary:"$120,230", outlook:"34%", source:"U.S. Bureau of Labor Statistics — Data Scientists", sourceUrl:"https://www.bls.gov/ooh/math/data-scientists.htm", growth:"Data Analyst → Senior Analyst → Analytics Manager → Analytics / Data Lead",
   candidate:"Strong candidates connect technical analysis to a business question instead of simply producing charts or numbers."
  },
  cyber:{
@@ -165,7 +172,7 @@ const careers = {
   skills:["Networking basics","Operating systems","Security principles","Risk analysis","Incident response"],
   tools:["Wireshark","Linux","SIEM platforms","Python","PowerShell"],
   entry:["Understand IP addresses, ports, and common protocols","Know basic authentication and authorization concepts","Recognize common attack types","Be able to investigate a simple security event","Explain security tradeoffs clearly"],
-  salary:"$60K–$90K", growth:"Security Analyst → Security Engineer → Senior Analyst → Security Architect / Manager",
+  salary:"$129,180", outlook:"21%", source:"U.S. Bureau of Labor Statistics — Information Security Analysts", sourceUrl:"https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm", growth:"Security Analyst → Security Engineer → Senior Analyst → Security Architect / Manager",
   candidate:"Strong candidates demonstrate curiosity, attention to detail, ethical judgment, and a structured approach to investigating problems."
  },
  analyst:{
@@ -174,8 +181,27 @@ const careers = {
   skills:["Requirements gathering","Process modeling","SQL basics","Communication","Problem solving"],
   tools:["SQL","Excel","Jira","Confluence","Visio / Lucidchart"],
   entry:["Know how to ask effective stakeholder questions","Create basic process diagrams","Understand relational databases","Translate a business problem into requirements","Communicate clearly with technical and nontechnical people"],
-  salary:"$60K–$85K", growth:"Business Analyst → Systems Analyst → Senior Analyst → Product / Program / Consulting roles",
+  salary:"$105,850", outlook:"8%", source:"U.S. Bureau of Labor Statistics — Computer Systems Analysts", sourceUrl:"https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm", growth:"Business Analyst → Systems Analyst → Senior Analyst → Product / Program / Consulting roles",
   candidate:"Strong candidates can listen carefully, ask clarifying questions, and turn ambiguous business problems into specific, testable requirements."
+ }
+
+ ux:{
+  name:"UX Designer", icon:"🎨", short:"Design digital experiences that are useful, intuitive, accessible, and aligned with user needs.",
+  day:["Interview and observe users","Create user flows and wireframes","Prototype and test designs","Collaborate with developers and product teams","Iterate designs from feedback"],
+  skills:["User research","Wireframing & prototyping","Information architecture","Usability testing","Visual communication"],
+  tools:["Figma","FigJam","Adobe Creative Cloud","Miro","Maze"],
+  entry:["Build a small portfolio with case studies","Explain your design decisions","Understand basic usability principles","Create wireframes and prototypes","Show how user feedback changed a design"],
+  salary:"$104,000", outlook:"6%", source:"U.S. Bureau of Labor Statistics — Web and Digital Interface Designers", sourceUrl:"https://www.bls.gov/ooh/computer-and-information-technology/web-developers.htm", growth:"UX Designer → Product Designer → Senior UX Designer → UX Lead / Design Manager",
+  candidate:"Strong candidates show a portfolio, explain their reasoning, demonstrate empathy for users, and collaborate effectively with technical and business teammates."
+ },
+ project:{
+  name:"IT Project Manager", icon:"📋", short:"Coordinate technology projects so teams deliver the right outcomes on time and within budget.",
+  day:["Define project scope and goals","Build schedules and coordinate resources","Track risks, issues, and milestones","Communicate with stakeholders","Keep teams aligned on deliverables"],
+  skills:["Project planning","Risk management","Communication","Agile / Scrum fundamentals","Stakeholder management"],
+  tools:["Jira","Microsoft Project","Confluence","Excel","Trello"],
+  entry:["Understand basic project lifecycles","Know Agile/Scrum terminology","Create simple project plans","Communicate status clearly","Identify and escalate project risks"],
+  salary:"$102,320", outlook:"7%", source:"U.S. Bureau of Labor Statistics — Project Management Specialists", sourceUrl:"https://www.bls.gov/ooh/business-and-financial/project-management-specialists.htm", growth:"Project Coordinator → IT Project Manager → Senior Project Manager → Program Manager",
+  candidate:"Strong candidates organize ambiguity, communicate proactively, manage competing priorities, and can explain how they kept a project moving toward a measurable outcome."
  }
 };
 
@@ -220,6 +246,27 @@ const questions = {
   ["Behavioral","Tell me about a time you improved a process.","Quantify the before/after when possible.","A strong response identifies the original pain point, explains how you mapped or analyzed the process, describes the change you helped make, and gives a measurable or observable improvement.","Time saved, errors reduced, or satisfaction improved are useful results."],
   ["Technical","What makes a requirement 'good'?","Mention clarity, specificity, testability, relevance, and lack of unnecessary solution bias.","A good requirement is clear, specific, relevant, and testable. Different people should interpret it consistently, and it should describe the needed outcome without unnecessarily locking the team into one technical solution.","Ask: 'How would we know this requirement has been satisfied?'"]
  ]
+
+ ux:[
+  ["Technical","What is the difference between usability and visual design?","Explain that usability is about how effectively and easily users accomplish tasks, while visual design concerns appearance and presentation.","Usability focuses on whether users can successfully and efficiently accomplish their goals. Visual design focuses on how the interface looks and communicates visually. Good UX considers both, but a beautiful interface can still be difficult to use.","Use a concrete example from a website or app you have used."],
+  ["Technical","What is a wireframe and why would you create one?","Explain that a wireframe is a simplified representation of an interface used to plan structure and interaction.","A wireframe is a simplified layout that shows content hierarchy, navigation, and key interactions without requiring polished visual design. It lets a team test structure and ideas early and cheaply.","Explain how low-fidelity work can prevent expensive rework later."],
+  ["Technical","How would you conduct a usability test?","Mention a clear task, representative users, observation, and synthesizing findings.","I would define the research question, give representative users realistic tasks, observe where they struggle without leading them, record patterns, and use the findings to prioritize design changes.","Avoid telling participants exactly how to complete the task."],
+  ["Behavioral","Tell me about a time you changed your work because of user feedback.","Show that you listened, identified the underlying issue, made a change, and measured or observed the result.","A strong response explains what users said or did, how you interpreted the feedback, what you changed, and what happened afterward. It demonstrates that you design for users rather than defending your first idea.","A portfolio project is a great example."],
+  ["Technical","What makes a good user experience?","Mention ease of use, clarity, accessibility, usefulness, and alignment with user goals.","A good user experience helps the intended user accomplish a meaningful goal efficiently and confidently. It should be clear, usable, accessible, and aligned with the user's needs and the product's purpose.","Don't reduce UX to making an interface look good."],
+  ["Behavioral","Describe a time you disagreed with someone's design idea.","Show respectful discussion, evidence, testing, and willingness to change your mind.","A strong answer shows that you focused on the user's goal rather than personal preference. You compared alternatives using evidence, feedback, or a prototype and supported the final decision as a team.","Design disagreements should be resolved with evidence when possible."],
+  ["Technical","What is a prototype?","Explain that it is a representation used to explore or test an idea before final implementation.","A prototype is an interactive or visual representation of a proposed experience. It lets designers and stakeholders explore flows and test assumptions before committing significant development resources.","Mention low- versus high-fidelity prototypes if appropriate."],
+  ["Behavioral","Walk me through a project in your portfolio.","Give a concise problem-process-result story and explain your individual contribution.","A strong portfolio walkthrough explains the problem, the users, your role, the alternatives you considered, what you designed, what you learned from testing, and the final result.","Focus on decisions and learning, not just screenshots."]
+ ],
+ project:[
+  ["Technical","What is a project milestone?","Explain that it is a significant checkpoint used to measure progress toward a project objective.","A milestone is a significant checkpoint in a project, such as completing requirements or launching a test version. Milestones help teams communicate progress and identify whether the project is on schedule.","Give an example from a class or work project."],
+  ["Technical","What is the difference between a risk and an issue?","Explain that a risk is a potential future event while an issue is already happening.","A risk is an uncertain event that could affect a project in the future. An issue is a problem that has already occurred and requires action. Project managers plan responses to risks and resolve or escalate issues.","This distinction is common in project tracking."],
+  ["Technical","What is Agile?","Explain iterative delivery, feedback, adaptation, and collaboration.","Agile is an approach to delivering work iteratively, using frequent feedback and adaptation rather than trying to define every detail upfront. Teams often deliver smaller increments and adjust priorities as they learn.","Do not describe Agile as simply 'working faster.'"],
+  ["Behavioral","Tell me about a time you had to coordinate people to complete a project.","Show planning, communication, follow-up, and a concrete outcome.","A strong response explains the objective, how you divided or coordinated work, how you communicated progress, how you handled obstacles, and what the team ultimately delivered.","Emphasize your coordination actions rather than taking credit for everyone else's work."],
+  ["Technical","How would you handle a project that is falling behind schedule?","Mention diagnosing the cause, reprioritizing, communicating impact, and updating the plan.","I would first identify why the project is behind, determine which dependencies or tasks are driving the delay, evaluate options, communicate the impact to stakeholders, and update priorities or the schedule based on the agreed path forward.","Never hide a schedule problem until the deadline."],
+  ["Behavioral","Describe a time you had to manage competing priorities.","Show a system for prioritizing based on impact, urgency, dependencies, and commitments.","A strong response explains how you compared priorities, communicated tradeoffs, organized the work, and protected the most important deadline or outcome.","Explain why you chose the priority, not just what you did first."],
+  ["Technical","What is scope creep?","Explain that it is uncontrolled expansion of project requirements beyond the agreed scope.","Scope creep occurs when additional requirements or work are added without appropriately evaluating their impact on time, cost, resources, or objectives. A project manager should document and assess changes rather than automatically accepting them.","Frame change management as a process, not simply saying no."],
+  ["Behavioral","Tell me about a time a project did not go as planned.","Demonstrate ownership, communication, adaptation, and learning.","A strong answer acknowledges what went wrong, explains how you communicated and adapted, describes the outcome, and identifies what you would do differently next time.","The learning is often more important than having a perfect project."]
+ ],
 };
 
 let selectedCareer="developer", qIndex=0, completed=0, lastSubmitted=false;
@@ -241,7 +288,7 @@ function openCareer(key){
    <div class="detailBox"><h3>Technical Skills</h3><ul>${c.skills.map(x=>`<li>${x}</li>`).join("")}</ul></div>
    <div class="detailBox"><h3>Tools & Technologies</h3><div class="tags">${c.tools.map(x=>`<span class="tag">${x}</span>`).join("")}</div></div>
    <div class="detailBox"><h3>What Interns Should Know</h3><ul>${c.entry.map(x=>`<li>${x}</li>`).join("")}</ul></div>
-   <div class="detailBox"><h3>Salary Snapshot</h3><div class="salary">${c.salary}</div><div class="small">Typical U.S. early-career range; use current job postings and authoritative labor-market sources to validate specific claims.</div></div>
+   <div class="detailBox"><h3>Salary & Outlook</h3><div class="salary">${c.salary}</div><div class="small">2025 U.S. median annual wage for the cited BLS occupation</div><div style="margin-top:13px;font-size:22px;font-weight:850;color:var(--green)">${c.outlook}</div><div class="small">Projected employment growth, 2025–2035</div>${c.name==="Data Analyst"?'<div class="small" style="margin-top:12px">Proxy note: BLS does not publish a standalone "Data Analyst" occupation in this profile, so this prototype uses the closely related Data Scientists occupation for labor-market context.</div>':''}<div style="margin-top:16px"><a href="${c.sourceUrl}" target="_blank" style="color:var(--blue);font-weight:800;text-decoration:none">Research source: ${c.source} →</a></div></div>
    <div class="detailBox"><h3>Career Growth</h3><p style="color:#526275;line-height:1.7">${c.growth}</p></div>
    <div class="detailBox" style="grid-column:1/-1"><h3>What Makes a Strong Candidate?</h3><p style="color:#526275;line-height:1.7;margin:0">${c.candidate}</p></div>
   </div>
