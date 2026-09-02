@@ -470,6 +470,44 @@ textarea:focus{
   box-shadow:0 0 0 3px rgba(26,115,232,.1);
 }
 
+/* Interview DO / DON'T guidance */
+.interviewGuidance{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.guidanceBox{
+  padding:14px 16px;
+  border-radius:12px;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.guidanceBox strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.guidanceDo{
+  background:#EAF8F0;
+  color:#17643E;
+  border:1px solid #C8EBD8;
+}
+
+.guidanceDont{
+  background:#FFF1F1;
+  color:#8A3030;
+  border:1px solid #F0CCCC;
+}
+
+@media(max-width:700px){
+  .interviewGuidance{
+    grid-template-columns:1fr;
+  }
+}
+
 .actionRow{
   display:flex;
   justify-content:space-between;
@@ -973,6 +1011,19 @@ footer{
           placeholder="Type your interview answer here...">
         </textarea>
 
+        <div id="interviewGuidance" class="interviewGuidance">
+
+          <div class="guidanceBox guidanceDo">
+            <strong>✓ DO</strong>
+            <span id="doText"></span>
+          </div>
+
+          <div class="guidanceBox guidanceDont">
+            <strong>✕ DON'T</strong>
+            <span id="dontText"></span>
+          </div>
+
+        </div>
 
         <div class="actionRow">
 
@@ -1475,416 +1526,69 @@ const careers = {
 const questions = {
 
   developer:[
-
-    [
-      "Technical",
-      "What is the difference between an array and a linked list?",
-      "Mention that arrays provide indexed access and contiguous-style storage, while linked lists connect nodes through references.",
-      "A good answer compares access and insertion tradeoffs. Arrays typically provide O(1) indexed access, while linked lists generally require traversal for indexed access but can make insertion/removal efficient when the node position is known.",
-      "Define each structure, give one tradeoff, and connect it to a practical use case."
-    ],
-
-    [
-      "Technical",
-      "What is an API, and why would an application use one?",
-      "Explain that an API provides a defined way for software components to communicate and exchange data.",
-      "An API is an interface that lets one piece of software request functionality or data from another system through defined rules. For example, a web app can call an API to retrieve customer or weather data without knowing how the underlying service is implemented.",
-      "Avoid saying an API is simply a database. Focus on communication between systems."
-    ],
-
-    [
-      "Technical",
-      "What is version control and why is Git useful?",
-      "Mention tracking changes, collaboration, branches, and the ability to restore earlier versions.",
-      "Version control records changes to files over time. Git lets developers create branches, collaborate without overwriting one another, review changes, and return to earlier versions when needed.",
-      "Tie Git to a team project you have actually worked on if possible."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a technical problem you had to solve. What did you do?",
-      "Look for a clear situation, your specific actions, and a measurable or concrete result.",
-      "A strong response uses STAR: explain the situation, the task, the actions you personally took, and the result. The best answers show persistence and learning rather than pretending the problem was easy.",
-      "Spend most of your answer on what YOU did, not what the team did."
-    ],
-
-    [
-      "Technical",
-      "What is a primary key in a relational database?",
-      "State that it uniquely identifies a row and should be unique and non-null.",
-      "A primary key uniquely identifies each record in a table. It allows other tables to reference that record and helps maintain data integrity.",
-      "A quick example such as StudentID can make the answer memorable."
-    ],
-
-    [
-      "Behavioral",
-      "Describe a time you had to learn a new technology quickly.",
-      "Show a learning strategy: define the goal, find resources, practice, and apply the skill.",
-      "Strong candidates explain exactly how they learned: they identify what they needed to accomplish, use documentation or trusted resources, build a small example, and then apply the new skill to the real task.",
-      "Connect this to a class, project, job, or personal build."
-    ],
-
-    [
-      "Technical",
-      "What is the purpose of testing software?",
-      "Explain that testing finds defects and verifies expected behavior before release.",
-      "Testing checks whether software behaves as expected and helps catch defects before users encounter them. Different tests can validate individual components, integrations, or complete user workflows.",
-      "Mention a specific example of a test if you can."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time you received critical feedback.",
-      "Show that you listened, acted on the feedback, and improved.",
-      "A strong answer demonstrates coachability: describe the feedback without becoming defensive, explain what you changed, and give evidence that the change improved your work.",
-      "Never blame the person who gave you feedback."
-    ]
-
+    ["Behavioral","Tell me about yourself.","Use Present–Benefit–Future; keep 30–60 seconds.","A strong answer briefly explains what you are doing now, the skills or experiences you bring that would benefit the role, and what you hope to do next. Keep it focused on your preparation for software development rather than your whole background.","Use Present–Benefit–Future and keep it to about 30–60 seconds."],
+    ["Technical","What programming languages are you comfortable with?","Name languages you truly know and explain how you used them.","A strong answer names languages you can actually discuss and gives a brief example of how you used each one, such as Python for coursework or JavaScript for a web project. It is better to explain a few languages honestly than to list many you barely know.","Be honest about your level. Do not claim expertise in languages you have barely used."],
+    ["Technical","How do you debug code that isn’t working?","Walk through your process: reproduce → inspect → isolate → test → verify.","I first reproduce the problem so I understand exactly what is failing. Then I inspect the error and relevant code, isolate the likely cause, test a focused change, and verify that the fix works without creating another problem.","Explain your reasoning step by step instead of simply saying, “I Google it.”"],
+    ["Behavioral","Tell me about a time you encountered a difficult technical problem. How did you troubleshoot it?","Use PAR (Problem → Action → Result).","A strong answer clearly identifies the problem, focuses on the troubleshooting actions you personally took, and ends with the result. The best answers show a methodical process, persistence, and what you learned.","Use PAR and spend most of the answer on your actions rather than explaining the problem."],
+    ["Behavioral","Tell me about a time you had to balance what a user wanted with what was technically possible.","Show how you understood user needs and technical constraints.","A strong answer shows that you listened to what the user actually needed, identified the technical constraints, explained the tradeoffs clearly, and worked toward a practical solution that respected both sides.","Do not frame the user or development team as “wrong.”"],
+    ["Situational","You don’t understand part of the codebase. How do you approach it?","Read documentation, trace the code, run tests, ask thoughtful questions.","I would start by reading the relevant documentation and tracing how the code is used. I would run the existing tests or small experiments to build understanding, then ask focused questions if something remains unclear.","Do not pretend you understand, and do not immediately ask someone else to fix it for you."],
+    ["Situational","You have three bugs but time to fix one. How do you decide?","Prioritize based on severity, user impact, deadlines, and risk.","I would compare the bugs based on severity, how many users are affected, deadlines, security or business risk, and whether one bug blocks other work. I would choose the issue with the greatest overall impact rather than simply the easiest one.","Do not pick the easiest or most interesting bug just because it is convenient."],
+    ["Behavioral","Any questions?","Ask about tech stack, team workflow, or onboarding.","Yes. I would ask something such as, “What does the team’s development workflow look like?” or “What technologies would an intern or new developer use most often?” I might also ask how onboarding and code review work.","Do not say you have no questions."]
   ],
-
 
   data:[
-
-    [
-      "Technical",
-      "What is the difference between WHERE and HAVING in SQL?",
-      "Explain that WHERE filters rows before grouping, while HAVING filters groups after aggregation.",
-      "WHERE filters individual rows before GROUP BY is applied. HAVING filters grouped results, often using aggregate functions such as COUNT or AVG.",
-      "A simple example makes this much stronger."
-    ],
-
-    [
-      "Technical",
-      "What makes a data visualization effective?",
-      "Mention choosing the right chart, reducing clutter, labeling clearly, and matching the visualization to the question.",
-      "An effective visualization makes the intended comparison or trend easy to see. The chart type should fit the data, labels should be clear, unnecessary decoration should be removed, and the visualization should answer a specific business question.",
-      "Start with the question, then choose the chart."
-    ],
-
-    [
-      "Technical",
-      "What is a JOIN in SQL?",
-      "Explain that JOIN combines rows from tables based on a related field.",
-      "A JOIN combines data from two or more tables using a related column. For example, a customer table and an orders table could be joined through CustomerID.",
-      "Know the difference between INNER JOIN and LEFT JOIN at a basic level."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time you used data to make a decision.",
-      "Focus on the decision, the data you used, your analysis, and the outcome.",
-      "A strong response explains the business question first, then the relevant data, the analysis you performed, the insight you found, and how that insight influenced the decision.",
-      "Don't just describe making a chart; explain what changed because of your analysis."
-    ],
-
-    [
-      "Technical",
-      "How would you handle a dataset with missing values?",
-      "Say that you would first understand why values are missing before deciding whether to remove, impute, or flag them.",
-      "I would inspect the amount and pattern of missingness and understand why the values are missing. Depending on the context, I might remove records, impute values, or keep a missing category, while documenting the decision.",
-      "There is no universal fix; context matters."
-    ],
-
-    [
-      "Behavioral",
-      "How would you explain a technical finding to a nontechnical manager?",
-      "Emphasize business impact, plain language, and a concise visual.",
-      "I would lead with the business implication rather than the technical method, use plain language and one or two useful visuals, then provide technical detail if the manager wants it.",
-      "Practice explaining one SQL result without using SQL jargon."
-    ],
-
-    [
-      "Technical",
-      "What is the difference between correlation and causation?",
-      "Explain that correlation indicates association but does not prove one variable causes another.",
-      "Correlation means two variables move together in some way. Causation means a change in one variable produces a change in another. A correlation alone does not prove causation because other variables may explain the relationship.",
-      "Use a real-world example if asked to elaborate."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time your analysis changed after you found an error.",
-      "Show ownership, verification, correction, and prevention.",
-      "A strong response shows that you verified the result, acknowledged the mistake, corrected the analysis, communicated the impact, and changed your process to reduce the chance of repeating it.",
-      "Own mistakes directly. Analysts are evaluated on accuracy and integrity."
-    ]
-
+    ["Behavioral","Tell me about yourself.","Use Present–Benefit–Future with a data focus.","A strong answer explains what you are currently studying or doing, the data skills and problem-solving strengths you bring, and what kind of data-focused opportunity you are looking for next.","Keep the answer focused on your data preparation and the value you can bring instead of listing every class you have taken."],
+    ["Technical","What SQL commands or clauses do you use most often?","Explain SELECT, WHERE, JOIN, GROUP BY, ORDER BY with real examples.","I use SELECT to choose the data I need, WHERE to filter rows, JOIN to combine related tables, GROUP BY to summarize data into groups, and ORDER BY to sort results. For example, I could join customers to orders, group by customer, and calculate total purchases.","Explain commands you actually understand and connect them to a real example."],
+    ["Technical","Which visualization would you use for trends over time?","Choose a line chart and explain why it shows changes clearly.","I would usually choose a line chart because it makes changes over time easy to see. The time variable goes along the horizontal axis, and the measured value goes on the vertical axis, making trends and changes clear.","Name the chart and explain why it fits the question instead of just naming a chart."],
+    ["Behavioral","Tell me about a time your analysis produced an unexpected result.","Use PAR; check data quality, explore causes, interpret meaning.","A strong answer uses PAR: explain the unexpected result, describe how you checked the data and calculations, investigate possible causes, and explain what you ultimately concluded and what the result meant.","Do not assume the data is wrong without investigating."],
+    ["Behavioral","Tell me about a time you had to decide which data was relevant.","Start with the business question, then explain your data choices.","A strong answer starts with the decision or business question, identifies the information needed to answer it, and explains why the selected data was relevant while leaving out information that would not help answer the question.","Do not collect everything just because it is available."],
+    ["Situational","Your analysis shows something unexpected. What do you do?","Verify data, check calculations, investigate causes, communicate findings.","I would first verify the data and calculations, then investigate possible explanations for the unexpected result. If it holds up, I would communicate the finding honestly, explain what I know and do not know, and discuss its implications.","Do not ignore or alter results because they are inconvenient."],
+    ["Situational","You discover incorrect data the day before a presentation. What do you do?","Confirm the issue, assess impact, correct what you can, notify stakeholders.","I would confirm the problem, determine which results and slides are affected, correct the data or analysis if possible, and tell the relevant stakeholders about the impact. If everything cannot be fixed in time, I would clearly communicate what changed and what remains uncertain.","Never quietly change numbers just to make the presentation work."],
+    ["Behavioral","Any questions?","Ask about data sources, tools, or how insights influence decisions.","I would ask about the team’s primary data sources and tools, or how analysts’ findings are used to influence business decisions. Those questions help me understand both the technical environment and the role’s impact.","Do not say you have no questions."]
   ],
-
 
   cyber:[
-
-    [
-      "Technical",
-      "What is the difference between authentication and authorization?",
-      "Authentication verifies identity; authorization determines what an authenticated user is allowed to access.",
-      "Authentication answers 'Who are you?' Authorization answers 'What are you allowed to do?' A user may successfully authenticate but still lack authorization to access a particular system or file.",
-      "A simple login example is enough."
-    ],
-
-    [
-      "Technical",
-      "What is phishing and how would you recognize it?",
-      "Mention suspicious links, urgency, unexpected requests, spoofed domains, and requests for credentials.",
-      "Phishing is a social-engineering technique that attempts to trick users into revealing information or taking an unsafe action. Warning signs include unusual urgency, unexpected attachments, suspicious links, requests for credentials, or a lookalike sender domain.",
-      "Avoid relying on grammar alone; sophisticated phishing can look professional."
-    ],
-
-    [
-      "Technical",
-      "What is a firewall used for?",
-      "Explain that it controls network traffic according to security rules.",
-      "A firewall monitors and controls network traffic based on defined rules. It can restrict unwanted connections while allowing approved traffic between systems or networks.",
-      "Mention that a firewall is one layer of a broader security strategy."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time you noticed something others missed.",
-      "Highlight observation, verification, communication, and impact.",
-      "A strong response shows attention to detail but also restraint: you noticed an anomaly, verified that it was meaningful, communicated it appropriately, and helped resolve it.",
-      "Security work rewards careful investigation, not jumping to conclusions."
-    ],
-
-    [
-      "Technical",
-      "What is the principle of least privilege?",
-      "Explain giving users or systems only the access necessary to perform their tasks.",
-      "Least privilege means users, applications, and systems receive only the permissions they need to perform their intended function. Limiting access reduces the potential impact if an account or system is compromised.",
-      "Give a concrete example such as a student employee not needing administrator rights."
-    ],
-
-    [
-      "Technical",
-      "Why are logs important in cybersecurity?",
-      "Explain detection, investigation, timelines, and evidence.",
-      "Logs provide records of system and user activity. Security teams can use them to detect suspicious behavior, investigate incidents, reconstruct timelines, and identify patterns.",
-      "Mention that logs are most useful when they are centralized, retained, and monitored appropriately."
-    ],
-
-    [
-      "Behavioral",
-      "Describe a time you had to handle a problem carefully under pressure.",
-      "Show a calm process rather than rushing.",
-      "A strong answer explains how you separated facts from assumptions, prioritized the risk, communicated with the right people, and documented the outcome.",
-      "In security, accuracy under pressure is often more valuable than speed alone."
-    ],
-
-    [
-      "Technical",
-      "What is multi-factor authentication and why does it help?",
-      "Explain using two or more different factor categories and how it reduces account takeover risk.",
-      "MFA requires more than one type of authentication factor, such as something you know and something you have. If a password is stolen, the additional factor can make unauthorized access significantly harder.",
-      "Don't describe two passwords as two-factor authentication."
-    ]
-
+    ["Behavioral","Tell me about yourself.","Use Present–Benefit–Future with a security angle.","A strong answer briefly describes what you are doing now, the security-related skills and strengths you bring, and the kind of cybersecurity opportunity you want to pursue next.","Keep unrelated personal information out of your answer."],
+    ["Technical","How would you investigate suspicious activity?","Gather evidence, review logs, analyze behavior, follow incident-response steps.","I would gather the available evidence, review relevant logs and account or system activity, look for patterns and indicators of compromise, and follow the organization’s incident-response procedures. I would document what I find and escalate appropriately based on the risk.","Do not assume what happened before investigating the evidence."],
+    ["Technical","What is encryption?","Explain simply: protects data by making it unreadable without a key.","Encryption protects information by transforming readable data into a form that cannot be understood without the appropriate key. It helps protect data from unauthorized access while it is stored or transmitted.","Use a definition you can explain in simple language rather than one you cannot unpack."],
+    ["Behavioral","Tell me about a time you investigated the cause of a problem.","Use PAR; show how you identified, analyzed, and resolved the issue.","A strong answer uses PAR: explain the problem, describe how you gathered information and analyzed possible causes, explain what you did to resolve it, and finish with the result.","Do not only describe what went wrong; focus on how you investigated it."],
+    ["Behavioral","Tell me about a time you handled sensitive information responsibly.","Explain why it was sensitive and how you protected it.","A strong answer explains what made the information sensitive without revealing confidential details, then describes the precautions you took, such as limiting access, following policy, using secure systems, or avoiding unnecessary sharing.","Never reveal confidential details while giving your interview example."],
+    ["Situational","An employee refuses to follow a security policy. What do you do?","Explain risks, communicate respectfully, follow policy.","I would explain the security risk and why the policy exists, listen to the employee’s concerns, and communicate respectfully. If the issue continued, I would follow the organization’s established policy and escalation process.","Do not threaten, embarrass, or blame the employee."],
+    ["Situational","An employee clicks a suspicious link. What do you do?","Stay calm, follow incident-response procedures, escalate appropriately.","I would stay calm, avoid blaming the employee, and follow the organization’s incident-response procedures. I would help contain the potential risk, gather the relevant information, and escalate to the appropriate security team or person.","Do not assume nothing happened, and do not blame the employee."],
+    ["Behavioral","Any questions?","Ask about security priorities, tools, or incident-response workflow.","I would ask about the organization’s current security priorities, the tools the team uses most, or how incidents are normally detected, investigated, and escalated.","Do not say you have no questions."]
   ],
-
 
   analyst:[
-
-    [
-      "Technical",
-      "What is a business requirement?",
-      "Explain it as a need or outcome the business expects the solution to satisfy.",
-      "A business requirement describes what the organization needs to accomplish, such as reducing manual order entry time. It focuses on the desired business outcome rather than prescribing a specific technical implementation.",
-      "Separate the need from the solution."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time you had to resolve conflicting stakeholder needs.",
-      "Show listening, clarification, prioritization, and a mutually understood decision.",
-      "A strong answer explains how you identified the underlying needs, clarified constraints, compared options against agreed criteria, and helped stakeholders reach a decision.",
-      "Avoid framing one stakeholder as 'wrong.'"
-    ],
-
-    [
-      "Technical",
-      "What is the purpose of a process flowchart?",
-      "Explain that it visually represents steps, decisions, handoffs, and bottlenecks.",
-      "A process flowchart shows how work moves through a process, including activities, decisions, and handoffs. It helps analysts find inefficiencies, unclear ownership, and opportunities for improvement.",
-      "Mention how a diagram helps create a shared understanding."
-    ],
-
-    [
-      "Technical",
-      "Why would a systems analyst need to know SQL?",
-      "Connect SQL to validating data, understanding systems, and investigating issues.",
-      "SQL helps an analyst retrieve and validate data, investigate system behavior, test requirements, and communicate more effectively with technical teams.",
-      "You don't need to be a database administrator; you need enough SQL to investigate and validate."
-    ],
-
-    [
-      "Behavioral",
-      "Describe a time you had to ask difficult questions to understand a problem.",
-      "Show curiosity and respectful clarification.",
-      "A strong response demonstrates that you didn't accept an ambiguous request at face value. You asked targeted questions, confirmed assumptions, and used the answers to define the real problem.",
-      "Good analysts are comfortable saying, 'Can you give me an example?'"
-    ],
-
-    [
-      "Technical",
-      "What is the difference between a requirement and a feature?",
-      "Explain that a requirement states a need or constraint, while a feature is a product capability that addresses it.",
-      "A requirement describes what the business or user needs or what constraint must be satisfied. A feature is a capability of the system that may be designed to satisfy that requirement.",
-      "Requirements should be specific enough to test or validate."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time you improved a process.",
-      "Quantify the before/after when possible.",
-      "A strong response identifies the original pain point, explains how you mapped or analyzed the process, describes the change you helped make, and gives a measurable or observable improvement.",
-      "Time saved, errors reduced, or satisfaction improved are useful results."
-    ],
-
-    [
-      "Technical",
-      "What makes a requirement 'good'?",
-      "Mention clarity, specificity, testability, relevance, and lack of unnecessary solution bias.",
-      "A good requirement is clear, specific, relevant, and testable. Different people should interpret it consistently, and it should describe the needed outcome without unnecessarily locking the team into one technical solution.",
-      "Ask: 'How would we know this requirement has been satisfied?'"
-    ]
-
+    ["Behavioral","Tell me about yourself.","Use Present–Benefit–Future with business + tech.","A strong answer connects your current experience or studies to both business problem-solving and technology, explains the strengths you bring, and describes the kind of analyst role you want to grow into.","Keep the answer focused and avoid rambling."],
+    ["Technical","What does a systems analyst do?","Explain role practically: understand needs, improve processes.","A systems analyst works with stakeholders to understand what the business needs, analyzes current processes and systems, and helps identify or improve technology solutions that address those needs.","Explain the role practically rather than reciting a memorized definition."],
+    ["Technical","How would you explain a technical concept to a nontechnical person?","Use simple language and relatable examples.","I would first figure out what the person needs to understand, then explain the concept using plain language and a relatable example. I would avoid unnecessary jargon and check that the explanation makes sense to them.","Do not overload the person with technical jargon."],
+    ["Behavioral","Tell me about a time two groups wanted different things.","Use PAR; show listening and balanced solution.","A strong answer uses PAR and shows that you listened to both groups, identified the underlying needs and constraints, and helped find a balanced solution or decision that addressed the most important goals.","Do not frame one side as “wrong.”"],
+    ["Behavioral","Tell me about a time the initial solution wasn’t the best one.","Show willingness to reevaluate and why new solution was better.","A strong answer shows that you were willing to step back and reevaluate the first solution. Explain what new information or feedback changed your thinking, why the new approach was better, and what the result was.","Do not defend a bad idea just because it was your original idea."],
+    ["Situational","Two departments want different features. How do you handle it?","Understand needs, identify priorities, align with business goals.","I would first understand the needs behind each requested feature, identify the priorities and constraints, and compare the options against the organization’s business goals, impact, and dependencies. Then I would help stakeholders align on the best-supported decision.","Do not choose based only on who has more authority."],
+    ["Situational","A manager says, “Our system is terrible. We need a new one.” What do you do?","Ask clarifying questions before deciding.","I would not immediately agree or disagree. I would ask what problems the manager is experiencing, who is affected, what the business needs are, and whether the current system could be improved. Then I would use that information to evaluate possible solutions.","Do not jump straight to buying or building a new system."],
+    ["Behavioral","Any questions?","Ask about systems, stakeholders, or project priorities.","I would ask what systems or processes the analyst works with most often, which stakeholders the role collaborates with, or how the team decides which projects and improvements should be prioritized.","Do not say you have no questions."]
   ],
-
 
   ux:[
-
-    [
-      "Technical",
-      "What is the difference between usability and visual design?",
-      "Explain that usability is about how effectively and easily users accomplish tasks, while visual design concerns appearance and presentation.",
-      "Usability focuses on whether users can successfully and efficiently accomplish their goals. Visual design focuses on how the interface looks and communicates visually. Good UX considers both, but a beautiful interface can still be difficult to use.",
-      "Use a concrete example from a website or app you have used."
-    ],
-
-    [
-      "Technical",
-      "What is a wireframe and why would you create one?",
-      "Explain that a wireframe is a simplified representation of an interface used to plan structure and interaction.",
-      "A wireframe is a simplified layout that shows content hierarchy, navigation, and key interactions without requiring polished visual design. It lets a team test structure and ideas early and cheaply.",
-      "Explain how low-fidelity work can prevent expensive rework later."
-    ],
-
-    [
-      "Technical",
-      "How would you conduct a usability test?",
-      "Mention a clear task, representative users, observation, and synthesizing findings.",
-      "I would define the research question, give representative users realistic tasks, observe where they struggle without leading them, record patterns, and use the findings to prioritize design changes.",
-      "Avoid telling participants exactly how to complete the task."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time you changed your work because of user feedback.",
-      "Show that you listened, identified the underlying issue, made a change, and measured or observed the result.",
-      "A strong response explains what users said or did, how you interpreted the feedback, what you changed, and what happened afterward. It demonstrates that you design for users rather than defending your first idea.",
-      "A portfolio project is a great example."
-    ],
-
-    [
-      "Technical",
-      "What makes a good user experience?",
-      "Mention ease of use, clarity, accessibility, usefulness, and alignment with user goals.",
-      "A good user experience helps the intended user accomplish a meaningful goal efficiently and confidently. It should be clear, usable, accessible, and aligned with the user's needs and the product's purpose.",
-      "Don't reduce UX to making an interface look good."
-    ],
-
-    [
-      "Behavioral",
-      "Describe a time you disagreed with someone's design idea.",
-      "Show respectful discussion, evidence, testing, and willingness to change your mind.",
-      "A strong answer shows that you focused on the user's goal rather than personal preference. You compared alternatives using evidence, feedback, or a prototype and supported the final decision as a team.",
-      "Design disagreements should be resolved with evidence when possible."
-    ],
-
-    [
-      "Technical",
-      "What is a prototype?",
-      "Explain that it is a representation used to explore or test an idea before final implementation.",
-      "A prototype is an interactive or visual representation of a proposed experience. It lets designers and stakeholders explore flows and test assumptions before committing significant development resources.",
-      "Mention low- versus high-fidelity prototypes if appropriate."
-    ],
-
-    [
-      "Behavioral",
-      "Walk me through a project in your portfolio.",
-      "Give a concise problem-process-result story and explain your individual contribution.",
-      "A strong portfolio walkthrough explains the problem, the users, your role, the alternatives you considered, what you designed, what you learned from testing, and the final result.",
-      "Focus on decisions and learning, not just screenshots."
-    ]
-
+    ["Behavioral","Tell me about yourself.","Use Present–Benefit–Future with design + users.","A strong answer briefly explains what you are doing now, the design and user-focused strengths you bring, and the kind of UX opportunity you hope to pursue.","Keep unrelated personal information out of the answer."],
+    ["Technical","How do you understand users?","Mention research methods: interviews, surveys, usability tests.","I would use methods such as user interviews, surveys, observation, and usability testing to understand users’ goals, behaviors, frustrations, and context. I would look for patterns rather than assuming I already know what users want.","Do not assume you already know what users want."],
+    ["Technical","How do you handle conflicting user feedback?","Look for patterns, understand motivations, prioritize based on goals.","I would look for patterns across the feedback, investigate why users have different reactions, and compare the feedback against the product’s goals and evidence. I would prioritize changes based on user needs and impact rather than changing the design every time someone gives feedback.","Do not redesign something every time one person gives feedback."],
+    ["Technical","How do you balance customer needs with business needs?","Look for solutions that provide value to both.","I would first understand the goals and constraints on both sides, then look for a solution that provides meaningful value to users while also supporting the business. If there is a tradeoff, I would make it explicit and use evidence to guide the decision.","Do not treat either the customer or the business as unimportant."],
+    ["Behavioral","Tell me about a time you received feedback on a design.","Use PAR; explain how you used feedback to improve.","A strong answer uses PAR: explain what feedback you received, what you did with it, and how the design improved as a result. The answer should show that you can listen and iterate without becoming defensive.","Do not get defensive about your original design."],
+    ["Behavioral","Tell me about a time you designed something with another person’s needs in mind.","Describe user, needs, how you designed for them.","A strong answer identifies the person or user group, explains their specific needs or constraints, describes the design decisions you made to address them, and explains how you knew the result was useful.","Do not focus only on aesthetics."],
+    ["Situational","Users want Feature A, but data suggests Feature B has more impact. What do you do?","Investigate both sides, understand motivations, find balanced solution.","I would investigate both the user feedback and the data to understand why they point in different directions. I would look for the underlying user need, evaluate the evidence and business goals, and see whether a solution could address the strongest parts of both options.","Do not automatically ignore either users or data."],
+    ["Behavioral","Any questions?","Ask about design process, user research, collaboration.","I would ask about the team’s design process, how user research is conducted, or how designers collaborate with developers and product teams.","Do not say you have no questions."]
   ],
 
-
   project:[
-
-    [
-      "Technical",
-      "What is a project milestone?",
-      "Explain that it is a significant checkpoint used to measure progress toward a project objective.",
-      "A milestone is a significant checkpoint in a project, such as completing requirements or launching a test version. Milestones help teams communicate progress and identify whether the project is on schedule.",
-      "Give an example from a class or work project."
-    ],
-
-    [
-      "Technical",
-      "What is the difference between a risk and an issue?",
-      "Explain that a risk is a potential future event while an issue is already happening.",
-      "A risk is an uncertain event that could affect a project in the future. An issue is a problem that has already occurred and requires action. Project managers plan responses to risks and resolve or escalate issues.",
-      "This distinction is common in project tracking."
-    ],
-
-    [
-      "Technical",
-      "What is Agile?",
-      "Explain iterative delivery, feedback, adaptation, and collaboration.",
-      "Agile is an approach to delivering work iteratively, using frequent feedback and adaptation rather than trying to define every detail upfront. Teams often deliver smaller increments and adjust priorities as they learn.",
-      "Do not describe Agile as simply 'working faster.'"
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time you had to coordinate people to complete a project.",
-      "Show planning, communication, follow-up, and a concrete outcome.",
-      "A strong response explains the objective, how you divided or coordinated work, how you communicated progress, how you handled obstacles, and what the team ultimately delivered.",
-      "Emphasize your coordination actions rather than taking credit for everyone else's work."
-    ],
-
-    [
-      "Technical",
-      "How would you handle a project that is falling behind schedule?",
-      "Mention diagnosing the cause, reprioritizing, communicating impact, and updating the plan.",
-      "I would first identify why the project is behind, determine which dependencies or tasks are driving the delay, evaluate options, communicate the impact to stakeholders, and update priorities or the schedule based on the agreed path forward.",
-      "Never hide a schedule problem until the deadline."
-    ],
-
-    [
-      "Behavioral",
-      "Describe a time you had to manage competing priorities.",
-      "Show a system for prioritizing based on impact, urgency, dependencies, and commitments.",
-      "A strong response explains how you compared priorities, communicated tradeoffs, organized the work, and protected the most important deadline or outcome.",
-      "Explain why you chose the priority, not just what you did first."
-    ],
-
-    [
-      "Technical",
-      "What is scope creep?",
-      "Explain that it is uncontrolled expansion of project requirements beyond the agreed scope.",
-      "Scope creep occurs when additional requirements or work are added without appropriately evaluating their impact on time, cost, resources, or objectives. A project manager should document and assess changes rather than automatically accepting them.",
-      "Frame change management as a process, not simply saying no."
-    ],
-
-    [
-      "Behavioral",
-      "Tell me about a time a project did not go as planned.",
-      "Demonstrate ownership, communication, adaptation, and learning.",
-      "A strong answer acknowledges what went wrong, explains how you communicated and adapted, describes the outcome, and identifies what you would do differently next time.",
-      "The learning is often more important than having a perfect project."
-    ]
-
+    ["Behavioral","Tell me about yourself.","Use Present–Benefit–Future with leadership + organization.","A strong answer briefly explains what you are doing now, the leadership, organization, and communication strengths you bring, and the kind of project-management opportunity you want to pursue.","Keep it focused on your preparation for project work instead of giving your whole life story."],
+    ["Technical","How do you manage project risks?","Identify risks early, assess impact, plan responses, monitor continuously.","I identify potential risks early, assess their likelihood and impact, plan an appropriate response, assign ownership when needed, and monitor the risks throughout the project. The goal is to address risks before they become issues.","Do not wait until something breaks before thinking about risk."],
+    ["Technical","How do you handle conflict within a team?","Listen to all sides, understand root causes, guide toward resolution.","I would listen to the people involved, understand the underlying causes of the conflict, and help the team focus on the project goal and facts rather than personal positions. Then I would guide the group toward a practical resolution and clarify next steps.","Do not ignore conflict or immediately take sides."],
+    ["Behavioral","Tell me about a time you coordinated multiple people.","Use PAR; explain communication and organization.","A strong answer uses PAR and explains the objective, how you organized responsibilities, how you communicated with the people involved, how you followed up, and what the group accomplished.","Do not just say “we worked together.” Explain your coordination role."],
+    ["Behavioral","Tell me about a time someone wasn’t completing responsibilities.","Address respectfully, understand causes, help them get back on track.","A strong answer shows that you addressed the situation respectfully, tried to understand what was preventing the person from completing the work, clarified expectations, and helped get the responsibility back on track.","Do not blame or criticize the person."],
+    ["Situational","Your project is two weeks behind schedule. What do you do?","Investigate causes, adjust scope/resources, communicate clearly, create recovery plan.","I would investigate what caused the delay, identify the tasks or dependencies creating the biggest impact, evaluate scope and resource options, communicate the situation honestly to stakeholders, and create a realistic recovery plan with updated expectations.","Do not hide the delay or make unrealistic promises."],
+    ["Situational","Two critical tasks must happen at same time, but resources are limited. How prioritize?","Compare urgency, impact, dependencies, deadlines, risk.","I would compare the tasks based on urgency, business impact, dependencies, deadlines, and risk. I would determine which task is more critical to the project outcome and communicate the tradeoff clearly before assigning the limited resources.","Do not choose based on personal preference."],
+    ["Behavioral","Any questions?","Ask about project tools, team structure, risk management.","I would ask what project-management tools the team uses, how the project team is structured, or how risks and project changes are typically tracked and communicated.","Do not say you have no questions."]
   ]
 
 };
@@ -2289,6 +1993,8 @@ function resetInterviewUI(){
     answer.value = "";
   }
   if(feedback) feedback.classList.remove("show");
+  const guidance = document.getElementById("interviewGuidance");
+  if(guidance) guidance.style.display = "grid";
 }
 
 function startInterview(key){
@@ -2340,12 +2046,19 @@ function renderQuestion(){
   document.getElementById("question").textContent =
     q[1];
 
+  document.getElementById("doText").textContent =
+    q[2];
+
+  document.getElementById("dontText").textContent =
+    q[4];
+
 
   document.getElementById("answer").value = "";
 
   document.getElementById("answer").disabled = false;
 
   document.getElementById("answer").style.display = "block";
+  document.getElementById("interviewGuidance").style.display = "grid";
 
   document.getElementById("submitBtn").style.display =
     "inline-block";
@@ -2365,21 +2078,13 @@ function submitAnswer(){
       .value
       .trim();
 
-
   if(!answer){
-
-    alert(
-      "Write a response before submitting."
-    );
-
+    alert("Write a response before submitting.");
     return;
-
   }
-
 
   const q =
     questions[selectedCareer][qIndex];
-
 
   const words =
     answer
@@ -2387,100 +2092,657 @@ function submitAnswer(){
       .filter(Boolean)
       .length;
 
+  const lower = answer.toLowerCase();
 
-  let score =
-    words < 15
-      ? 2
-      : words < 35
-        ? 3
-        : 4;
+  /*
+    ---------------------------------------------------------
+    INTERVIEW ANSWER EVALUATION
+    ---------------------------------------------------------
+    The score is based on:
+      1. Answer length
+      2. Relevance / directness
+      3. Specificity
+      4. Examples or evidence
+      5. Appropriate answer structure
+      6. Question-specific expectations
+      7. Avoiding obvious weak-answer patterns
+  */
+
+  let points = 0;
+  let strengths = [];
+  let improvements = [];
 
 
-  if(
-    q[0] === "Technical" &&
-    /because|example|for example|however|difference|means|used|allows|helps/i
-      .test(answer)
-  ){
+  // -------------------------------------------------------
+  // 1. BASIC ANSWER LENGTH
+  // -------------------------------------------------------
 
-    score =
-      Math.min(5, score + 1);
+  if(words >= 35 && words <= 150){
+    points += 2;
+    strengths.push("Your answer is a reasonable interview length.");
+  }
+  else if(words >= 20){
+    points += 1;
+    improvements.push("Add a little more detail so the interviewer can understand your reasoning.");
+  }
+  else{
+    improvements.push("Your answer is quite short. Give more explanation, evidence, or an example.");
+  }
 
+  if(words > 180){
+    improvements.push("Try to be more concise. Focus on your strongest points instead of explaining everything.");
   }
 
 
-  if(
-    q[0] === "Behavioral" &&
-    /I |we |result|learn|improv|STAR|situation|task|action/i
-      .test(answer)
-  ){
+  // -------------------------------------------------------
+  // 2. SPECIFICITY
+  // -------------------------------------------------------
 
-    score =
-      Math.min(5, score + 1);
+  const specificIndicators =
+    /\b(for example|for instance|specifically|such as|because|when i|i used|i worked|i created|i built|i found|i noticed|i decided|i learned)\b/i;
 
+  if(specificIndicators.test(answer)){
+    points += 1;
+    strengths.push("You included specific reasoning or an example instead of staying completely general.");
+  }
+  else{
+    improvements.push("Add a concrete example or explain exactly what you would do.");
   }
 
 
-  const good =
-    score >= 4
+  // -------------------------------------------------------
+  // 3. PERSONAL OWNERSHIP
+  // -------------------------------------------------------
 
-      ?
+  const ownership =
+    /\b(i|my|me|i'm|i've|i'd|i would|i was|i did|i made|i helped|i decided|i handled|i created|i learned)\b/i;
 
-      "Your response has useful substance and shows that you are engaging with the question."
+  if(q[0] === "Behavioral" && ownership.test(answer)){
+    points += 1;
+    strengths.push("You clearly described your own role.");
+  }
+  else if(q[0] === "Behavioral"){
+    improvements.push("Make your individual role clearer by explaining what YOU did.");
+  }
 
-      :
 
-      "You started with a relevant idea. The next step is making your answer more specific and complete.";
+  // -------------------------------------------------------
+  // 4. RESULT / OUTCOME
+  // -------------------------------------------------------
+
+  const resultIndicators =
+    /\b(result|resulted|outcome|because of this|as a result|ended up|success|successful|improved|solved|completed|learned|lesson|impact)\b/i;
+
+  if(resultIndicators.test(answer)){
+    points += 1;
+    strengths.push("You included an outcome, impact, or lesson.");
+  }
 
 
-  const improve =
-    score >= 4
+  // -------------------------------------------------------
+  // 5. QUESTION-SPECIFIC EVALUATION
+  // -------------------------------------------------------
 
-      ?
+  const question = q[1];
 
-      "Make your strongest point first, then support it with a concrete example. Keep the answer focused and interview-ready."
 
-      :
+  // =======================================================
+  // PRESENT–BENEFIT–FUTURE
+  // =======================================================
 
-      "Add a clear explanation, a specific example, and the result or practical implication. Avoid one-sentence answers.";
+  if(question === "Tell me about yourself."){
 
+    const present =
+      /\b(currently|i am|i'm|student|studying|working|currently studying|right now)\b/i
+        .test(answer);
+
+    const benefit =
+      /\b(skill|skills|experience|strength|strengths|enjoy|good at|value|contribute|problem solving|communication|technical|design|organization|leadership)\b/i
+        .test(answer);
+
+    const future =
+      /\b(looking for|hope to|want to|would like to|future|grow|growth|career|opportunity|next|develop)\b/i
+        .test(answer);
+
+    if(present){
+      points += 1;
+      strengths.push("You established where you are currently.");
+    }
+    else{
+      improvements.push("Start with your present situation, such as what you're studying, working on, or developing.");
+    }
+
+    if(benefit){
+      points += 1;
+      strengths.push("You connected your background to skills or value you can bring.");
+    }
+    else{
+      improvements.push("Explain what skills or strengths you bring to the role.");
+    }
+
+    if(future){
+      points += 1;
+      strengths.push("You connected your background to where you want to go next.");
+    }
+    else{
+      improvements.push("Finish by explaining what kind of opportunity or growth you're looking for.");
+    }
+  }
+
+
+  // =======================================================
+  // PAR — BEHAVIORAL QUESTIONS
+  // =======================================================
+
+  if(q[0] === "Behavioral" &&
+     question !== "Tell me about yourself." &&
+     question !== "Any questions?"){
+
+    const problem =
+      /\b(problem|challenge|situation|issue|difficulty|needed|goal|task|conflict|unexpected|feedback|responsibilit|project)\b/i
+        .test(answer);
+
+    const action =
+      /\b(i|we)\s+(decided|did|made|created|used|asked|talked|worked|tested|checked|explained|handled|organized|identified|investigated|changed|helped|communicated|solved|reviewed|built|designed|coordinated|approached)\b/i
+        .test(answer);
+
+    const result =
+      resultIndicators.test(answer);
+
+    if(problem){
+      points += 1;
+      strengths.push("You provided context for the situation or challenge.");
+    }
+    else{
+      improvements.push("Briefly explain the problem, challenge, or situation you were dealing with.");
+    }
+
+    if(action){
+      points += 1;
+      strengths.push("You described actions you took rather than only describing the situation.");
+    }
+    else{
+      improvements.push("Spend more time explaining the specific actions you took.");
+    }
+
+    if(result){
+      points += 1;
+      strengths.push("You included a result, impact, or lesson.");
+    }
+    else{
+      improvements.push("End with the result: what happened, what changed, or what you learned.");
+    }
+  }
+
+
+  // =======================================================
+  // DEBUGGING
+  // =======================================================
+
+  if(question === "How do you debug code that isn't working?"){
+
+    const reproduce =
+      /\b(reproduce|recreate|replicate|again|reproduce the problem)\b/i
+        .test(answer);
+
+    const inspect =
+      /\b(error|error message|inspect|read|review|look at|documentation|logs|code)\b/i
+        .test(answer);
+
+    const isolate =
+      /\b(isolate|narrow|identify|specific|separate|break down|locate)\b/i
+        .test(answer);
+
+    const test =
+      /\b(test|testing|try|experiment|change one|one at a time)\b/i
+        .test(answer);
+
+    const verify =
+      /\b(verify|confirm|make sure|ensure|check|works|working)\b/i
+        .test(answer);
+
+    if(reproduce) strengths.push("You included reproducing the problem.");
+    else improvements.push("Explain how you reproduce the problem so you can understand it consistently.");
+
+    if(inspect) strengths.push("You described inspecting errors or code.");
+    else improvements.push("Explain what you inspect first, such as an error message, logs, or relevant code.");
+
+    if(isolate) strengths.push("You described narrowing down the source of the problem.");
+    else improvements.push("Explain how you isolate the part of the code causing the problem.");
+
+    if(test) strengths.push("You included testing possible fixes.");
+    else improvements.push("Explain how you test your fix rather than changing several things at once.");
+
+    if(verify) strengths.push("You included verifying the final solution.");
+    else improvements.push("Explain how you verify that the fix actually solved the original problem.");
+  }
+
+
+  // =======================================================
+  // SQL
+  // =======================================================
+
+  if(question === "What SQL commands or clauses do you use most often?"){
+
+    const sqlTerms =
+      [
+        /\bselect\b/i,
+        /\bwhere\b/i,
+        /\bjoin\b/i,
+        /\bgroup by\b/i,
+        /\border by\b/i
+      ];
+
+    const mentioned =
+      sqlTerms.filter(pattern => pattern.test(answer)).length;
+
+    if(mentioned >= 4){
+      points += 2;
+      strengths.push("You covered several of the core SQL clauses.");
+    }
+    else if(mentioned >= 2){
+      points += 1;
+      improvements.push("Mention and explain more of the core clauses: SELECT, WHERE, JOIN, GROUP BY, and ORDER BY.");
+    }
+    else{
+      improvements.push("Explain several common SQL clauses and what you use each one for.");
+    }
+
+    if(/\b(for example|example|such as|i use|i might|customer|orders|table|tables)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You connected SQL concepts to practical use.");
+    }
+    else{
+      improvements.push("Give a simple real-world example of how you would use the SQL clauses.");
+    }
+  }
+
+
+  // =======================================================
+  // VISUALIZATION
+  // =======================================================
+
+  if(question === "Which visualization would you use for trends over time?"){
+
+    if(/\bline chart|line graph|line\b/i.test(answer)){
+      points += 2;
+      strengths.push("You identified a line chart as an appropriate choice for trends over time.");
+    }
+    else{
+      improvements.push("For trends over time, a line chart is usually the strongest choice.");
+    }
+
+    if(/\b(change|trend|time|increase|decrease|pattern|over time|month|year)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You explained why the visualization works for changes over time.");
+    }
+    else{
+      improvements.push("Explain that a line chart makes changes and patterns over time easy to see.");
+    }
+  }
+
+
+  // =======================================================
+  // CYBERSECURITY
+  // =======================================================
+
+  if(question === "How would you investigate suspicious activity?"){
+
+    const evidence =
+      /\b(evidence|information|data|gather|collect)\b/i.test(answer);
+
+    const logs =
+      /\b(log|logs|logging|activity)\b/i.test(answer);
+
+    const analyze =
+      /\b(analy|behavior|pattern|timeline|investigate|review)\b/i.test(answer);
+
+    const response =
+      /\b(incident|response|escalate|contain|procedure|process|document)\b/i.test(answer);
+
+    if(evidence) strengths.push("You included gathering evidence.");
+    else improvements.push("Start by gathering evidence rather than assuming what happened.");
+
+    if(logs) strengths.push("You mentioned reviewing logs or activity.");
+    else improvements.push("Mention reviewing relevant logs or system activity.");
+
+    if(analyze) strengths.push("You included analyzing behavior or patterns.");
+    else improvements.push("Explain how you would analyze the activity to understand what happened.");
+
+    if(response) strengths.push("You connected the investigation to incident-response procedures.");
+    else improvements.push("Explain how you would follow incident-response procedures and escalate appropriately.");
+  }
+
+
+  if(question === "What is encryption?"){
+
+    if(/\b(protect|security|secure|data)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You explained encryption in terms of protecting information.");
+    }
+    else{
+      improvements.push("Explain that encryption is used to protect data.");
+    }
+
+    if(/\b(unreadable|readable|key|decrypt|decryption|cipher|encoded|decode)\b/i.test(answer)){
+      points += 2;
+      strengths.push("You explained that encrypted information requires a key or appropriate process to be understood.");
+    }
+    else{
+      improvements.push("Explain that encryption transforms readable data into a form that cannot be understood without the appropriate key.");
+    }
+  }
+
+
+  // =======================================================
+  // SYSTEMS ANALYST
+  // =======================================================
+
+  if(question === "What does a systems analyst do?"){
+
+    const needs =
+      /\b(needs|requirements|stakeholder|business|users|understand)\b/i.test(answer);
+
+    const process =
+      /\b(process|system|analy|improve|solution|technology)\b/i.test(answer);
+
+    if(needs){
+      points += 1;
+      strengths.push("You described understanding business or stakeholder needs.");
+    }
+    else{
+      improvements.push("Explain how a systems analyst works to understand business or stakeholder needs.");
+    }
+
+    if(process){
+      points += 1;
+      strengths.push("You connected the role to analyzing and improving systems or processes.");
+    }
+    else{
+      improvements.push("Explain how the analyst uses technology or process improvements to address those needs.");
+    }
+  }
+
+
+  if(question === "How would you explain a technical concept to a nontechnical person?"){
+
+    if(/\b(simple|simple language|plain language|avoid jargon|example|analogy|relatable)\b/i.test(answer)){
+      points += 2;
+      strengths.push("You focused on making technical information understandable.");
+    }
+    else{
+      improvements.push("Explain how you would simplify the concept and use a relatable example.");
+    }
+
+    if(/\b(understand|check|ask|confirm|makes sense)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You showed that communication includes checking whether the other person understands.");
+    }
+  }
+
+
+  // =======================================================
+  // UX
+  // =======================================================
+
+  if(question === "How do you understand users?"){
+
+    const researchMethods =
+      [
+        /\binterview/i,
+        /\bsurvey/i,
+        /\busability test/i,
+        /\bobserv/i,
+        /\bresearch/i
+      ];
+
+    const methods =
+      researchMethods.filter(pattern => pattern.test(answer)).length;
+
+    if(methods >= 2){
+      points += 2;
+      strengths.push("You identified multiple user-research methods.");
+    }
+    else if(methods === 1){
+      points += 1;
+      improvements.push("Mention more than one research method, such as interviews, surveys, or usability testing.");
+    }
+    else{
+      improvements.push("Mention specific research methods such as interviews, surveys, observation, or usability testing.");
+    }
+
+    if(/\b(goal|need|motivation|frustration|behavior|pattern)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You focused on understanding users' goals or needs.");
+    }
+    else{
+      improvements.push("Explain what you're trying to learn about users, such as their goals, frustrations, or motivations.");
+    }
+  }
+
+
+  if(question === "How do you handle conflicting user feedback?"){
+
+    if(/\b(pattern|patterns|common|trend|evidence|multiple|users)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You showed that you would look for patterns instead of reacting to one person's feedback.");
+    }
+    else{
+      improvements.push("Explain how you would look for patterns across users and feedback.");
+    }
+
+    if(/\b(why|motivation|reason|understand|goal|need)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You considered the reasons behind the feedback.");
+    }
+    else{
+      improvements.push("Look beyond the requested change and understand why users are asking for it.");
+    }
+
+    if(/\b(priorit|goal|impact|evidence|data)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You included a basis for prioritizing conflicting feedback.");
+    }
+  }
+
+
+  // =======================================================
+  // PROJECT MANAGEMENT
+  // =======================================================
+
+  if(question === "How do you manage project risks?"){
+
+    const riskSteps =
+      [
+        /\bidentif/i,
+        /\bassess/i,
+        /\bimpact/i,
+        /\blikelihood|probability/i,
+        /\bplan|response/i,
+        /\bmonitor/i
+      ];
+
+    const mentioned =
+      riskSteps.filter(pattern => pattern.test(answer)).length;
+
+    if(mentioned >= 4){
+      points += 2;
+      strengths.push("You described several important parts of risk management.");
+    }
+    else if(mentioned >= 2){
+      points += 1;
+      improvements.push("Include more of the risk process: identify, assess, plan a response, and monitor.");
+    }
+    else{
+      improvements.push("Explain how you identify risks early, assess their impact, plan responses, and monitor them.");
+    }
+  }
+
+
+  if(question === "How do you handle conflict within a team?"){
+
+    if(/\b(listen|hear|both sides|all sides|understand)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You showed that you would listen before acting.");
+    }
+    else{
+      improvements.push("Explain how you would listen to all sides before deciding what to do.");
+    }
+
+    if(/\b(root cause|cause|why|underlying)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You focused on finding the underlying cause of the conflict.");
+    }
+    else{
+      improvements.push("Try to identify the root cause instead of only addressing the surface disagreement.");
+    }
+
+    if(/\b(resolve|resolution|solution|agreement|compromise|move forward)\b/i.test(answer)){
+      points += 1;
+      strengths.push("You focused on reaching a resolution.");
+    }
+    else{
+      improvements.push("Explain how you would help the team reach a workable resolution.");
+    }
+  }
+
+
+  // =======================================================
+  // "ANY QUESTIONS?"
+  // =======================================================
+
+  if(question === "Any questions?"){
+
+    const asked =
+      /\?/.test(answer) ||
+      /\b(what|how|which|could you|can you|would you|tell me about)\b/i.test(answer);
+
+    const goodTopics =
+      /\b(team|technology|tech|stack|tool|tools|workflow|onboard|training|project|process|research|data|security|incident|stakeholder|career|collaborat|design|risk|priority|priorities)\b/i.test(answer);
+
+    if(asked){
+      points += 2;
+      strengths.push("You asked a genuine question rather than ending the interview with nothing to ask.");
+    }
+    else{
+      improvements.push("Turn your response into an actual question for the interviewer.");
+    }
+
+    if(goodTopics){
+      points += 2;
+      strengths.push("Your question focuses on the role, team, work, or organization.");
+    }
+    else{
+      improvements.push("Ask about something useful such as the team, technology, workflow, onboarding, or priorities.");
+    }
+
+    if(/\b(no questions|none|nothing|not really|no)\b/i.test(answer)){
+      points = Math.max(0, points - 3);
+      improvements.push("Avoid saying you have no questions. Prepare at least one thoughtful question.");
+    }
+  }
+
+
+  // -------------------------------------------------------
+  // 6. PENALIZE VERY GENERIC ANSWERS
+  // -------------------------------------------------------
+
+  if(
+    words >= 20 &&
+    !specificIndicators.test(answer) &&
+    q[0] !== "Situational"
+  ){
+    improvements.push("Your answer is somewhat general. A specific example would make it more convincing.");
+  }
+
+
+  // -------------------------------------------------------
+  // 7. CONVERT POINTS TO 1–5 SCORE
+  // -------------------------------------------------------
+
+  let score;
+
+  if(points >= 9){
+    score = 5;
+  }
+  else if(points >= 7){
+    score = 4;
+  }
+  else if(points >= 5){
+    score = 3;
+  }
+  else if(points >= 3){
+    score = 2;
+  }
+  else{
+    score = 1;
+  }
+
+
+  // -------------------------------------------------------
+  // 8. FALLBACK FEEDBACK
+  // -------------------------------------------------------
+
+  if(strengths.length === 0){
+    strengths.push(
+      "You made an attempt to answer the question. Now focus on adding specific evidence and a clear structure."
+    );
+  }
+
+  if(improvements.length === 0){
+    improvements.push(
+      "Your answer covers the main expectations. For an even stronger response, make your example specific and keep your explanation concise."
+    );
+  }
+
+
+  // Remove duplicate feedback
+  strengths = [...new Set(strengths)];
+  improvements = [...new Set(improvements)];
+
+
+  // -------------------------------------------------------
+  // 9. DISPLAY FEEDBACK
+  // -------------------------------------------------------
 
   document.getElementById("goodText").textContent =
-    good;
-
+    strengths.slice(0,3).join(" ");
 
   document.getElementById("improveText").textContent =
-    improve;
-
+    improvements.slice(0,3).join(" ");
 
   document.getElementById("strongText").textContent =
     q[3];
 
-
   document.getElementById("tipText").textContent =
     q[4];
-
 
   document.getElementById("feedback")
     .classList.add("show");
 
 
+  // -------------------------------------------------------
+  // 10. DISABLE ANSWER AFTER SUBMISSION
+  // -------------------------------------------------------
+
   document.getElementById("answer")
     .disabled = true;
-
 
   document.getElementById("submitBtn")
     .style.display = "none";
 
 
+  // -------------------------------------------------------
+  // 11. UPDATE COMPLETED COUNT
+  // -------------------------------------------------------
+
   if(!lastSubmitted){
 
     completed++;
-
     lastSubmitted = true;
 
     document.getElementById("scoreText").textContent =
       `${completed} completed`;
-
   }
 
 }
@@ -2521,6 +2783,9 @@ function nextQuestion(skipped){
 
 
     document.getElementById("answer")
+      .style.display = "none";
+
+    document.getElementById("interviewGuidance")
       .style.display = "none";
 
 
