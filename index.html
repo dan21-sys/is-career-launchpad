@@ -6,1611 +6,2440 @@
 <title>IS Career Launchpad</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root{
+  --navy:#002E5D;
+  --blue:#1A73E8;
+  --sky:#EAF3FF;
+  --ink:#152238;
+  --muted:#64748B;
+  --line:#DCE5EF;
+  --white:#fff;
+  --bg:#F6F9FC;
+  --green:#14804A;
+  --greenbg:#EAF8F0;
+  --gold:#B7791F;
+  --goldbg:#FFF7E6;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
-    color: #172033;
-    line-height: 1.6;
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
 }
 
-header {
-    background: #101828;
-    color: white;
-    padding: 18px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--bg);
 }
 
-.logo {
-    font-size: 21px;
-    font-weight: 800;
+button{
+  font:inherit;
+  cursor:pointer;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 24px;
-    font-weight: 600;
-    cursor: pointer;
+.nav{
+  height:72px;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
-nav a:hover {
-    opacity: .75;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:800;
+  color:var(--navy);
+  font-size:18px;
 }
 
-.hero {
-    background: linear-gradient(135deg, #172554, #2563eb);
-    color: white;
-    padding: 90px 7%;
+.logoMark{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  background:var(--navy);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:900;
 }
 
-.hero h1 {
-    font-size: clamp(40px, 7vw, 72px);
-    line-height: 1.05;
-    max-width: 800px;
-    margin-bottom: 22px;
+.navlinks{
+  display:flex;
+  gap:8px;
 }
 
-.hero p {
-    max-width: 680px;
-    font-size: 20px;
-    opacity: .92;
+.navlinks button{
+  border:0;
+  background:transparent;
+  color:#526275;
+  padding:10px 14px;
+  border-radius:9px;
+  font-weight:650;
 }
 
-.container {
-    width: 86%;
-    max-width: 1200px;
-    margin: auto;
+.navlinks button:hover,
+.navlinks .active{
+  background:var(--sky);
+  color:var(--navy);
 }
 
-.section {
-    padding: 65px 0;
+.hero{
+  background:linear-gradient(135deg,#002E5D 0%,#07599B 55%,#1A73E8 100%);
+  color:#fff;
+  padding:78px 6% 88px;
+  position:relative;
+  overflow:hidden;
 }
 
-.section h2 {
-    font-size: 34px;
-    margin-bottom: 12px;
+.hero:after{
+  content:"";
+  position:absolute;
+  width:480px;
+  height:480px;
+  border-radius:50%;
+  right:-120px;
+  top:-180px;
+  background:rgba(255,255,255,.08);
 }
 
-.section-intro {
-    color: #667085;
-    max-width: 750px;
-    margin-bottom: 30px;
+.heroInner{
+  max-width:1100px;
+  margin:auto;
+  position:relative;
+  z-index:1;
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
+.eyebrow{
+  display:inline-block;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.2);
+  padding:7px 12px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:750;
+  letter-spacing:.04em;
 }
 
-.card {
-    background: white;
-    border: 1px solid #e4e7ec;
-    border-radius: 18px;
-    padding: 27px;
-    box-shadow: 0 8px 25px rgba(16,24,40,.06);
-    transition: transform .2s, box-shadow .2s;
+h1{
+  font-size:clamp(42px,6vw,70px);
+  line-height:1.02;
+  margin:22px 0 18px;
+  max-width:760px;
+  letter-spacing:-.04em;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 35px rgba(16,24,40,.10);
+.hero p{
+  font-size:19px;
+  line-height:1.65;
+  max-width:680px;
+  color:#EAF4FF;
 }
 
-.card-number {
-    display: inline-block;
-    background: #eaf2ff;
-    color: #175cd3;
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: 800;
-    margin-bottom: 15px;
+.heroBtns{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:30px;
 }
 
-.card h3 {
-    font-size: 24px;
-    margin-bottom: 8px;
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:13px 18px;
+  font-weight:800;
+  transition:.18s;
+  box-shadow:0 2px 5px rgba(0,0,0,.08);
 }
 
-.card p {
-    color: #667085;
-    margin-bottom: 18px;
+.btn:hover{
+  transform:translateY(-1px);
 }
 
-.button {
-    border: none;
-    background: #175cd3;
-    color: white;
-    padding: 11px 17px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-weight: 700;
+.primary{
+  background:#fff;
+  color:var(--navy);
 }
 
-.button:hover {
-    background: #1247a7;
+.secondary{
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.35);
 }
 
-.button.secondary {
-    background: #eef2f6;
-    color: #172033;
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:62px 6%;
 }
 
-.button.secondary:hover {
-    background: #dfe5ec;
+.sectionHead{
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  align-items:end;
+  margin-bottom:25px;
 }
 
-#app {
-    min-height: 500px;
+.sectionHead h2{
+  margin:0;
+  font-size:32px;
+  letter-spacing:-.03em;
 }
 
-.detail-header {
-    background: #101828;
-    color: white;
-    padding: 60px 7%;
+.sectionHead p{
+  margin:7px 0 0;
+  color:var(--muted);
+  line-height:1.5;
 }
 
-.detail-header h1 {
-    font-size: 46px;
-    margin-bottom: 10px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
 }
 
-.detail-header p {
-    color: #d0d5dd;
-    max-width: 750px;
-    font-size: 18px;
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px;
+  box-shadow:0 8px 24px rgba(15,35,60,.04);
+  transition:.2s;
 }
 
-.back {
-    margin-top: 25px;
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px rgba(15,35,60,.08);
 }
 
-.detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
+.careerIcon{
+  width:46px;
+  height:46px;
+  border-radius:13px;
+  background:var(--sky);
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  margin-bottom:18px;
 }
 
-.info-box {
-    background: white;
-    border: 1px solid #e4e7ec;
-    border-radius: 16px;
-    padding: 25px;
+.card h3{
+  margin:0 0 8px;
+  font-size:21px;
 }
 
-.info-box h3 {
-    margin-bottom: 12px;
-    font-size: 21px;
+.card p{
+  color:var(--muted);
+  line-height:1.55;
+  margin:0 0 18px;
 }
 
-.info-box ul {
-    padding-left: 20px;
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
 }
 
-.info-box li {
-    margin-bottom: 7px;
+.tag{
+  background:#F1F5F9;
+  color:#405168;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:12px;
+  font-weight:700;
 }
 
-.salary-box {
-    background: #eff8ff;
-    border: 1px solid #b2ddff;
+.linkBtn{
+  border:0;
+  background:transparent;
+  padding:0;
+  color:var(--blue);
+  font-weight:800;
 }
 
-.salary-number {
-    font-size: 31px;
-    font-weight: 800;
-    color: #175cd3;
+.feature{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:28px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:25px;
 }
 
-.source {
-    margin-top: 15px;
-    font-size: 13px;
-    color: #667085;
+.featureItem{
+  padding:18px;
+  border-radius:13px;
+  background:#F8FAFC;
 }
 
-.source a {
-    color: #175cd3;
+.featureItem b{
+  display:block;
+  margin-bottom:5px;
 }
 
-.interview-card {
-    background: white;
-    border: 1px solid #e4e7ec;
-    border-radius: 18px;
-    padding: 30px;
-    max-width: 900px;
-    margin: auto;
+.view{
+  display:none;
 }
 
-.progress {
-    height: 9px;
-    background: #eaecf0;
-    border-radius: 99px;
-    overflow: hidden;
-    margin: 15px 0 30px;
+.view.active{
+  display:block;
 }
 
-.progress-bar {
-    height: 100%;
-    background: #175cd3;
-    transition: width .3s;
+.back{
+  border:0;
+  background:transparent;
+  color:var(--blue);
+  font-weight:800;
+  padding:0;
+  margin-bottom:20px;
 }
 
-.question-number {
-    color: #667085;
-    font-weight: 700;
-    margin-bottom: 8px;
+.detailHero{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:30px;
+  margin-bottom:18px;
 }
 
-.question {
-    font-size: 28px;
-    font-weight: 800;
-    line-height: 1.25;
-    margin-bottom: 25px;
+.detailTop{
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
 }
 
-textarea {
-    width: 100%;
-    min-height: 170px;
-    border: 1px solid #d0d5dd;
-    border-radius: 12px;
-    padding: 15px;
-    font-family: inherit;
-    font-size: 16px;
-    resize: vertical;
-    margin-bottom: 15px;
+.detailIcon{
+  width:58px;
+  height:58px;
+  background:var(--sky);
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  font-size:27px;
+  flex:none;
 }
 
-textarea:focus {
-    outline: 3px solid #dbeafe;
-    border-color: #175cd3;
+.detailHero h2{
+  margin:0 0 7px;
+  font-size:34px;
 }
 
-.feedback {
-    margin-top: 25px;
-    padding: 22px;
-    background: #f8f9fc;
-    border-radius: 13px;
-    border-left: 5px solid #175cd3;
+.detailHero p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
 }
 
-.feedback h3 {
-    margin-bottom: 8px;
+.detailGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
 }
 
-.tip {
-    background: #fffaeb;
-    border: 1px solid #fedf89;
-    padding: 18px;
-    border-radius: 12px;
-    margin-top: 18px;
+.detailBox{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px;
 }
 
-.methodology {
-    background: #101828;
-    color: white;
-    padding: 50px 0;
+.detailBox h3{
+  margin:0 0 13px;
 }
 
-.methodology p,
-.methodology li {
-    color: #d0d5dd;
+.detailBox ul{
+  margin:0;
+  padding-left:19px;
+  color:#526275;
+  line-height:1.8;
 }
 
-.methodology ul {
-    padding-left: 20px;
-    margin-top: 15px;
+.salary{
+  font-size:29px;
+  font-weight:850;
+  color:var(--navy);
+  margin:6px 0;
 }
 
-footer {
-    background: #0b1220;
-    color: #98a2b3;
-    text-align: center;
-    padding: 25px;
-    font-size: 13px;
+.small{
+  font-size:13px;
+  color:var(--muted);
 }
 
-.empty {
-    text-align: center;
-    padding: 100px 20px;
+.interviewWrap{
+  max-width:850px;
+  margin:auto;
 }
 
-.action-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+.selector{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:24px;
 }
 
-.badge {
-    display: inline-block;
-    background: #f2f4f7;
-    color: #344054;
-    border-radius: 99px;
-    padding: 5px 10px;
-    margin: 3px;
-    font-size: 12px;
-    font-weight: 700;
+.selectBtn{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 14px;
+  font-weight:750;
+  color:#536276;
 }
 
-.career-tag {
-    color: #175cd3;
-    font-weight: 700;
-    margin-bottom: 12px;
+.selectBtn.selected{
+  background:var(--navy);
+  color:#fff;
+  border-color:var(--navy);
 }
 
-@media (max-width: 800px) {
-    .cards,
-    .detail-grid {
-        grid-template-columns: 1fr;
-    }
+.interviewCard{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:30px;
+  box-shadow:0 10px 28px rgba(15,35,60,.05);
+}
 
-    header {
-        flex-direction: column;
-        gap: 12px;
-    }
+.progressRow{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:750;
+  margin-bottom:9px;
+}
 
-    nav a {
-        margin: 0 7px;
-    }
+.progress{
+  height:8px;
+  background:#E7EDF4;
+  border-radius:99px;
+  overflow:hidden;
+}
 
-    .hero {
-        padding: 65px 7%;
-    }
+.progress>div{
+  height:100%;
+  background:var(--blue);
+  transition:.3s;
+}
 
-    .detail-header h1 {
-        font-size: 36px;
-    }
+.questionType{
+  display:inline-block;
+  margin-top:25px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--sky);
+  color:var(--navy);
+  font-size:12px;
+  font-weight:850;
+  text-transform:uppercase;
+}
+
+.question{
+  font-size:25px;
+  line-height:1.35;
+  font-weight:800;
+  margin:15px 0 20px;
+  letter-spacing:-.015em;
+}
+
+textarea{
+  width:100%;
+  min-height:155px;
+  border:1px solid #C9D5E2;
+  border-radius:12px;
+  padding:15px;
+  font:inherit;
+  resize:vertical;
+  outline:none;
+}
+
+textarea:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(26,115,232,.1);
+}
+
+.actionRow{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:15px;
+  gap:10px;
+}
+
+.darkBtn{
+  background:var(--navy);
+  color:#fff;
+  border:0;
+  border-radius:10px;
+  padding:12px 17px;
+  font-weight:800;
+}
+
+.ghost{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px 15px;
+  font-weight:750;
+}
+
+.feedback{
+  display:none;
+  margin-top:22px;
+  border-top:1px solid var(--line);
+  padding-top:22px;
+}
+
+.feedback.show{
+  display:block;
+}
+
+.feedbackGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.feedbackBox{
+  padding:18px;
+  border-radius:13px;
+  background:#F8FAFC;
+}
+
+.feedbackBox.good{
+  background:var(--greenbg);
+}
+
+.feedbackBox h4{
+  margin:0 0 8px;
+}
+
+.feedbackBox p{
+  margin:0;
+  color:#526275;
+  line-height:1.6;
+}
+
+.score{
+  font-size:28px;
+  font-weight:900;
+  color:var(--green);
+}
+
+.tip{
+  margin-top:14px;
+  padding:14px;
+  border-radius:11px;
+  background:var(--goldbg);
+  color:#74501A;
+  font-size:14px;
+  line-height:1.5;
+}
+
+footer{
+  background:#0B2038;
+  color:#D9E6F3;
+  padding:35px 6%;
+  text-align:center;
+}
+
+.footerTitle{
+  font-weight:850;
+  color:#fff;
+}
+
+.footerSmall{
+  font-size:13px;
+  margin-top:6px;
+  opacity:.8;
+}
+
+@media(max-width:700px){
+
+  .nav{
+    padding:0 4%;
+  }
+
+  .navlinks button{
+    padding:8px;
+  }
+
+  .grid,
+  .detailGrid,
+  .feature,
+  .feedbackGrid{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    padding:45px 5%;
+  }
+
+  .hero{
+    padding:60px 5% 70px;
+  }
+
+  .sectionHead{
+    display:block;
+  }
+
+  .navlinks{
+    gap:0;
+  }
+
+  .navlinks button{
+    font-size:13px;
+    padding:8px 7px;
+  }
+
+  .question{
+    font-size:21px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">IS Career Launchpad</div>
+<nav class="nav">
 
-    <nav>
-        <a onclick="showHome()">Home</a>
-        <a onclick="showCareers()">Explore Careers</a>
-        <a onclick="showInterviews()">Practice Interviews</a>
-    </nav>
-</header>
+  <div class="logo">
+    <div class="logoMark">IS</div>
+    Career Launchpad
+  </div>
 
-<div id="app"></div>
+  <div class="navlinks">
+
+    <button id="navHome"
+            class="active"
+            onclick="showView('home')">
+      Home
+    </button>
+
+    <button id="navCareers"
+            onclick="showView('careers')">
+      Explore Careers
+    </button>
+
+    <button id="navInterview"
+            onclick="showView('interview')">
+      Practice Interviews
+    </button>
+
+  </div>
+
+</nav>
+
+
+<main>
+
+<!-- HOME -->
+
+<section id="home" class="view active">
+
+  <div class="hero">
+
+    <div class="heroInner">
+
+      <span class="eyebrow">
+        BYU INFORMATION SYSTEMS • CAREER EXPLORATION
+      </span>
+
+      <h1>
+        Find your path.<br>
+        Build your future.
+      </h1>
+
+      <p>
+        IS Career Launchpad helps Information Systems students discover
+        career options and practice the technical and behavioral interviews
+        that lead to internships and entry-level jobs.
+      </p>
+
+      <div class="heroBtns">
+
+        <button class="btn primary"
+                onclick="showView('careers')">
+          Explore Career Paths →
+        </button>
+
+        <button class="btn secondary"
+                onclick="showView('interview')">
+          Practice an Interview
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="container">
+
+    <div class="sectionHead">
+
+      <div>
+
+        <h2>One degree. Many paths.</h2>
+
+        <p>
+          Explore six common IS career tracks and learn what it takes
+          to become a strong candidate.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div id="homeCards" class="grid"></div>
+
+
+    <div class="feature">
+
+      <div class="featureItem"
+           style="grid-column:1/-1">
+
+        <b>Research Methodology</b>
+
+        <span>
+          Career descriptions and labor-market statistics are based on
+          publicly available U.S. Bureau of Labor Statistics Occupational
+          Outlook Handbook data. Role descriptions are informed by BLS
+          occupation profiles; role-specific skills and interview guidance
+          are educational recommendations synthesized for entry-level IS
+          students. Interview questions are not claimed to be verbatim
+          employer questions.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="featureItem">
+        <b>01 • Discover</b>
+        <span>
+          Compare roles, industries, skills, tools, salaries,
+          and growth opportunities.
+        </span>
+      </div>
+
+      <div class="featureItem">
+        <b>02 • Prepare</b>
+        <span>
+          Practice realistic behavioral and technical questions
+          before your interview.
+        </span>
+      </div>
+
+      <div class="featureItem">
+        <b>03 • Improve</b>
+        <span>
+          Get targeted feedback and compare your response with
+          a strong example.
+        </span>
+      </div>
+
+      <div class="featureItem">
+        <b>04 • Launch</b>
+        <span>
+          Turn your IS coursework into an internship-ready career story.
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CAREERS -->
+
+<section id="careers" class="view">
+
+  <div class="container">
+
+    <button class="back"
+            onclick="showView('home')">
+      ← Back to home
+    </button>
+
+    <div class="sectionHead">
+
+      <div>
+
+        <h2>Explore Career Paths</h2>
+
+        <p>
+          Explore six career options available to Information Systems students.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div id="careerCards" class="grid"></div>
+
+  </div>
+
+</section>
+
+
+<!-- DETAIL -->
+
+<section id="detail" class="view">
+
+  <div class="container">
+
+    <button class="back"
+            onclick="showView('careers')">
+      ← Back to career paths
+    </button>
+
+    <div id="detailContent"></div>
+
+  </div>
+
+</section>
+
+
+<!-- INTERVIEW -->
+
+<section id="interview" class="view">
+
+  <div class="container">
+
+    <button class="back"
+            onclick="showView('home')">
+      ← Back to home
+    </button>
+
+    <div class="sectionHead">
+
+      <div>
+
+        <h2>Practice Interviews</h2>
+
+        <p>
+          Choose a career and practice role-specific technical
+          and behavioral questions.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="interviewWrap">
+
+      <div id="careerSelector"
+           class="selector">
+      </div>
+
+
+      <div class="interviewCard">
+
+        <div class="progressRow">
+
+          <span id="progressText">
+            Question 1 of 8
+          </span>
+
+          <span id="scoreText">
+            0 completed
+          </span>
+
+        </div>
+
+
+        <div class="progress">
+
+          <div id="progressBar"
+               style="width:12.5%">
+          </div>
+
+        </div>
+
+
+        <div id="questionType"
+             class="questionType">
+          Technical
+        </div>
+
+
+        <div id="question"
+             class="question">
+        </div>
+
+
+        <textarea
+          id="answer"
+          placeholder="Type your interview answer here...">
+        </textarea>
+
+
+        <div class="actionRow">
+
+          <button id="submitBtn"
+                  class="darkBtn"
+                  onclick="submitAnswer()">
+            Submit Answer
+          </button>
+
+          <button class="ghost"
+                  onclick="nextQuestion(true)">
+            Skip
+          </button>
+
+        </div>
+
+
+        <div id="feedback"
+             class="feedback">
+
+          <div class="feedbackGrid">
+
+            <div class="feedbackBox good">
+
+              <h4>What worked</h4>
+
+              <p id="goodText"></p>
+
+            </div>
+
+
+            <div class="feedbackBox">
+
+              <h4>How to improve</h4>
+
+              <p id="improveText"></p>
+
+            </div>
+
+          </div>
+
+
+          <div class="tip">
+
+            <strong>
+              Suggested strong answer:
+            </strong>
+
+            <div id="strongText"
+                 style="margin-top:7px">
+            </div>
+
+          </div>
+
+
+          <div class="tip">
+
+            <strong>
+              Interview tip:
+            </strong>
+
+            <div id="tipText"
+                 style="margin-top:7px">
+            </div>
+
+          </div>
+
+
+          <div style="margin-top:18px">
+
+            <button class="darkBtn"
+                    onclick="nextQuestion()">
+              Next Question →
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
 
 <footer>
-    IS Career Launchpad • Built for Information Systems students
+
+  <div class="footerTitle">
+    IS Career Launchpad
+  </div>
+
+  <div class="footerSmall">
+    A BYU Information Systems Junior Core Case Competition prototype • 2026
+  </div>
+
+  <div class="footerSmall">
+    Labor-market statistics: U.S. Bureau of Labor Statistics
+    Occupational Outlook Handbook • Accessed September 2026
+  </div>
+
 </footer>
+
 
 <script>
 
 const careers = {
 
-software: {
-    title: "Software Developer",
-    short: "Build applications, websites, and software systems that solve real problems.",
-    duties: [
-        "Write, test, and maintain application code",
-        "Work with developers, designers, and product teams",
-        "Debug software and investigate technical problems",
-        "Review code and contribute to software architecture",
-        "Participate in Agile/Scrum development processes"
-    ],
-    skills: [
-        "Programming fundamentals",
-        "Data structures and algorithms",
-        "Object-oriented programming",
-        "Git and version control",
-        "APIs and databases",
-        "Testing and debugging"
-    ],
-    tools: [
-        "Python",
-        "Java",
-        "JavaScript",
-        "GitHub",
-        "VS Code",
-        "SQL"
-    ],
-    entry: [
-        "Internship, class project, or personal project experience",
-        "Comfortable with at least one programming language",
-        "Git/GitHub experience",
-        "Ability to explain technical decisions",
-        "Basic understanding of databases and APIs"
-    ],
-    salary: "$135,980",
-    outlook: "10%",
-    salaryLabel: "2025 U.S. median annual wage",
-    sourceName: "U.S. Bureau of Labor Statistics — Software Developers",
-    sourceUrl: "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
-    growth: "Software development is expected to continue growing as organizations invest in applications, cloud systems, cybersecurity, and digital products.",
-    candidate: "A strong candidate can demonstrate coding ability through projects, communicate clearly, use Git effectively, and explain how their work solves a user or business problem."
-},
+  developer: {
 
-data: {
-    title: "Data Analyst",
-    short: "Turn business data into insights that help organizations make better decisions.",
-    duties: [
-        "Collect and clean business data",
-        "Build reports and dashboards",
-        "Analyze trends and performance metrics",
-        "Work with stakeholders to answer business questions",
-        "Present findings to technical and non-technical audiences"
-    ],
-    skills: [
-        "SQL",
-        "Excel",
-        "Data cleaning",
-        "Statistics",
-        "Data visualization",
-        "Business communication"
-    ],
-    tools: [
-        "SQL",
-        "Excel",
-        "Tableau",
-        "Power BI",
-        "Python",
-        "Google Sheets"
-    ],
-    entry: [
-        "Strong SQL fundamentals",
-        "Experience with spreadsheets",
-        "At least one dashboard or analytics project",
-        "Ability to explain data clearly",
-        "Understanding of basic statistics"
-    ],
-    salary: "$120,230",
-    outlook: "35%",
-    salaryLabel: "2025 U.S. median annual wage for the cited BLS occupation",
-    sourceName: "U.S. Bureau of Labor Statistics — Data Scientists",
-    sourceUrl: "https://www.bls.gov/ooh/math/data-scientists.htm",
-    growth: "The BLS Data Scientists occupation is used here as a labor-market proxy for data-focused careers. It has especially strong projected growth as organizations increasingly depend on data-driven decision making.",
-    candidate: "A strong candidate combines SQL and analytical ability with business judgment. They should be able to explain what the numbers mean rather than simply produce charts."
-},
+    name:"Software Developer",
 
-cyber: {
-    title: "Cybersecurity Analyst",
-    short: "Protect systems, networks, and information from security threats.",
-    duties: [
-        "Monitor systems for suspicious activity",
-        "Investigate security incidents",
-        "Analyze vulnerabilities and security risks",
-        "Help implement security controls",
-        "Document incidents and communicate findings"
-    ],
-    skills: [
-        "Networking fundamentals",
-        "Operating systems",
-        "Security principles",
-        "Risk analysis",
-        "Incident response",
-        "Scripting"
-    ],
-    tools: [
-        "Wireshark",
-        "Splunk",
-        "Linux",
-        "Microsoft Defender",
-        "Python",
-        "SIEM platforms"
-    ],
-    entry: [
-        "Networking and operating-system fundamentals",
-        "Security lab or project experience",
-        "Basic scripting knowledge",
-        "Ability to investigate problems methodically",
-        "Security coursework or certification can help"
-    ],
-    salary: "$129,180",
-    outlook: "21%",
-    salaryLabel: "2025 U.S. median annual wage",
-    sourceName: "U.S. Bureau of Labor Statistics — Information Security Analysts",
-    sourceUrl: "https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm",
-    growth: "Information security analysts are projected to grow rapidly as organizations face increasing cybersecurity risks and need stronger security infrastructure.",
-    candidate: "A strong candidate demonstrates curiosity, attention to detail, networking knowledge, and the ability to investigate an incident without jumping to conclusions."
-},
+    icon:"💻",
 
-systems: {
-    title: "Business Systems Analyst",
-    short: "Connect business needs with technology solutions.",
-    duties: [
-        "Meet with stakeholders to understand business problems",
-        "Document business and technical requirements",
-        "Analyze existing systems and workflows",
-        "Recommend technology improvements",
-        "Work with developers during implementation and testing"
-    ],
-    skills: [
-        "Requirements gathering",
-        "Process modeling",
-        "SQL",
-        "Systems analysis",
-        "Communication",
-        "Problem solving"
-    ],
-    tools: [
-        "SQL",
-        "Excel",
-        "Jira",
-        "Microsoft Visio",
-        "Lucidchart",
-        "Power BI"
-    ],
-    entry: [
-        "Strong communication skills",
-        "Experience documenting requirements",
-        "Basic SQL",
-        "Understanding of business processes",
-        "Class projects involving systems analysis are valuable"
-    ],
-    salary: "$105,850",
-    outlook: "8%",
-    salaryLabel: "2025 U.S. median annual wage",
-    sourceName: "U.S. Bureau of Labor Statistics — Computer Systems Analysts",
-    sourceUrl: "https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm",
-    growth: "Organizations continue to need systems analysts to connect business requirements with technology and improve the efficiency of information systems.",
-    candidate: "A strong candidate can translate between business and technical teams, ask good questions, document requirements clearly, and think about both user needs and technical constraints."
-},
+    short:
+      "Design, build, test, and maintain software applications.",
 
-ux: {
-    title: "UX Designer",
-    short: "Design digital experiences that are useful, intuitive, and enjoyable for users.",
-    duties: [
-        "Research user needs and behaviors",
-        "Create user flows and wireframes",
-        "Design and test interfaces",
-        "Collaborate with developers and product managers",
-        "Use feedback to improve the user experience"
+    day:[
+      "Write and review code",
+      "Build features and APIs",
+      "Debug and test applications",
+      "Work with designers, analysts, and other developers"
     ],
-    skills: [
-        "User research",
-        "Wireframing",
-        "Prototyping",
-        "Usability testing",
-        "Visual design",
-        "Communication"
-    ],
-    tools: [
-        "Figma",
-        "FigJam",
-        "Adobe Creative Cloud",
-        "Miro",
-        "Maze",
-        "Notion"
-    ],
-    entry: [
-        "A portfolio showing 2–3 strong projects",
-        "Ability to explain design decisions",
-        "Basic user-research experience",
-        "Wireframing and prototyping skills",
-        "Ability to work with developers"
-    ],
-    salary: "$104,000",
-    outlook: "6%",
-    salaryLabel: "2025 U.S. median annual wage for web and digital interface designers",
-    sourceName: "U.S. Bureau of Labor Statistics — Web and Digital Interface Designers",
-    sourceUrl: "https://www.bls.gov/ooh/computer-and-information-technology/web-developers.htm",
-    growth: "Digital products continue to create demand for designers who can make websites and applications easier and more effective to use.",
-    candidate: "A strong candidate has a portfolio that shows the design process, not just final screens. They can explain how research and user feedback influenced their decisions."
-},
 
-pm: {
-    title: "IT Project Manager",
-    short: "Coordinate people, resources, schedules, and technology projects.",
-    duties: [
-        "Create and maintain project plans",
-        "Coordinate teams and stakeholders",
-        "Track deadlines, budgets, and project risks",
-        "Run meetings and communicate project status",
-        "Help teams deliver technology projects successfully"
+    skills:[
+      "Programming fundamentals",
+      "Object-oriented programming",
+      "SQL & databases",
+      "Git / version control",
+      "APIs & web fundamentals"
     ],
-    skills: [
-        "Project planning",
-        "Communication",
-        "Risk management",
-        "Leadership",
-        "Agile/Scrum",
-        "Organization"
+
+    tools:[
+      "Python",
+      "Java",
+      "JavaScript",
+      "Git / GitHub",
+      "SQL",
+      "VS Code"
     ],
-    tools: [
-        "Jira",
-        "Confluence",
-        "Microsoft Project",
-        "Asana",
-        "Trello",
-        "Excel"
+
+    entry:[
+      "Be comfortable writing small programs",
+      "Understand basic data structures and algorithms",
+      "Know how to use Git",
+      "Be able to explain a class or personal project",
+      "Show problem-solving ability"
     ],
-    entry: [
-        "Leadership or team-project experience",
-        "Strong organization",
-        "Understanding of Agile/Scrum",
-        "Ability to communicate with technical and business teams",
-        "Project experience from school, internships, or work"
+
+    salary:"$135,980",
+
+    outlook:"10%",
+
+    source:
+      "U.S. Bureau of Labor Statistics — Software Developers",
+
+    sourceUrl:
+      "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
+
+    growth:
+      "Developer → Software Engineer → Senior Engineer → Tech Lead / Engineering Manager",
+
+    candidate:
+      "Strong candidates can explain their projects clearly, solve problems methodically, and demonstrate that they can learn unfamiliar technologies quickly."
+
+  },
+
+
+  data: {
+
+    name:"Data Analyst",
+
+    icon:"📊",
+
+    short:
+      "Turn business data into insights that help organizations make better decisions.",
+
+    day:[
+      "Clean and organize datasets",
+      "Write SQL queries",
+      "Build reports and dashboards",
+      "Identify trends and communicate findings"
     ],
-    salary: "$102,320",
-    outlook: "7%",
-    salaryLabel: "2025 U.S. median annual wage",
-    sourceName: "U.S. Bureau of Labor Statistics — Project Management Specialists",
-    sourceUrl: "https://www.bls.gov/ooh/business-and-financial/project-management-specialists.htm",
-    growth: "Project management specialists are expected to remain important as organizations manage increasingly complex projects, including technology and IT initiatives.",
-    candidate: "A strong candidate demonstrates organization, leadership, communication, and the ability to identify risks before they become major problems."
-}
+
+    skills:[
+      "SQL",
+      "Excel / spreadsheets",
+      "Data visualization",
+      "Statistics fundamentals",
+      "Business communication"
+    ],
+
+    tools:[
+      "SQL",
+      "Excel",
+      "Tableau / Power BI",
+      "Python",
+      "Google Sheets"
+    ],
+
+    entry:[
+      "Write SELECT, JOIN, GROUP BY queries",
+      "Understand basic descriptive statistics",
+      "Clean messy data",
+      "Create a useful visualization",
+      "Explain findings to a nontechnical audience"
+    ],
+
+    salary:"$120,230",
+
+    outlook:"35%",
+
+    source:
+      "U.S. Bureau of Labor Statistics — Data Scientists",
+
+    sourceUrl:
+      "https://www.bls.gov/ooh/math/data-scientists.htm",
+
+    growth:
+      "Data Analyst → Senior Analyst → Analytics Manager → Analytics / Data Lead",
+
+    candidate:
+      "Strong candidates connect technical analysis to a business question instead of simply producing charts or numbers."
+
+  },
+
+
+  cyber: {
+
+    name:"Cybersecurity Analyst",
+
+    icon:"🔐",
+
+    short:
+      "Protect systems, data, and users by identifying and responding to security risks.",
+
+    day:[
+      "Monitor security alerts",
+      "Investigate suspicious activity",
+      "Review logs and access controls",
+      "Document incidents and recommend controls"
+    ],
+
+    skills:[
+      "Networking basics",
+      "Operating systems",
+      "Security principles",
+      "Risk analysis",
+      "Incident response"
+    ],
+
+    tools:[
+      "Wireshark",
+      "Linux",
+      "SIEM platforms",
+      "Python",
+      "PowerShell"
+    ],
+
+    entry:[
+      "Understand IP addresses, ports, and common protocols",
+      "Know basic authentication and authorization concepts",
+      "Recognize common attack types",
+      "Be able to investigate a simple security event",
+      "Explain security tradeoffs clearly"
+    ],
+
+    salary:"$129,180",
+
+    outlook:"21%",
+
+    source:
+      "U.S. Bureau of Labor Statistics — Information Security Analysts",
+
+    sourceUrl:
+      "https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm",
+
+    growth:
+      "Security Analyst → Security Engineer → Senior Analyst → Security Architect / Manager",
+
+    candidate:
+      "Strong candidates demonstrate curiosity, attention to detail, ethical judgment, and a structured approach to investigating problems."
+
+  },
+
+
+  analyst: {
+
+    name:"Business Systems Analyst",
+
+    icon:"🧩",
+
+    short:
+      "Bridge business needs and technology by translating problems into effective systems solutions.",
+
+    day:[
+      "Meet with stakeholders",
+      "Document business requirements",
+      "Map processes and workflows",
+      "Translate needs for technical teams",
+      "Test proposed solutions"
+    ],
+
+    skills:[
+      "Requirements gathering",
+      "Process modeling",
+      "SQL basics",
+      "Communication",
+      "Problem solving"
+    ],
+
+    tools:[
+      "SQL",
+      "Excel",
+      "Jira",
+      "Confluence",
+      "Visio / Lucidchart"
+    ],
+
+    entry:[
+      "Know how to ask effective stakeholder questions",
+      "Create basic process diagrams",
+      "Understand relational databases",
+      "Translate a business problem into requirements",
+      "Communicate clearly with technical and nontechnical people"
+    ],
+
+    salary:"$105,850",
+
+    outlook:"8%",
+
+    source:
+      "U.S. Bureau of Labor Statistics — Computer Systems Analysts",
+
+    sourceUrl:
+      "https://www.bls.gov/ooh/computer-and-information-technology/computer-systems-analysts.htm",
+
+    growth:
+      "Business Analyst → Systems Analyst → Senior Analyst → Product / Program / Consulting roles",
+
+    candidate:
+      "Strong candidates can listen carefully, ask clarifying questions, and turn ambiguous business problems into specific, testable requirements."
+
+  },
+
+
+  ux: {
+
+    name:"UX Designer",
+
+    icon:"🎨",
+
+    short:
+      "Design digital experiences that are useful, intuitive, accessible, and aligned with user needs.",
+
+    day:[
+      "Interview and observe users",
+      "Create user flows and wireframes",
+      "Prototype and test designs",
+      "Collaborate with developers and product teams",
+      "Iterate designs from feedback"
+    ],
+
+    skills:[
+      "User research",
+      "Wireframing & prototyping",
+      "Information architecture",
+      "Usability testing",
+      "Visual communication"
+    ],
+
+    tools:[
+      "Figma",
+      "FigJam",
+      "Adobe Creative Cloud",
+      "Miro",
+      "Maze"
+    ],
+
+    entry:[
+      "Build a small portfolio with case studies",
+      "Explain your design decisions",
+      "Understand basic usability principles",
+      "Create wireframes and prototypes",
+      "Show how user feedback changed a design"
+    ],
+
+    salary:"$104,000",
+
+    outlook:"6%",
+
+    source:
+      "U.S. Bureau of Labor Statistics — Web and Digital Interface Designers",
+
+    sourceUrl:
+      "https://www.bls.gov/ooh/computer-and-information-technology/web-developers.htm",
+
+    growth:
+      "UX Designer → Product Designer → Senior UX Designer → UX Lead / Design Manager",
+
+    candidate:
+      "Strong candidates show a portfolio, explain their reasoning, demonstrate empathy for users, and collaborate effectively with technical and business teammates."
+
+  },
+
+
+  project: {
+
+    name:"IT Project Manager",
+
+    icon:"📋",
+
+    short:
+      "Coordinate technology projects so teams deliver the right outcomes on time and within budget.",
+
+    day:[
+      "Define project scope and goals",
+      "Build schedules and coordinate resources",
+      "Track risks, issues, and milestones",
+      "Communicate with stakeholders",
+      "Keep teams aligned on deliverables"
+    ],
+
+    skills:[
+      "Project planning",
+      "Risk management",
+      "Communication",
+      "Agile / Scrum fundamentals",
+      "Stakeholder management"
+    ],
+
+    tools:[
+      "Jira",
+      "Microsoft Project",
+      "Confluence",
+      "Excel",
+      "Trello"
+    ],
+
+    entry:[
+      "Understand basic project lifecycles",
+      "Know Agile/Scrum terminology",
+      "Create simple project plans",
+      "Communicate status clearly",
+      "Identify and escalate project risks"
+    ],
+
+    salary:"$102,320",
+
+    outlook:"7%",
+
+    source:
+      "U.S. Bureau of Labor Statistics — Project Management Specialists",
+
+    sourceUrl:
+      "https://www.bls.gov/ooh/business-and-financial/project-management-specialists.htm",
+
+    growth:
+      "Project Coordinator → IT Project Manager → Senior Project Manager → Program Manager",
+
+    candidate:
+      "Strong candidates organize ambiguity, communicate proactively, manage competing priorities, and can explain how they kept a project moving toward a measurable outcome."
+
+  }
 
 };
 
 
 const questions = {
 
-software: [
-    {
-        type: "Technical",
-        q: "What is the difference between an array and a linked list?",
-        strong: "A strong answer should explain that arrays store elements in contiguous memory and typically provide fast indexed access, while linked lists store nodes connected through references. Arrays are generally better for random access, while linked lists can make certain insertions and deletions easier."
-    },
-    {
-        type: "Technical",
-        q: "What is an API and why would a web application use one?",
-        strong: "An API provides a defined way for software systems to communicate. A web application might use an API to retrieve data from a server, authenticate users, process payments, or communicate with another service."
-    },
-    {
-        type: "Technical",
-        q: "How would you debug a program that suddenly stopped working?",
-        strong: "Start by reproducing the problem, identify the error or unexpected behavior, inspect logs and recent changes, isolate the failing component, test a hypothesis, fix the issue, and then test to make sure the fix did not introduce another problem."
-    },
-    {
-        type: "Technical",
-        q: "What is version control and why is Git useful?",
-        strong: "Version control tracks changes to code over time. Git allows developers to create branches, collaborate, review changes, revert mistakes, and maintain a history of the project."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a technical project you are proud of.",
-        strong: "Use a specific project and explain the problem, your role, the technical decisions you made, the challenge you faced, and the result. Focus on what you personally contributed."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time you had to learn a technology quickly.",
-        strong: "Explain the situation, what you needed to learn, how you learned it, and how you applied the knowledge. A strong answer shows curiosity and adaptability."
-    },
-    {
-        type: "Behavioral",
-        q: "Describe a time you disagreed with a teammate.",
-        strong: "Explain the disagreement objectively, show that you listened to the other person's reasoning, describe how you evaluated the options, and explain how the team reached a decision."
-    },
-    {
-        type: "Behavioral",
-        q: "Why do you want to work in software development?",
-        strong: "Connect your interest to solving problems, building useful products, and continuous learning. Avoid giving only a generic answer such as 'I like computers.'"
-    }
-],
+  developer:[
 
-data: [
-    {
-        type: "Technical",
-        q: "Write a SQL query that returns customers who have placed more than three orders.",
-        strong: "A strong approach would use GROUP BY on the customer identifier and HAVING COUNT(*) > 3. The key is knowing that HAVING filters aggregated groups."
-    },
-    {
-        type: "Technical",
-        q: "What is the difference between WHERE and HAVING in SQL?",
-        strong: "WHERE filters individual rows before aggregation, while HAVING filters groups after GROUP BY and aggregation."
-    },
-    {
-        type: "Technical",
-        q: "How would you handle missing values in a dataset?",
-        strong: "First understand why the values are missing. Depending on the situation, you might remove records, replace values with a statistic such as a median, or create a separate category. The decision should be based on the business context."
-    },
-    {
-        type: "Technical",
-        q: "What makes a dashboard effective?",
-        strong: "A strong dashboard focuses on a specific audience and decision, uses clear visualizations, avoids unnecessary clutter, highlights important metrics, and makes trends or exceptions easy to identify."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time you used data to make a decision.",
-        strong: "Describe the question, the data you used, your analysis, the insight you discovered, and how the insight affected the decision."
-    },
-    {
-        type: "Behavioral",
-        q: "How would you explain a complicated analysis to a non-technical manager?",
-        strong: "Start with the business question and the conclusion, then explain only the analysis necessary to support that conclusion. Avoid unnecessary technical terminology."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time your analysis was wrong.",
-        strong: "A strong answer demonstrates accountability. Explain what went wrong, how you discovered it, what you changed, and how you prevented the same issue from happening again."
-    },
-    {
-        type: "Behavioral",
-        q: "Why do you want to become a data analyst?",
-        strong: "Connect your interest in problem solving, data, business decisions, and communicating insights."
-    }
-],
+    [
+      "Technical",
+      "What is the difference between an array and a linked list?",
+      "Mention that arrays provide indexed access and contiguous-style storage, while linked lists connect nodes through references.",
+      "A good answer compares access and insertion tradeoffs. Arrays typically provide O(1) indexed access, while linked lists generally require traversal for indexed access but can make insertion/removal efficient when the node position is known.",
+      "Define each structure, give one tradeoff, and connect it to a practical use case."
+    ],
 
-cyber: [
-    {
-        type: "Technical",
-        q: "What is the CIA triad in cybersecurity?",
-        strong: "The CIA triad stands for confidentiality, integrity, and availability. Confidentiality protects information from unauthorized access, integrity protects it from improper modification, and availability ensures authorized users can access it when needed."
-    },
-    {
-        type: "Technical",
-        q: "What is phishing?",
-        strong: "Phishing is a social-engineering attack where an attacker attempts to trick someone into revealing information, clicking a malicious link, or performing another unsafe action."
-    },
-    {
-        type: "Technical",
-        q: "What would you do if you noticed an unusual login from an unfamiliar location?",
-        strong: "Investigate the event using available logs and authentication data, determine whether the login is legitimate, contain the account if compromise is suspected, reset credentials when appropriate, and document and escalate the incident according to procedure."
-    },
-    {
-        type: "Technical",
-        q: "What is a firewall?",
-        strong: "A firewall controls network traffic according to defined rules. It can allow or block traffic based on characteristics such as source, destination, port, or protocol."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time you solved a difficult problem.",
-        strong: "Explain how you broke the problem into smaller parts, investigated possible causes, tested solutions, and communicated your progress."
-    },
-    {
-        type: "Behavioral",
-        q: "How do you stay current with cybersecurity?",
-        strong: "Mention legitimate sources such as security blogs, advisories, labs, coursework, certifications, or hands-on practice. Show that learning is continuous."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time you noticed a mistake that others missed.",
-        strong: "Focus on attention to detail and how you communicated the issue respectfully rather than blaming someone."
-    },
-    {
-        type: "Behavioral",
-        q: "Why cybersecurity?",
-        strong: "A strong answer connects your interest to protecting systems, investigating problems, understanding technology, and continuously learning."
-    }
-],
+    [
+      "Technical",
+      "What is an API, and why would an application use one?",
+      "Explain that an API provides a defined way for software components to communicate and exchange data.",
+      "An API is an interface that lets one piece of software request functionality or data from another system through defined rules. For example, a web app can call an API to retrieve customer or weather data without knowing how the underlying service is implemented.",
+      "Avoid saying an API is simply a database. Focus on communication between systems."
+    ],
 
-systems: [
-    {
-        type: "Technical",
-        q: "What is a functional requirement?",
-        strong: "A functional requirement describes what a system should do. For example, a system may need to allow employees to submit expense reports."
-    },
-    {
-        type: "Technical",
-        q: "How would you gather requirements from a stakeholder?",
-        strong: "Interview the stakeholder, ask open-ended and clarifying questions, observe the current process, document requirements, confirm understanding, and prioritize requirements with the stakeholder."
-    },
-    {
-        type: "Technical",
-        q: "What is the difference between a business requirement and a technical requirement?",
-        strong: "A business requirement describes the business outcome or need, while a technical requirement describes what the technology must do or support to meet that need."
-    },
-    {
-        type: "Technical",
-        q: "What would you do if two stakeholders requested conflicting features?",
-        strong: "Understand the reasoning behind each request, identify the underlying business goals, evaluate impact and constraints, and work with stakeholders to prioritize the requirements."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time you had to communicate with someone who disagreed with you.",
-        strong: "Show that you listened, clarified the disagreement, used evidence or reasoning, and worked toward a shared outcome."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time you improved a process.",
-        strong: "Explain the original process, identify the inefficiency, describe your improvement, and quantify or describe the result."
-    },
-    {
-        type: "Behavioral",
-        q: "How do you prioritize competing tasks?",
-        strong: "Discuss urgency, business impact, dependencies, deadlines, and stakeholder expectations. Explain how you communicate when priorities conflict."
-    },
-    {
-        type: "Behavioral",
-        q: "Why business systems analysis?",
-        strong: "Connect your interest in technology with business problem solving and communicating between technical and non-technical people."
-    }
-],
+    [
+      "Technical",
+      "What is version control and why is Git useful?",
+      "Mention tracking changes, collaboration, branches, and the ability to restore earlier versions.",
+      "Version control records changes to files over time. Git lets developers create branches, collaborate without overwriting one another, review changes, and return to earlier versions when needed.",
+      "Tie Git to a team project you have actually worked on if possible."
+    ],
 
-ux: [
-    {
-        type: "Technical",
-        q: "What is usability testing?",
-        strong: "Usability testing involves observing representative users as they attempt tasks with a product or prototype. The goal is to identify usability problems and learn where users struggle."
-    },
-    {
-        type: "Technical",
-        q: "What is the difference between a wireframe and a high-fidelity prototype?",
-        strong: "A wireframe is a simplified representation focused on structure and layout. A high-fidelity prototype is much closer to the final interface in appearance and interaction."
-    },
-    {
-        type: "Technical",
-        q: "How would you redesign a confusing mobile checkout flow?",
-        strong: "First research where users struggle, review analytics or usability-test results, map the current flow, identify friction points, prototype alternatives, test them with users, and iterate."
-    },
-    {
-        type: "Technical",
-        q: "Why is accessibility important in UX design?",
-        strong: "Accessibility ensures people with different abilities can use a product. Designers should consider things such as keyboard navigation, readable contrast, clear labels, and screen-reader compatibility."
-    },
-    {
-        type: "Behavioral",
-        q: "Walk me through a UX project in your portfolio.",
-        strong: "Explain the problem, research, design process, iterations, testing, final result, and what you learned."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time user feedback changed your design.",
-        strong: "Show that you can accept feedback and use evidence to improve the product rather than becoming attached to your original design."
-    },
-    {
-        type: "Behavioral",
-        q: "How do you handle disagreement with a developer?",
-        strong: "Understand the technical constraint, explain the user need, look for alternatives, and collaborate on a solution that balances user experience and feasibility."
-    },
-    {
-        type: "Behavioral",
-        q: "Why UX design?",
-        strong: "Connect your interest in understanding people, solving problems, designing interfaces, and improving how users interact with technology."
-    }
-],
+    [
+      "Behavioral",
+      "Tell me about a technical problem you had to solve. What did you do?",
+      "Look for a clear situation, your specific actions, and a measurable or concrete result.",
+      "A strong response uses STAR: explain the situation, the task, the actions you personally took, and the result. The best answers show persistence and learning rather than pretending the problem was easy.",
+      "Spend most of your answer on what YOU did, not what the team did."
+    ],
 
-pm: [
-    {
-        type: "Technical",
-        q: "What is Agile?",
-        strong: "Agile is an approach to software and project work that emphasizes iterative development, frequent feedback, collaboration, and adapting to changing requirements."
-    },
-    {
-        type: "Technical",
-        q: "What is a project risk?",
-        strong: "A project risk is a potential event or condition that could negatively affect project objectives. Good project managers identify risks early and create mitigation plans."
-    },
-    {
-        type: "Technical",
-        q: "A project is two weeks behind schedule. What would you do?",
-        strong: "First understand why the project is behind, identify the critical path and remaining work, assess available resources, discuss tradeoffs with stakeholders, update the plan, and communicate the impact clearly."
-    },
-    {
-        type: "Technical",
-        q: "What is a project milestone?",
-        strong: "A milestone is a significant point or achievement in a project, such as completing requirements, finishing development, or launching a product."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time you led a team.",
-        strong: "Explain how you organized the team, delegated work, communicated expectations, handled challenges, and achieved the outcome."
-    },
-    {
-        type: "Behavioral",
-        q: "Tell me about a time a project did not go according to plan.",
-        strong: "Explain the issue, your response, how you communicated it, and what you learned for future projects."
-    },
-    {
-        type: "Behavioral",
-        q: "How do you deal with a teammate who is not completing their work?",
-        strong: "Speak with them directly, understand the blocker, clarify expectations, offer support when appropriate, and escalate only when necessary."
-    },
-    {
-        type: "Behavioral",
-        q: "Why IT project management?",
-        strong: "Connect your interest in technology with organization, leadership, communication, and helping teams deliver meaningful projects."
-    }
-]
+    [
+      "Technical",
+      "What is a primary key in a relational database?",
+      "State that it uniquely identifies a row and should be unique and non-null.",
+      "A primary key uniquely identifies each record in a table. It allows other tables to reference that record and helps maintain data integrity.",
+      "A quick example such as StudentID can make the answer memorable."
+    ],
+
+    [
+      "Behavioral",
+      "Describe a time you had to learn a new technology quickly.",
+      "Show a learning strategy: define the goal, find resources, practice, and apply the skill.",
+      "Strong candidates explain exactly how they learned: they identify what they needed to accomplish, use documentation or trusted resources, build a small example, and then apply the new skill to the real task.",
+      "Connect this to a class, project, job, or personal build."
+    ],
+
+    [
+      "Technical",
+      "What is the purpose of testing software?",
+      "Explain that testing finds defects and verifies expected behavior before release.",
+      "Testing checks whether software behaves as expected and helps catch defects before users encounter them. Different tests can validate individual components, integrations, or complete user workflows.",
+      "Mention a specific example of a test if you can."
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time you received critical feedback.",
+      "Show that you listened, acted on the feedback, and improved.",
+      "A strong answer demonstrates coachability: describe the feedback without becoming defensive, explain what you changed, and give evidence that the change improved your work.",
+      "Never blame the person who gave you feedback."
+    ]
+
+  ],
+
+
+  data:[
+
+    [
+      "Technical",
+      "What is the difference between WHERE and HAVING in SQL?",
+      "Explain that WHERE filters rows before grouping, while HAVING filters groups after aggregation.",
+      "WHERE filters individual rows before GROUP BY is applied. HAVING filters grouped results, often using aggregate functions such as COUNT or AVG.",
+      "A simple example makes this much stronger."
+    ],
+
+    [
+      "Technical",
+      "What makes a data visualization effective?",
+      "Mention choosing the right chart, reducing clutter, labeling clearly, and matching the visualization to the question.",
+      "An effective visualization makes the intended comparison or trend easy to see. The chart type should fit the data, labels should be clear, unnecessary decoration should be removed, and the visualization should answer a specific business question.",
+      "Start with the question, then choose the chart."
+    ],
+
+    [
+      "Technical",
+      "What is a JOIN in SQL?",
+      "Explain that JOIN combines rows from tables based on a related field.",
+      "A JOIN combines data from two or more tables using a related column. For example, a customer table and an orders table could be joined through CustomerID.",
+      "Know the difference between INNER JOIN and LEFT JOIN at a basic level."
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time you used data to make a decision.",
+      "Focus on the decision, the data you used, your analysis, and the outcome.",
+      "A strong response explains the business question first, then the relevant data, the analysis you performed, the insight you found, and how that insight influenced the decision.",
+      "Don't just describe making a chart; explain what changed because of your analysis."
+    ],
+
+    [
+      "Technical",
+      "How would you handle a dataset with missing values?",
+      "Say that you would first understand why values are missing before deciding whether to remove, impute, or flag them.",
+      "I would inspect the amount and pattern of missingness and understand why the values are missing. Depending on the context, I might remove records, impute values, or keep a missing category, while documenting the decision.",
+      "There is no universal fix; context matters."
+    ],
+
+    [
+      "Behavioral",
+      "How would you explain a technical finding to a nontechnical manager?",
+      "Emphasize business impact, plain language, and a concise visual.",
+      "I would lead with the business implication rather than the technical method, use plain language and one or two useful visuals, then provide technical detail if the manager wants it.",
+      "Practice explaining one SQL result without using SQL jargon."
+    ],
+
+    [
+      "Technical",
+      "What is the difference between correlation and causation?",
+      "Explain that correlation indicates association but does not prove one variable causes another.",
+      "Correlation means two variables move together in some way. Causation means a change in one variable produces a change in another. A correlation alone does not prove causation because other variables may explain the relationship.",
+      "Use a real-world example if asked to elaborate."
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time your analysis changed after you found an error.",
+      "Show ownership, verification, correction, and prevention.",
+      "A strong response shows that you verified the result, acknowledged the mistake, corrected the analysis, communicated the impact, and changed your process to reduce the chance of repeating it.",
+      "Own mistakes directly. Analysts are evaluated on accuracy and integrity."
+    ]
+
+  ],
+
+
+  cyber:[
+
+    [
+      "Technical",
+      "What is the difference between authentication and authorization?",
+      "Authentication verifies identity; authorization determines what an authenticated user is allowed to access.",
+      "Authentication answers 'Who are you?' Authorization answers 'What are you allowed to do?' A user may successfully authenticate but still lack authorization to access a particular system or file.",
+      "A simple login example is enough."
+    ],
+
+    [
+      "Technical",
+      "What is phishing and how would you recognize it?",
+      "Mention suspicious links, urgency, unexpected requests, spoofed domains, and requests for credentials.",
+      "Phishing is a social-engineering technique that attempts to trick users into revealing information or taking an unsafe action. Warning signs include unusual urgency, unexpected attachments, suspicious links, requests for credentials, or a lookalike sender domain.",
+      "Avoid relying on grammar alone; sophisticated phishing can look professional."
+    ],
+
+    [
+      "Technical",
+      "What is a firewall used for?",
+      "Explain that it controls network traffic according to security rules.",
+      "A firewall monitors and controls network traffic based on defined rules. It can restrict unwanted connections while allowing approved traffic between systems or networks.",
+      "Mention that a firewall is one layer of a broader security strategy."
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time you noticed something others missed.",
+      "Highlight observation, verification, communication, and impact.",
+      "A strong response shows attention to detail but also restraint: you noticed an anomaly, verified that it was meaningful, communicated it appropriately, and helped resolve it.",
+      "Security work rewards careful investigation, not jumping to conclusions."
+    ],
+
+    [
+      "Technical",
+      "What is the principle of least privilege?",
+      "Explain giving users or systems only the access necessary to perform their tasks.",
+      "Least privilege means users, applications, and systems receive only the permissions they need to perform their intended function. Limiting access reduces the potential impact if an account or system is compromised.",
+      "Give a concrete example such as a student employee not needing administrator rights."
+    ],
+
+    [
+      "Technical",
+      "Why are logs important in cybersecurity?",
+      "Explain detection, investigation, timelines, and evidence.",
+      "Logs provide records of system and user activity. Security teams can use them to detect suspicious behavior, investigate incidents, reconstruct timelines, and identify patterns.",
+      "Mention that logs are most useful when they are centralized, retained, and monitored appropriately."
+    ],
+
+    [
+      "Behavioral",
+      "Describe a time you had to handle a problem carefully under pressure.",
+      "Show a calm process rather than rushing.",
+      "A strong answer explains how you separated facts from assumptions, prioritized the risk, communicated with the right people, and documented the outcome.",
+      "In security, accuracy under pressure is often more valuable than speed alone."
+    ],
+
+    [
+      "Technical",
+      "What is multi-factor authentication and why does it help?",
+      "Explain using two or more different factor categories and how it reduces account takeover risk.",
+      "MFA requires more than one type of authentication factor, such as something you know and something you have. If a password is stolen, the additional factor can make unauthorized access significantly harder.",
+      "Don't describe two passwords as two-factor authentication."
+    ]
+
+  ],
+
+
+  analyst:[
+
+    [
+      "Technical",
+      "What is a business requirement?",
+      "Explain it as a need or outcome the business expects the solution to satisfy.",
+      "A business requirement describes what the organization needs to accomplish, such as reducing manual order entry time. It focuses on the desired business outcome rather than prescribing a specific technical implementation.",
+      "Separate the need from the solution."
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time you had to resolve conflicting stakeholder needs.",
+      "Show listening, clarification, prioritization, and a mutually understood decision.",
+      "A strong answer explains how you identified the underlying needs, clarified constraints, compared options against agreed criteria, and helped stakeholders reach a decision.",
+      "Avoid framing one stakeholder as 'wrong.'"
+    ],
+
+    [
+      "Technical",
+      "What is the purpose of a process flowchart?",
+      "Explain that it visually represents steps, decisions, handoffs, and bottlenecks.",
+      "A process flowchart shows how work moves through a process, including activities, decisions, and handoffs. It helps analysts find inefficiencies, unclear ownership, and opportunities for improvement.",
+      "Mention how a diagram helps create a shared understanding."
+    ],
+
+    [
+      "Technical",
+      "Why would a systems analyst need to know SQL?",
+      "Connect SQL to validating data, understanding systems, and investigating issues.",
+      "SQL helps an analyst retrieve and validate data, investigate system behavior, test requirements, and communicate more effectively with technical teams.",
+      "You don't need to be a database administrator; you need enough SQL to investigate and validate."
+    ],
+
+    [
+      "Behavioral",
+      "Describe a time you had to ask difficult questions to understand a problem.",
+      "Show curiosity and respectful clarification.",
+      "A strong response demonstrates that you didn't accept an ambiguous request at face value. You asked targeted questions, confirmed assumptions, and used the answers to define the real problem.",
+      "Good analysts are comfortable saying, 'Can you give me an example?'"
+    ],
+
+    [
+      "Technical",
+      "What is the difference between a requirement and a feature?",
+      "Explain that a requirement states a need or constraint, while a feature is a product capability that addresses it.",
+      "A requirement describes what the business or user needs or what constraint must be satisfied. A feature is a capability of the system that may be designed to satisfy that requirement.",
+      "Requirements should be specific enough to test or validate."
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time you improved a process.",
+      "Quantify the before/after when possible.",
+      "A strong response identifies the original pain point, explains how you mapped or analyzed the process, describes the change you helped make, and gives a measurable or observable improvement.",
+      "Time saved, errors reduced, or satisfaction improved are useful results."
+    ],
+
+    [
+      "Technical",
+      "What makes a requirement 'good'?",
+      "Mention clarity, specificity, testability, relevance, and lack of unnecessary solution bias.",
+      "A good requirement is clear, specific, relevant, and testable. Different people should interpret it consistently, and it should describe the needed outcome without unnecessarily locking the team into one technical solution.",
+      "Ask: 'How would we know this requirement has been satisfied?'"
+    ]
+
+  ],
+
+
+  ux:[
+
+    [
+      "Technical",
+      "What is the difference between usability and visual design?",
+      "Explain that usability is about how effectively and easily users accomplish tasks, while visual design concerns appearance and presentation.",
+      "Usability focuses on whether users can successfully and efficiently accomplish their goals. Visual design focuses on how the interface looks and communicates visually. Good UX considers both, but a beautiful interface can still be difficult to use.",
+      "Use a concrete example from a website or app you have used."
+    ],
+
+    [
+      "Technical",
+      "What is a wireframe and why would you create one?",
+      "Explain that a wireframe is a simplified representation of an interface used to plan structure and interaction.",
+      "A wireframe is a simplified layout that shows content hierarchy, navigation, and key interactions without requiring polished visual design. It lets a team test structure and ideas early and cheaply.",
+      "Explain how low-fidelity work can prevent expensive rework later."
+    ],
+
+    [
+      "Technical",
+      "How would you conduct a usability test?",
+      "Mention a clear task, representative users, observation, and synthesizing findings.",
+      "I would define the research question, give representative users realistic tasks, observe where they struggle without leading them, record patterns, and use the findings to prioritize design changes.",
+      "Avoid telling participants exactly how to complete the task."
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time you changed your work because of user feedback.",
+      "Show that you listened, identified the underlying issue, made a change, and measured or observed the result.",
+      "A strong response explains what users said or did, how you interpreted the feedback, what you changed, and what happened afterward. It demonstrates that you design for users rather than defending your first idea.",
+      "A portfolio project is a great example."
+    ],
+
+    [
+      "Technical",
+      "What makes a good user experience?",
+      "Mention ease of use, clarity, accessibility, usefulness, and alignment with user goals.",
+      "A good user experience helps the intended user accomplish a meaningful goal efficiently and confidently. It should be clear, usable, accessible, and aligned with the user's needs and the product's purpose.",
+      "Don't reduce UX to making an interface look good."
+    ],
+
+    [
+      "Behavioral",
+      "Describe a time you disagreed with someone's design idea.",
+      "Show respectful discussion, evidence, testing, and willingness to change your mind.",
+      "A strong answer shows that you focused on the user's goal rather than personal preference. You compared alternatives using evidence, feedback, or a prototype and supported the final decision as a team.",
+      "Design disagreements should be resolved with evidence when possible."
+    ],
+
+    [
+      "Technical",
+      "What is a prototype?",
+      "Explain that it is a representation used to explore or test an idea before final implementation.",
+      "A prototype is an interactive or visual representation of a proposed experience. It lets designers and stakeholders explore flows and test assumptions before committing significant development resources.",
+      "Mention low- versus high-fidelity prototypes if appropriate."
+    ],
+
+    [
+      "Behavioral",
+      "Walk me through a project in your portfolio.",
+      "Give a concise problem-process-result story and explain your individual contribution.",
+      "A strong portfolio walkthrough explains the problem, the users, your role, the alternatives you considered, what you designed, what you learned from testing, and the final result.",
+      "Focus on decisions and learning, not just screenshots."
+    ]
+
+  ],
+
+
+  project:[
+
+    [
+      "Technical",
+      "What is a project milestone?",
+      "Explain that it is a significant checkpoint used to measure progress toward a project objective.",
+      "A milestone is a significant checkpoint in a project, such as completing requirements or launching a test version. Milestones help teams communicate progress and identify whether the project is on schedule.",
+      "Give an example from a class or work project."
+    ],
+
+    [
+      "Technical",
+      "What is the difference between a risk and an issue?",
+      "Explain that a risk is a potential future event while an issue is already happening.",
+      "A risk is an uncertain event that could affect a project in the future. An issue is a problem that has already occurred and requires action. Project managers plan responses to risks and resolve or escalate issues.",
+      "This distinction is common in project tracking."
+    ],
+
+    [
+      "Technical",
+      "What is Agile?",
+      "Explain iterative delivery, feedback, adaptation, and collaboration.",
+      "Agile is an approach to delivering work iteratively, using frequent feedback and adaptation rather than trying to define every detail upfront. Teams often deliver smaller increments and adjust priorities as they learn.",
+      "Do not describe Agile as simply 'working faster.'"
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time you had to coordinate people to complete a project.",
+      "Show planning, communication, follow-up, and a concrete outcome.",
+      "A strong response explains the objective, how you divided or coordinated work, how you communicated progress, how you handled obstacles, and what the team ultimately delivered.",
+      "Emphasize your coordination actions rather than taking credit for everyone else's work."
+    ],
+
+    [
+      "Technical",
+      "How would you handle a project that is falling behind schedule?",
+      "Mention diagnosing the cause, reprioritizing, communicating impact, and updating the plan.",
+      "I would first identify why the project is behind, determine which dependencies or tasks are driving the delay, evaluate options, communicate the impact to stakeholders, and update priorities or the schedule based on the agreed path forward.",
+      "Never hide a schedule problem until the deadline."
+    ],
+
+    [
+      "Behavioral",
+      "Describe a time you had to manage competing priorities.",
+      "Show a system for prioritizing based on impact, urgency, dependencies, and commitments.",
+      "A strong response explains how you compared priorities, communicated tradeoffs, organized the work, and protected the most important deadline or outcome.",
+      "Explain why you chose the priority, not just what you did first."
+    ],
+
+    [
+      "Technical",
+      "What is scope creep?",
+      "Explain that it is uncontrolled expansion of project requirements beyond the agreed scope.",
+      "Scope creep occurs when additional requirements or work are added without appropriately evaluating their impact on time, cost, resources, or objectives. A project manager should document and assess changes rather than automatically accepting them.",
+      "Frame change management as a process, not simply saying no."
+    ],
+
+    [
+      "Behavioral",
+      "Tell me about a time a project did not go as planned.",
+      "Demonstrate ownership, communication, adaptation, and learning.",
+      "A strong answer acknowledges what went wrong, explains how you communicated and adapted, describes the outcome, and identifies what you would do differently next time.",
+      "The learning is often more important than having a perfect project."
+    ]
+
+  ]
 
 };
 
 
-function showHome() {
+let selectedCareer = "developer";
+let qIndex = 0;
+let completed = 0;
+let lastSubmitted = false;
 
-    document.getElementById("app").innerHTML = `
 
-        <section class="hero">
-            <div class="container">
-                <h1>Find your path.<br>Build your future.</h1>
+function cardHTML(key){
 
-                <p>
-                    Explore Information Systems careers, understand what employers
-                    expect, and practice realistic interview questions.
-                </p>
+  const c = careers[key];
 
-                <div class="action-row" style="margin-top:30px;">
-                    <button class="button" onclick="showCareers()">
-                        Explore Careers
-                    </button>
+  return `
 
-                    <button class="button secondary" onclick="showInterviews()">
-                        Practice Interviews
-                    </button>
-                </div>
-            </div>
-        </section>
+    <div class="card">
 
-        <section class="section">
-            <div class="container">
+      <div class="careerIcon">
+        ${c.icon}
+      </div>
 
-                <h2>What can you do with IS?</h2>
+      <h3>
+        ${c.name}
+      </h3>
 
-                <p class="section-intro">
-                    Information Systems sits at the intersection of business,
-                    technology, data, and people. Explore six career paths
-                    that IS students can pursue.
-                </p>
+      <p>
+        ${c.short}
+      </p>
 
-                <div class="cards">
+      <div class="tags">
 
-                    ${Object.keys(careers).map((key, index) => {
+        ${c.tools
+          .slice(0,4)
+          .map(x => `<span class="tag">${x}</span>`)
+          .join("")}
 
-                        const c = careers[key];
+      </div>
 
-                        return `
+      <br>
 
-                            <div class="card">
+      <button
+        class="linkBtn"
+        onclick="openCareer('${key}')">
 
-                                <div class="card-number">
-                                    CAREER ${index + 1}
-                                </div>
+        View career path →
 
-                                <h3>${c.title}</h3>
+      </button>
 
-                                <p>${c.short}</p>
+    </div>
 
-                                <button
-                                    class="button"
-                                    onclick="showCareer('${key}')">
-                                    Explore Path
-                                </button>
+  `;
 
-                            </div>
-
-                        `;
-
-                    }).join("")}
-
-                </div>
-            </div>
-        </section>
-
-        <section class="methodology">
-
-            <div class="container">
-
-                <h2>Research Methodology</h2>
-
-                <p style="margin-top:12px;">
-                    Career and labor-market information in this prototype is
-                    informed by U.S. Bureau of Labor Statistics occupation
-                    profiles.
-                </p>
-
-                <ul>
-                    <li>
-                        Salary figures are 2025 U.S. median annual wages for
-                        the cited BLS occupation.
-                    </li>
-
-                    <li>
-                        Growth percentages represent projected employment
-                        growth from 2025–2035.
-                    </li>
-
-                    <li>
-                        Data Analyst uses the BLS Data Scientists occupation
-                        as a labor-market proxy because BLS does not publish
-                        a standalone Data Analyst occupation profile.
-                    </li>
-
-                    <li>
-                        Skills, tools, and interview guidance are educational
-                        recommendations synthesized for entry-level IS
-                        students.
-                    </li>
-
-                    <li>
-                        Interview questions are original practice questions
-                        and are not claimed to be verbatim employer questions.
-                    </li>
-                </ul>
-
-            </div>
-
-        </section>
-    `;
 }
 
 
-function showCareers() {
+function renderCards(){
 
-    document.getElementById("app").innerHTML = `
+  document.getElementById("homeCards").innerHTML =
+    Object.keys(careers)
+      .map(cardHTML)
+      .join("");
 
-        <section class="detail-header">
+  document.getElementById("careerCards").innerHTML =
+    Object.keys(careers)
+      .map(cardHTML)
+      .join("");
 
-            <div class="container">
-
-                <h1>Explore Careers</h1>
-
-                <p>
-                    Compare career paths, required skills, tools, entry-level
-                    expectations, and labor-market context.
-                </p>
-
-            </div>
-
-        </section>
-
-        <section class="section">
-
-            <div class="container">
-
-                <div class="cards">
-
-                    ${Object.keys(careers).map((key, index) => {
-
-                        const c = careers[key];
-
-                        return `
-
-                            <div class="card">
-
-                                <div class="card-number">
-                                    CAREER ${index + 1}
-                                </div>
-
-                                <h3>${c.title}</h3>
-
-                                <p>${c.short}</p>
-
-                                <button
-                                    class="button"
-                                    onclick="showCareer('${key}')">
-                                    View Career
-                                </button>
-
-                            </div>
-
-                        `;
-
-                    }).join("")}
-
-                </div>
-
-            </div>
-
-        </section>
-    `;
 }
 
 
-function showCareer(key) {
+function openCareer(key){
 
-    const c = careers[key];
+  const c = careers[key];
 
-    document.getElementById("app").innerHTML = `
+  document.getElementById("detailContent").innerHTML = `
 
-        <section class="detail-header">
+    <div class="detailHero">
 
-            <div class="container">
+      <div class="detailTop">
 
-                <div class="career-tag">
-                    INFORMATION SYSTEMS CAREER
-                </div>
+        <div class="detailIcon">
+          ${c.icon}
+        </div>
 
-                <h1>${c.title}</h1>
+        <div>
 
-                <p>${c.short}</p>
+          <h2>
+            ${c.name}
+          </h2>
 
-                <div class="action-row back">
-
-                    <button
-                        class="button secondary"
-                        onclick="showCareers()">
-                        ← Back to Careers
-                    </button>
-
-                    <button
-                        class="button"
-                        onclick="startInterview('${key}')">
-                        Practice This Interview
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <section class="section">
-
-            <div class="container">
-
-                <div class="detail-grid">
-
-                    <div class="info-box">
-
-                        <h3>What you'll do</h3>
-
-                        <ul>
-                            ${c.duties.map(x => `<li>${x}</li>`).join("")}
-                        </ul>
-
-                    </div>
-
-                    <div class="info-box">
-
-                        <h3>Technical skills</h3>
-
-                        <ul>
-                            ${c.skills.map(x => `<li>${x}</li>`).join("")}
-                        </ul>
-
-                    </div>
-
-                    <div class="info-box">
-
-                        <h3>Common tools</h3>
-
-                        <div>
-                            ${c.tools.map(x => `<span class="badge">${x}</span>`).join("")}
-                        </div>
-
-                    </div>
-
-                    <div class="info-box">
-
-                        <h3>Entry-level expectations</h3>
-
-                        <ul>
-                            ${c.entry.map(x => `<li>${x}</li>`).join("")}
-                        </ul>
-
-                    </div>
-
-                    <div class="info-box salary-box">
-
-                        <h3>Career-level market context</h3>
-
-                        <div class="salary-number">
-                            ${c.salary}
-                        </div>
-
-                        <p>${c.salaryLabel}</p>
-
-                        <strong>
-                            ${c.outlook} projected growth, 2025–2035
-                        </strong>
-
-                        <p class="source">
-                            Research source:
-                            <a href="${c.sourceUrl}" target="_blank">
-                                ${c.sourceName} →
-                            </a>
-                        </p>
-
-                    </div>
-
-                    <div class="info-box">
-
-                        <h3>Career growth</h3>
-
-                        <p>${c.growth}</p>
-
-                    </div>
-
-                    <div class="info-box" style="grid-column:1/-1;">
-
-                        <h3>What makes a strong candidate?</h3>
-
-                        <p>${c.candidate}</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-    `;
-}
-
-
-let currentCareer = null;
-let currentQuestion = 0;
-let interviewAnswers = [];
-
-
-function showInterviews() {
-
-    document.getElementById("app").innerHTML = `
-
-        <section class="detail-header">
-
-            <div class="container">
-
-                <h1>Practice Interviews</h1>
-
-                <p>
-                    Choose a career and practice technical and behavioral
-                    questions designed for entry-level interviews.
-                </p>
-
-            </div>
-
-        </section>
-
-        <section class="section">
-
-            <div class="container">
-
-                <div class="cards">
-
-                    ${Object.keys(careers).map(key => {
-
-                        const c = careers[key];
-
-                        return `
-
-                            <div class="card">
-
-                                <h3>${c.title}</h3>
-
-                                <p>
-                                    ${questions[key].length}
-                                    practice questions
-                                </p>
-
-                                <button
-                                    class="button"
-                                    onclick="startInterview('${key}')">
-                                    Start Interview
-                                </button>
-
-                            </div>
-
-                        `;
-
-                    }).join("")}
-
-                </div>
-
-            </div>
-
-        </section>
-    `;
-}
-
-
-function startInterview(key) {
-
-    currentCareer = key;
-    currentQuestion = 0;
-    interviewAnswers = [];
-
-    renderQuestion();
-}
-
-
-function renderQuestion() {
-
-    const c = careers[currentCareer];
-    const q = questions[currentCareer][currentQuestion];
-
-    const progress =
-        ((currentQuestion) / questions[currentCareer].length) * 100;
-
-    document.getElementById("app").innerHTML = `
-
-        <section class="detail-header">
-
-            <div class="container">
-
-                <div class="career-tag">
-                    MOCK INTERVIEW
-                </div>
-
-                <h1>${c.title}</h1>
-
-                <p>
-                    Answer as if you were speaking directly with an interviewer.
-                </p>
-
-            </div>
-
-        </section>
-
-        <section class="section">
-
-            <div class="container">
-
-                <div class="interview-card">
-
-                    <div class="question-number">
-                        Question ${currentQuestion + 1}
-                        of ${questions[currentCareer].length}
-                    </div>
-
-                    <div class="progress">
-
-                        <div
-                            class="progress-bar"
-                            style="width:${progress}%">
-                        </div>
-
-                    </div>
-
-                    <span class="badge">${q.type}</span>
-
-                    <div class="question">
-                        ${q.q}
-                    </div>
-
-                    <textarea
-                        id="answer"
-                        placeholder="Type your answer here...">
-                    </textarea>
-
-                    <div class="action-row">
-
-                        <button
-                            class="button"
-                            onclick="submitAnswer()">
-                            Submit Answer
-                        </button>
-
-                        <button
-                            class="button secondary"
-                            onclick="skipQuestion()">
-                            Skip
-                        </button>
-
-                    </div>
-
-                    <div id="feedback"></div>
-
-                </div>
-
-            </div>
-
-        </section>
-    `;
-}
-
-
-function submitAnswer() {
-
-    const answer =
-        document.getElementById("answer").value.trim();
-
-    if (!answer) {
-
-        document.getElementById("feedback").innerHTML = `
-
-            <div class="feedback">
-
-                <h3>Give it a try first.</h3>
-
-                <p>
-                    Type a response before viewing the suggested strong answer.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-    interviewAnswers.push(answer);
-
-    const q = questions[currentCareer][currentQuestion];
-
-    let feedback = "";
-
-    if (answer.length < 80) {
-
-        feedback = `
-            Your answer is a good start. Add more specific details,
-            examples, and your personal contribution.
-        `;
-
-    } else if (
-        answer.toLowerCase().includes("example") ||
-        answer.toLowerCase().includes("because") ||
-        answer.toLowerCase().includes("result") ||
-        answer.toLowerCase().includes("project")
-    ) {
-
-        feedback = `
-            Good job. Your answer includes details that can help an
-            interviewer understand your reasoning. Keep connecting your
-            answer to a specific result.
-        `;
-
-    } else {
-
-        feedback = `
-            Solid response. To make it stronger, add a concrete example,
-            explain your reasoning, and describe the result.
-        `;
-    }
-
-    document.getElementById("feedback").innerHTML = `
-
-        <div class="feedback">
-
-            <h3>Feedback</h3>
-
-            <p>${feedback}</p>
-
-            <div class="tip">
-
-                <strong>Suggested strong answer:</strong>
-
-                <p style="margin-top:8px;">
-                    ${q.strong}
-                </p>
-
-            </div>
-
-            <div class="action-row" style="margin-top:20px;">
-
-                ${
-                    currentQuestion <
-                    questions[currentCareer].length - 1
-
-                    ?
-
-                    `
-                    <button
-                        class="button"
-                        onclick="nextQuestion()">
-                        Next Question →
-                    </button>
-                    `
-
-                    :
-
-                    `
-                    <button
-                        class="button"
-                        onclick="finishInterview()">
-                        Finish Interview
-                    </button>
-                    `
-                }
-
-            </div>
+          <p>
+            ${c.short}
+          </p>
 
         </div>
-    `;
+
+      </div>
+
+    </div>
+
+
+    <div class="detailGrid">
+
+      <div class="detailBox">
+
+        <h3>
+          Day-to-Day
+        </h3>
+
+        <ul>
+
+          ${c.day
+            .map(x => `<li>${x}</li>`)
+            .join("")}
+
+        </ul>
+
+      </div>
+
+
+      <div class="detailBox">
+
+        <h3>
+          Technical Skills
+        </h3>
+
+        <ul>
+
+          ${c.skills
+            .map(x => `<li>${x}</li>`)
+            .join("")}
+
+        </ul>
+
+      </div>
+
+
+      <div class="detailBox">
+
+        <h3>
+          Tools & Technologies
+        </h3>
+
+        <div class="tags">
+
+          ${c.tools
+            .map(x => `<span class="tag">${x}</span>`)
+            .join("")}
+
+        </div>
+
+      </div>
+
+
+      <div class="detailBox">
+
+        <h3>
+          What Interns Should Know
+        </h3>
+
+        <ul>
+
+          ${c.entry
+            .map(x => `<li>${x}</li>`)
+            .join("")}
+
+        </ul>
+
+      </div>
+
+
+      <div class="detailBox">
+
+        <h3>
+          Salary & Outlook
+        </h3>
+
+        <div class="salary">
+          ${c.salary}
+        </div>
+
+        <div class="small">
+          2025 U.S. median annual wage for the cited BLS occupation
+        </div>
+
+        <div
+          style="
+            margin-top:13px;
+            font-size:22px;
+            font-weight:850;
+            color:var(--green)
+          ">
+
+          ${c.outlook}
+
+        </div>
+
+        <div class="small">
+          Projected employment growth, 2025–2035
+        </div>
+
+
+        ${
+          c.name === "Data Analyst"
+
+          ?
+
+          `
+          <div
+            class="small"
+            style="margin-top:12px">
+
+            Proxy note: BLS does not publish a standalone
+            "Data Analyst" occupation in this profile, so this
+            prototype uses the closely related Data Scientists
+            occupation for labor-market context.
+
+          </div>
+          `
+
+          :
+
+          ""
+
+        }
+
+
+        <div style="margin-top:16px">
+
+          <a
+            href="${c.sourceUrl}"
+            target="_blank"
+            style="
+              color:var(--blue);
+              font-weight:800;
+              text-decoration:none
+            ">
+
+            Research source:
+            ${c.source} →
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="detailBox">
+
+        <h3>
+          Career Growth
+        </h3>
+
+        <p
+          style="
+            color:#526275;
+            line-height:1.7
+          ">
+
+          ${c.growth}
+
+        </p>
+
+      </div>
+
+
+      <div
+        class="detailBox"
+        style="grid-column:1/-1">
+
+        <h3>
+          What Makes a Strong Candidate?
+        </h3>
+
+        <p
+          style="
+            color:#526275;
+            line-height:1.7;
+            margin:0
+          ">
+
+          ${c.candidate}
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div
+      style="
+        margin-top:18px;
+        text-align:right
+      ">
+
+      <button
+        class="darkBtn"
+        onclick="startInterview('${key}')">
+
+        Practice ${c.name} Interview →
+
+      </button>
+
+    </div>
+
+  `;
+
+  showView("detail");
+
 }
 
 
-function nextQuestion() {
+function showView(id){
 
-    currentQuestion++;
+  document
+    .querySelectorAll(".view")
+    .forEach(v =>
+      v.classList.remove("active")
+    );
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".navlinks button")
+    .forEach(b =>
+      b.classList.remove("active")
+    );
+
+
+  if(id === "home")
+    document
+      .getElementById("navHome")
+      .classList.add("active");
+
+
+  if(id === "careers" || id === "detail")
+    document
+      .getElementById("navCareers")
+      .classList.add("active");
+
+
+  if(id === "interview")
+    document
+      .getElementById("navInterview")
+      .classList.add("active");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function setupSelector(){
+
+  document.getElementById("careerSelector").innerHTML =
+
+    Object.keys(careers)
+      .map(k => `
+
+        <button
+          class="selectBtn ${
+            k === selectedCareer
+              ? "selected"
+              : ""
+          }"
+          onclick="startInterview('${k}')">
+
+          ${careers[k].icon}
+          ${careers[k].name}
+
+        </button>
+
+      `)
+      .join("");
+
+}
+
+
+function startInterview(key){
+
+  selectedCareer = key;
+
+  qIndex = 0;
+
+  completed = 0;
+
+  lastSubmitted = false;
+
+  setupSelector();
+
+  showView("interview");
+
+  renderQuestion();
+
+}
+
+
+function renderQuestion(){
+
+  const qs = questions[selectedCareer];
+
+  const q = qs[qIndex];
+
+
+  document.getElementById("progressText").textContent =
+    `Question ${qIndex+1} of ${qs.length}`;
+
+
+  document.getElementById("scoreText").textContent =
+    `${completed} completed`;
+
+
+  document.getElementById("progressBar").style.width =
+    ((qIndex+1) / qs.length * 100) + "%";
+
+
+  document.getElementById("questionType").textContent =
+    q[0];
+
+
+  document.getElementById("question").textContent =
+    q[1];
+
+
+  document.getElementById("answer").value = "";
+
+  document.getElementById("answer").disabled = false;
+
+  document.getElementById("answer").style.display = "block";
+
+  document.getElementById("submitBtn").style.display =
+    "inline-block";
+
+  document.getElementById("feedback")
+    .classList.remove("show");
+
+  lastSubmitted = false;
+
+}
+
+
+function submitAnswer(){
+
+  const answer =
+    document.getElementById("answer")
+      .value
+      .trim();
+
+
+  if(!answer){
+
+    alert(
+      "Write a response before submitting."
+    );
+
+    return;
+
+  }
+
+
+  const q =
+    questions[selectedCareer][qIndex];
+
+
+  const words =
+    answer
+      .split(/\s+/)
+      .filter(Boolean)
+      .length;
+
+
+  let score =
+    words < 15
+      ? 2
+      : words < 35
+        ? 3
+        : 4;
+
+
+  if(
+    q[0] === "Technical" &&
+    /because|example|for example|however|difference|means|used|allows|helps/i
+      .test(answer)
+  ){
+
+    score =
+      Math.min(5, score + 1);
+
+  }
+
+
+  if(
+    q[0] === "Behavioral" &&
+    /I |we |result|learn|improv|STAR|situation|task|action/i
+      .test(answer)
+  ){
+
+    score =
+      Math.min(5, score + 1);
+
+  }
+
+
+  const good =
+    score >= 4
+
+      ?
+
+      "Your response has useful substance and shows that you are engaging with the question."
+
+      :
+
+      "You started with a relevant idea. The next step is making your answer more specific and complete.";
+
+
+  const improve =
+    score >= 4
+
+      ?
+
+      "Make your strongest point first, then support it with a concrete example. Keep the answer focused and interview-ready."
+
+      :
+
+      "Add a clear explanation, a specific example, and the result or practical implication. Avoid one-sentence answers.";
+
+
+  document.getElementById("goodText").textContent =
+    good;
+
+
+  document.getElementById("improveText").textContent =
+    improve;
+
+
+  document.getElementById("strongText").textContent =
+    q[3];
+
+
+  document.getElementById("tipText").textContent =
+    q[4];
+
+
+  document.getElementById("feedback")
+    .classList.add("show");
+
+
+  document.getElementById("answer")
+    .disabled = true;
+
+
+  document.getElementById("submitBtn")
+    .style.display = "none";
+
+
+  if(!lastSubmitted){
+
+    completed++;
+
+    lastSubmitted = true;
+
+    document.getElementById("scoreText").textContent =
+      `${completed} completed`;
+
+  }
+
+}
+
+
+function nextQuestion(skipped){
+
+  if(
+    qIndex <
+    questions[selectedCareer].length - 1
+  ){
+
+    qIndex++;
 
     renderQuestion();
-}
+
+  }
+
+  else{
+
+    const c =
+      careers[selectedCareer];
 
 
-function skipQuestion() {
+    document.getElementById("question").innerHTML = `
 
-    currentQuestion++;
+      <span style="color:var(--green)">
 
-    if (
-        currentQuestion >=
-        questions[currentCareer].length
-    ) {
+        Interview complete! 🎉
 
-        finishInterview();
+      </span>
 
-    } else {
-
-        renderQuestion();
-
-    }
-}
-
-
-function finishInterview() {
-
-    const c = careers[currentCareer];
-
-    document.getElementById("app").innerHTML = `
-
-        <section class="detail-header">
-
-            <div class="container">
-
-                <div class="career-tag">
-                    INTERVIEW COMPLETE
-                </div>
-
-                <h1>Nice work.</h1>
-
-                <p>
-                    You completed the ${c.title} practice interview.
-                </p>
-
-            </div>
-
-        </section>
-
-        <section class="section">
-
-            <div class="container">
-
-                <div class="interview-card">
-
-                    <h2>How to improve your answers</h2>
-
-                    <p style="margin-top:15px;">
-                        Strong interview answers should be specific,
-                        structured, and connected to real experiences.
-                    </p>
-
-                    <div class="tip">
-
-                        <strong>Use the STAR framework for behavioral questions.</strong>
-
-                        <p style="margin-top:8px;">
-                            Situation → Task → Action → Result
-                        </p>
-
-                    </div>
-
-                    <div class="tip">
-
-                        <strong>For technical questions:</strong>
-
-                        <p style="margin-top:8px;">
-                            Explain your reasoning, not just the final answer.
-                            Interviewers often care about how you approach a
-                            problem.
-                        </p>
-
-                    </div>
-
-                    <div class="action-row" style="margin-top:25px;">
-
-                        <button
-                            class="button"
-                            onclick="startInterview('${currentCareer}')">
-                            Try Again
-                        </button>
-
-                        <button
-                            class="button secondary"
-                            onclick="showInterviews()">
-                            Choose Another Career
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
     `;
+
+
+    document.getElementById("questionType")
+      .textContent = "Complete";
+
+
+    document.getElementById("answer")
+      .style.display = "none";
+
+
+    document.querySelector(".actionRow").innerHTML = `
+
+      <button
+        class="ghost"
+        onclick="startInterview('${selectedCareer}')">
+
+        Restart Interview
+
+      </button>
+
+
+      <button
+        class="darkBtn"
+        onclick="showView('careers')">
+
+        Explore Another Career
+
+      </button>
+
+    `;
+
+
+    document.getElementById("feedback")
+      .classList.remove("show");
+
+
+    document.getElementById("progressText")
+      .textContent =
+        `${questions[selectedCareer].length} of ${questions[selectedCareer].length}`;
+
+
+    document.getElementById("progressBar")
+      .style.width = "100%";
+
+  }
+
 }
 
 
-showHome();
+renderCards();
+
+setupSelector();
+
+renderQuestion();
 
 </script>
 
