@@ -685,156 +685,72 @@ footer{
 }
 
 
-.summary{
-  margin:6px 0 22px;
-  display:none;
-}
+.interviewGuidance{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;}
+.guidanceBox{border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:#f8fafc;}
+.guidanceBox h4{margin:0 0 6px;font-size:13px;}
+.guidanceBox p{margin:0;color:var(--muted);line-height:1.5;font-size:13px;}
+.guidanceDo{border-left:4px solid #2e7d32;}
+.guidanceDont{border-left:4px solid #b3261e;}
+@media(max-width:700px){.interviewGuidance{grid-template-columns:1fr;}}
 
-.sumStats{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:14px;
-}
-
-.sumStat{
-  flex:1;
-  min-width:96px;
-  background:var(--sky);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:12px 14px;
-  text-align:center;
-}
-
-.sumStat strong{
-  display:block;
-  font-size:26px;
-  color:var(--navy);
-  line-height:1.1;
-}
-
-.sumStat span{
-  font-size:12px;
-  color:var(--muted);
-  font-weight:750;
-}
-
-.sumChips{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:12px;
-}
-
-.sumChip{
+/* Interactive role-chain diagram — matched to Career Launchpad light theme */
+.roleDiagramOriginal{
+  margin:34px 0 0;
   background:#fff;
   border:1px solid var(--line);
-  border-radius:999px;
-  padding:5px 11px;
-  font-size:12px;
-  font-weight:750;
-  color:#536276;
+  border-radius:18px;
+  box-shadow:0 8px 24px rgba(21,34,56,.06);
+  overflow:hidden;
+  color:var(--ink);
 }
-
-.sumNote{
-  font-size:13px;
-  line-height:1.55;
-  color:#6B5A33;
-  background:var(--goldbg);
-  border:1px solid #F0E2C4;
-  border-radius:12px;
-  padding:12px 14px;
-  margin:0 0 18px;
-}
-
-.sumRow{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px 16px;
-  margin-bottom:10px;
-  background:#fff;
-}
-
-.sumHead{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:7px;
-}
-
-.sumNum{
-  font-weight:850;
-  color:var(--navy);
-  font-size:13px;
-}
-
-.sumType{
-  font-size:11px;
-  font-weight:850;
-  text-transform:uppercase;
-  color:var(--navy);
-  background:var(--sky);
-  border-radius:999px;
-  padding:3px 9px;
-}
-
-.sumBadge{
-  margin-left:auto;
-  font-size:12px;
-  font-weight:800;
-  border-radius:999px;
-  padding:4px 11px;
-}
-
-.sumGood{background:var(--greenbg);color:var(--green)}
-.sumMid{background:var(--goldbg);color:var(--gold)}
-.sumLow{background:#FDECEC;color:#B42318}
-.sumSkip{background:#EEF2F7;color:#64748B}
-
-.sumQ{
-  font-size:15px;
-  font-weight:750;
-  line-height:1.4;
-  margin-bottom:8px;
-}
-
-.summary details{
-  border-top:1px solid var(--line);
-  padding-top:9px;
-}
-
-.summary summary{
-  cursor:pointer;
-  font-size:13px;
-  font-weight:750;
-  color:var(--blue);
-}
-
-.sumLabel{
-  font-size:11px;
-  font-weight:850;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-top:12px;
-}
-
-.summary details p{
-  margin:5px 0 0;
-  font-size:14px;
-  line-height:1.55;
-}
-
-.sumMeta{
-  color:var(--muted);
-  font-size:12px !important;
-}
-
-.sumEmpty{
-  color:var(--muted);
-  font-style:italic;
-}
-
+.roleDiagramInner{position:relative;padding:30px 30px 20px;min-width:760px}
+.roleDiagramBoundary{position:absolute;top:54px;left:84px;right:84px;height:255px;border:1px dashed #b9c9da;border-radius:14px;pointer-events:none;background:#fbfdff}
+.roleDiagramPM{position:absolute;top:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;padding:6px 10px;border-radius:9px;background:#fff;border:1px solid var(--line);z-index:3}
+.roleDiagramPM svg{width:15px;height:15px}
+.roleDiagramPM.roleSelected{color:var(--navy);background:var(--sky);border-color:#9fc5ef;box-shadow:0 0 0 3px rgba(26,115,232,.09)}
+.roleDiagramMainRow{display:flex;justify-content:space-between;align-items:flex-start;padding-top:46px;position:relative;z-index:1}
+.roleDiagramStage{width:84px;text-align:center;flex:0 0 auto}
+.roleDiagramDisc{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;background:#fff;border:1px solid #cbd8e5;color:var(--blue);font-size:24px;transition:.18s ease;box-shadow:0 2px 7px rgba(21,34,56,.05)}
+.roleDiagramDisc svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.roleDiagramName{font-size:13px;font-weight:700;color:var(--ink);margin-top:10px}
+.roleDiagramConnector{flex:1;position:relative;height:56px;min-width:42px;margin:0 4px}
+.roleDiagramLine{position:absolute;top:28px;left:0;right:0;height:1px;background:#b9c9da}
+.roleDiagramChevron{position:absolute;top:15px;right:-5px;color:#8ba0b5;font-size:22px;line-height:1}
+.roleDiagramLabel{position:absolute;bottom:33px;left:50%;transform:translateX(-50%);width:max-content;max-width:105px;font-size:10px;line-height:1.2;color:var(--navy);text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 7px;border:1px solid #d8e3ee;background:#fff;border-radius:9px;box-shadow:0 2px 6px rgba(21,34,56,.05)}
+.roleDiagramLabel svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.roleDiagramLabel.roleSelected{color:var(--navy);font-weight:800;background:var(--sky);border-color:#6fa8e8;box-shadow:0 0 0 2px rgba(26,115,232,.08)}
+.roleDiagramStage.roleSelected .roleDiagramDisc{background:var(--sky);border-color:#6fa8e8;box-shadow:0 0 0 3px rgba(26,115,232,.12)}
+.roleDiagramClickable{cursor:pointer}
+.roleDiagramClickable:hover .roleDiagramDisc,.roleDiagramClickable:hover .roleDiagramLabel,.roleDiagramClickable:hover .roleDiagramName{color:var(--blue)}
+.roleDiagramLabel.roleDiagramClickable:hover{background:var(--sky);border-color:#6fa8e8;transform:translateX(-50%) translateY(-2px)}
+.roleDiagramClickable:hover .roleDiagramDisc{border-color:#6fa8e8;transform:translateY(-2px);box-shadow:0 5px 12px rgba(26,115,232,.12)}
+.roleDiagramClickable,.roleDiagramDisc{transition:.18s ease}
+.roleDiagramDataLoop{position:relative;height:92px;margin:8px 0 0;left:28.2%;width:43.6%;border-left:1px dashed #9fc0e2;border-right:1px dashed #9fc0e2;border-bottom:1px dashed #9fc0e2;border-radius:0 0 16px 16px;background:rgba(234,243,255,.32)}
+.roleDiagramDataLoop.roleSelected{background:#f3f8ff;box-shadow:0 0 0 2px rgba(26,115,232,.07)}
+.roleDiagramUp,.roleDiagramDown{position:absolute;color:var(--blue);font-size:17px;line-height:1}
+.roleDiagramUp{top:-9px;left:-7px}.roleDiagramDown{top:34px;right:-7px}
+.roleDiagramDataLabel{position:absolute;top:14px;left:10px;width:78px;font-size:11px;line-height:1.25;color:var(--muted);text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px}
+.roleDiagramDataLabel svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.roleDiagramDataLabel.roleSelected{color:var(--navy);font-weight:800}
+.roleDiagramDatabase{position:absolute;left:50%;bottom:0;transform:translate(-50%,50%);display:flex;align-items:center;gap:10px;padding:7px 18px 7px 7px;border-radius:999px;background:#fff;border:1px solid #9fc0e2;box-shadow:0 5px 14px rgba(21,34,56,.08);white-space:nowrap;color:var(--navy);transition:.18s ease}
+.roleDiagramDbIcon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--sky);color:var(--blue);font-size:20px}
+.roleDiagramDbIcon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.roleDiagramDatabase>span:last-child{font-size:14px;font-weight:750}
+.roleDiagramDatabase:hover{border-color:#6fa8e8;transform:translate(-50%,50%) scale(1.03);box-shadow:0 7px 16px rgba(26,115,232,.12)}
+.roleDiagramCyberRow{position:relative;margin-top:56px;padding-bottom:104px;clear:both}
+.roleDiagramCyberLine{height:1px;background:#b9c9da}
+.roleDiagramCyberPill{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;background:#fff;border:1px solid #cbd8e5;box-shadow:0 2px 7px rgba(21,34,56,.05);white-space:nowrap;color:var(--ink);transition:.18s ease}
+.roleDiagramCyberPill svg{width:18px;height:18px;fill:none;stroke:var(--blue);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.roleDiagramCyberPill.roleSelected{background:var(--sky);border-color:#6fa8e8;color:var(--navy);box-shadow:0 0 0 3px rgba(26,115,232,.10)}
+.roleDiagramCyberPill:hover{border-color:#6fa8e8;transform:translate(-50%,-50%) scale(1.03)}
+.roleDiagramCyberArrow{position:absolute;top:30px;left:50%;transform:translateX(-50%);font-size:17px;color:#c95757;line-height:1}
+.roleDiagramAttacker{position:absolute;top:52px;left:50%;transform:translateX(-50%);width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2b0b0;color:#c95757;font-size:24px;cursor:pointer;transition:.18s ease}
+.roleDiagramAttacker:hover{transform:translate(-50%,-2px);border-color:#c95757;box-shadow:0 5px 12px rgba(201,87,87,.12)}
+.roleDiagramHint{margin:0;padding:0 30px 18px;color:var(--muted);font-size:11px;text-align:center}
+.roleDiagramHint strong{color:var(--navy)}
+@media(max-width:900px){.roleDiagramOriginal{overflow-x:auto}.roleDiagramInner{padding-left:22px;padding-right:22px}}
+.roleTextHighlight{animation:roleTextPulse 1.5s ease;box-shadow:0 0 0 3px rgba(26,115,232,.13);border-color:#6fa8e8!important}
+@keyframes roleTextPulse{0%{background:#eef6ff}100%{background:var(--white)}}
 </style>
 </head>
 
@@ -1116,6 +1032,18 @@ footer{
 
         <div id="question"
              class="question">
+        </div>
+
+
+        <div id="interviewGuidance" class="interviewGuidance">
+          <div class="guidanceBox guidanceDo">
+            <h4>✓ DO</h4>
+            <p id="doText"></p>
+          </div>
+          <div class="guidanceBox guidanceDont">
+            <h4>✕ DON'T</h4>
+            <p id="dontText"></p>
+          </div>
         </div>
 
 
@@ -2041,11 +1969,12 @@ const questions = {
 };
 
 
+const interviewGuidance = {"developer": [{"do": "Use Present–Benefit–Future; keep it 30–60 seconds.", "dont": "Give your whole life story or repeat your resume."}, {"do": "Name languages you truly know and explain how you used them.", "dont": "Claim expertise in languages you barely touched."}, {"do": "Walk through your process: reproduce → inspect → isolate → test → verify.", "dont": "Say “I Google it” without explaining your reasoning."}, {"do": "Use PAR (Problem → Action → Result).", "dont": "Spend the whole answer explaining the problem instead of your actions."}, {"do": "Show how you understood user needs and technical constraints.", "dont": "Frame the user or dev team as “wrong.”"}, {"do": "Read documentation, trace the code, run tests, ask thoughtful questions.", "dont": "Pretend you understand or immediately ask someone else to fix it."}, {"do": "Prioritize based on severity, user impact, deadlines, and risk.", "dont": "Pick the easiest or most interesting bug."}, {"do": "Ask about tech stack, team workflow, or onboarding.", "dont": "Say you have no questions."}], "data": [{"do": "Use Present–Benefit–Future with a data focus.", "dont": "List every class you’ve taken."}, {"do": "Explain SELECT, WHERE, JOIN, GROUP BY, ORDER BY with real examples.", "dont": "Recite advanced syntax you don’t understand."}, {"do": "Choose a line chart and explain why it shows changes clearly.", "dont": "Name a chart without explaining your reasoning."}, {"do": "Use PAR; check data quality, explore causes, interpret meaning.", "dont": "Assume the data is wrong without investigating."}, {"do": "Start with the business question, then explain your data choices.", "dont": "Collect everything “just because.”"}, {"do": "Verify data, check calculations, investigate causes, communicate findings.", "dont": "Ignore or alter results because they’re inconvenient."}, {"do": "Confirm the issue, assess impact, correct what you can, notify stakeholders.", "dont": "Quietly change numbers to “make the presentation work.”"}, {"do": "Ask about data sources, tools, or how insights influence decisions.", "dont": "Say you have no questions."}], "cyber": [{"do": "Use Present–Benefit–Future with a security angle.", "dont": "Give unrelated personal info."}, {"do": "Gather evidence, review logs, analyze behavior, follow incident-response steps.", "dont": "Assume what happened without investigating."}, {"do": "Explain it simply: protects data by making it unreadable without a key.", "dont": "Give a definition you can’t explain."}, {"do": "Use PAR; show how you identified, analyzed, and resolved the issue.", "dont": "Only describe what went wrong."}, {"do": "Explain why it was sensitive and how you protected it.", "dont": "Reveal confidential details."}, {"do": "Explain risks, communicate respectfully, follow policy.", "dont": "Threaten, embarrass, or blame."}, {"do": "Stay calm, follow incident-response procedures, escalate appropriately.", "dont": "Assume nothing happened or blame the employee."}, {"do": "Ask about security priorities, tools, or incident-response workflow.", "dont": "Say you have no questions."}], "analyst": [{"do": "Use Present–Benefit–Future with business + tech.", "dont": "Ramble."}, {"do": "Explain the role in practical terms: understand needs, improve processes.", "dont": "Recite a memorized definition."}, {"do": "Use simple language and relatable examples.", "dont": "Overload with jargon."}, {"do": "Use PAR; show how you listened and found a balanced solution.", "dont": "Frame one side as “wrong.”"}, {"do": "Show willingness to reevaluate and explain why the new solution was better.", "dont": "Defend a bad idea."}, {"do": "Understand needs, identify priorities, align with business goals.", "dont": "Choose based on authority."}, {"do": "Ask clarifying questions before deciding.", "dont": "Immediately agree or disagree."}, {"do": "Ask about systems, stakeholders, or project priorities.", "dont": "Say you have no questions."}], "ux": [{"do": "Use Present–Benefit–Future with design + users.", "dont": "Give unrelated personal info."}, {"do": "Mention research methods: interviews, surveys, usability tests.", "dont": "Assume you already know what users want."}, {"do": "Look for patterns, understand motivations, prioritize based on goals.", "dont": "Change the design every time someone gives feedback."}, {"do": "Look for solutions that provide value to both.", "dont": "Treat one side as unimportant."}, {"do": "Use PAR; explain how you used feedback to improve the design.", "dont": "Get defensive."}, {"do": "Describe the user, their needs, and how you designed for them.", "dont": "Focus only on aesthetics."}, {"do": "Investigate both sides, understand motivations, find a balanced solution.", "dont": "Automatically ignore users or data."}, {"do": "Ask about design process, user research, or collaboration.", "dont": "Say you have no questions."}], "project": [{"do": "Use Present–Benefit–Future with leadership + organization.", "dont": "Give your whole life story."}, {"do": "Identify risks early, assess impact, plan responses, monitor continuously.", "dont": "Wait until something breaks."}, {"do": "Listen to all sides, understand root causes, guide toward resolution.", "dont": "Ignore conflict or take sides immediately."}, {"do": "Use PAR; explain your communication and organization.", "dont": "Say “we worked together” without describing your role."}, {"do": "Address respectfully, understand causes, help them get back on track.", "dont": "Blame or criticize."}, {"do": "Investigate causes, adjust scope/resources, communicate clearly, create a recovery plan.", "dont": "Hide delays or make unrealistic promises."}, {"do": "Compare urgency, impact, dependencies, deadlines, and risk.", "dont": "Choose based on personal preference."}, {"do": "Ask about project tools, team structure, or risk management.", "dont": "Say you have no questions."}]};
+
 let selectedCareer = "developer";
 let qIndex = 0;
 let completed = 0;
 let lastSubmitted = false;
-let sessionLog = [];
 
 
 function cardHTML(key){
@@ -2109,6 +2038,113 @@ function renderCards(){
 }
 
 
+function roleDiagram(key){
+
+  const selected = {
+    developer: "Software Developer",
+    data: "Data Analyst",
+    cyber: "Cybersecurity Analyst",
+    analyst: "Business Systems Analyst",
+    ux: "UX Designer",
+    project: "IT Project Manager"
+  }[key] || "";
+
+  const isSelected = name => selected === name ? " roleSelected" : "";
+
+  const icon = (type) => {
+    const icons = {
+      problem: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.8 19a1.5 1.5 0 0 0 1.3 2.2h15.8A1.5 1.5 0 0 0 21.2 19L12 3Z"/><path d="M12 9v4"/><circle cx="12" cy="16.5" r=".7"/></svg>`,
+      analyst: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h5M8 15h8"/></svg>`,
+      developer: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>`,
+      ux: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 4.5 5 5M4 20l3.2-.8L19.7 6.7a2.1 2.1 0 0 0-3-3L4.2 16.8 4 20Z"/></svg>`,
+      app: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>`,
+      users: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c.5-3.5 2.5-5 6-5s5.5 1.5 6 5M17 11a2.5 2.5 0 1 0 0-5M17 15c2.5.1 3.8 1.7 4 5"/></svg>`,
+      chart: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V5M19 20v-7"/><path d="M3 20h18"/></svg>`,
+      database: `<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7"/></svg>`,
+      shield: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z"/><path d="m9 12 2 2 4-4"/></svg>`,
+      attacker: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 21c.7-4.2 2.8-6 7-6s6.3 1.8 7 6"/><path d="m17 15 4 4M21 15l-4 4"/></svg>`,
+      calendar: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>`
+    };
+    return icons[type] || "";
+  };
+
+  return `
+    <div class="roleDiagramOriginal" aria-label="Information systems role chain">
+      <div class="roleDiagramInner">
+        <div class="roleDiagramBoundary"></div>
+
+        <div class="roleDiagramPM${isSelected("IT Project Manager")} roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('pm')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('pm')}" title="Show where IT project management fits">
+          ${icon("calendar")}<span>IT project manager · leads</span>
+        </div>
+
+        <div class="roleDiagramMainRow">
+          <div class="roleDiagramStage">
+            <div class="roleDiagramDisc">${icon("problem")}</div>
+            <div class="roleDiagramName">Problem</div>
+          </div>
+
+          <div class="roleDiagramConnector">
+            <div class="roleDiagramLabel${isSelected("Business Systems Analyst")} roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('analyst')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('analyst')}" title="Show the business analysis work">${icon("analyst")}<span>Business analyst · defines</span></div>
+            <div class="roleDiagramLine"></div><span class="roleDiagramChevron">›</span>
+          </div>
+
+          <div class="roleDiagramStage${isSelected("Business Systems Analyst")} roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('analyst')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('analyst')}" title="Show the business analysis work">
+            <div class="roleDiagramDisc">${icon("analyst")}</div>
+            <div class="roleDiagramName">Spec</div>
+          </div>
+
+          <div class="roleDiagramConnector">
+            <div class="roleDiagramLabel${isSelected("Software Developer")} roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('developer')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('developer')}" title="Show the software development work">${icon("developer")}<span>Software developer · builds</span></div>
+            <div class="roleDiagramLine"></div><span class="roleDiagramChevron">›</span>
+          </div>
+
+          <div class="roleDiagramStage${isSelected("Software Developer")} roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('developer')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('developer')}" title="Show the software development work">
+            <div class="roleDiagramDisc">${icon("developer")}</div>
+            <div class="roleDiagramName">Software</div>
+          </div>
+
+          <div class="roleDiagramConnector">
+            <div class="roleDiagramLabel${isSelected("UX Designer")} roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('ux')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('ux')}" title="Show the UX design work">${icon("ux")}<span>UX designer · designs</span></div>
+            <div class="roleDiagramLine"></div><span class="roleDiagramChevron">›</span>
+          </div>
+
+          <div class="roleDiagramStage${isSelected("UX Designer")} roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('ux')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('ux')}" title="Show the UX design work">
+            <div class="roleDiagramDisc">${icon("app")}</div>
+            <div class="roleDiagramName">Application</div>
+          </div>
+
+          <div class="roleDiagramConnector noLabel">
+            <div class="roleDiagramLine"></div><span class="roleDiagramChevron">›</span>
+          </div>
+
+          <div class="roleDiagramStage">
+            <div class="roleDiagramDisc">${icon("users")}</div>
+            <div class="roleDiagramName">Users</div>
+          </div>
+        </div>
+
+        <div class="roleDiagramDataLoop${isSelected("Data Analyst")} roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('data')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('data')}" title="Show the data work">
+          <span class="roleDiagramUp">⌃</span>
+          <span class="roleDiagramDown">⌄</span>
+          <div class="roleDiagramDataLabel${isSelected("Data Analyst")}">${icon("chart")}<span>Data analyst · informs</span></div>
+          <div class="roleDiagramDatabase" aria-label="Database supports the data analysis workflow">
+            <span class="roleDiagramDbIcon">${icon("database")}</span>
+            <span>Database</span>
+          </div>
+        </div>
+
+        <div class="roleDiagramCyberRow${isSelected("Cybersecurity Analyst")}">
+          <div class="roleDiagramCyberLine"></div>
+          <div class="roleDiagramCyberPill roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('cyber')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('cyber')}" title="Show the cybersecurity work">${icon("shield")}<span>Cybersecurity · protects</span></div>
+          <span class="roleDiagramCyberArrow">⌃</span>
+          <div class="roleDiagramAttacker roleDiagramClickable" role="button" tabindex="0" onclick="highlightRoleText('cyber')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();highlightRoleText('cyber')}" title="Show the cybersecurity work" aria-label="Show cybersecurity information">${icon("attacker")}</div>
+        </div>
+        <div class="roleDiagramHint"><strong>Follow the workflow.</strong> Click a role label to jump to its related information on this page.</div>
+      </div>
+    </div>
+  `;
+}
+
 function openCareer(key){
 
   const c = careers[key];
@@ -2139,10 +2175,9 @@ function openCareer(key){
 
     </div>
 
-
     <div class="detailGrid">
 
-      <div class="detailBox">
+      <div class="detailBox" id="roleTextDay">
 
         <h3>
           Day-to-Day
@@ -2159,7 +2194,7 @@ function openCareer(key){
       </div>
 
 
-      <div class="detailBox">
+      <div class="detailBox" id="roleTextSkills">
 
         <h3>
           Technical Skills
@@ -2176,10 +2211,10 @@ function openCareer(key){
       </div>
 
 
-      <div class="detailBox">
+      <div class="detailBox" id="roleTextTools">
 
         <h3>
-          Tools & Technologies
+          Common Tools
         </h3>
 
         <div class="tags">
@@ -2193,10 +2228,10 @@ function openCareer(key){
       </div>
 
 
-      <div class="detailBox">
+      <div class="detailBox" id="roleTextEntry">
 
         <h3>
-          What Interns Should Know
+          Entry-Level Expectations
         </h3>
 
         <ul>
@@ -2210,125 +2245,40 @@ function openCareer(key){
       </div>
 
 
-      <div class="detailBox">
+      <div class="detailBox" id="roleTextSalary">
 
         <h3>
-          Salary & Outlook
+          Salary &amp; Outlook
         </h3>
 
-        <div class="salary">
-          ${c.salary}
-        </div>
+        <p><strong>${c.salary}</strong> median annual wage</p>
+        <p>${c.outlook} projected growth</p>
+        <p class="source">${c.source}</p>
 
-        <div class="small">
-          2025 U.S. median annual wage for the cited BLS occupation
-        </div>
-
-        <div
-          style="
-            margin-top:13px;
-            font-size:22px;
-            font-weight:850;
-            color:var(--green)
-          ">
-
-          ${c.outlook}
-
-        </div>
-
-        <div class="small">
-          Projected employment growth, 2025–2035
-        </div>
-
-
-        ${
-          c.name === "Data Analyst"
-
-          ?
-
-          `
-          <div
-            class="small"
-            style="margin-top:12px">
-
-            Proxy note: BLS does not publish a standalone
-            "Data Analyst" occupation in this profile, so this
-            prototype uses the closely related Data Scientists
-            occupation for labor-market context.
-
-          </div>
-          `
-
-          :
-
-          ""
-
-        }
-
-
-        <div style="margin-top:16px">
-
-          <a
-            href="${c.sourceUrl}"
-            target="_blank"
-            style="
-              color:var(--blue);
-              font-weight:800;
-              text-decoration:none
-            ">
-
-            Research source:
-            ${c.source} →
-
-          </a>
-
-        </div>
+        <a href="${c.sourceUrl}" target="_blank" rel="noopener">View source →</a>
 
       </div>
 
 
-      <div class="detailBox">
+      <div class="detailBox" id="roleTextGrowth">
 
         <h3>
           Career Growth
         </h3>
 
-        <p
-          style="
-            color:#526275;
-            line-height:1.7
-          ">
-
-          ${c.growth}
-
-        </p>
-
-      </div>
-
-
-      <div
-        class="detailBox"
-        style="grid-column:1/-1">
-
-        <h3>
-          What Makes a Strong Candidate?
-        </h3>
-
-        <p
-          style="
-            color:#526275;
-            line-height:1.7;
-            margin:0
-          ">
-
-          ${c.candidate}
-
-        </p>
+        <p>${c.growth}</p>
 
       </div>
 
     </div>
 
+
+    <div class="candidateBox">
+      <h3>What makes a strong candidate?</h3>
+      <p>${c.candidate}</p>
+    </div>
+
+    ${roleDiagram(key)}
 
     <div
       style="
@@ -2352,6 +2302,26 @@ function openCareer(key){
 
 }
 
+
+
+function highlightRoleText(role){
+  const targets={
+    analyst:['roleTextDay','roleTextEntry'],
+    developer:['roleTextSkills','roleTextTools'],
+    ux:['roleTextDay','roleTextTools'],
+    data:['roleTextSkills','roleTextTools','roleTextSalary'],
+    cyber:['roleTextDay','roleTextSkills','roleTextEntry'],
+    pm:['roleTextDay','roleTextGrowth']
+  };
+
+  document.querySelectorAll('.roleTextHighlight').forEach(el=>el.classList.remove('roleTextHighlight'));
+  const ids=targets[role]||[];
+  const first=document.getElementById(ids[0]);
+  ids.forEach(id=>document.getElementById(id)?.classList.add('roleTextHighlight'));
+  if(first){
+    first.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
 
 function showView(id){
 
@@ -2441,7 +2411,6 @@ function resetInterviewUI(){
     answer.value = "";
   }
   if(feedback) feedback.classList.remove("show");
-  hideSummary();
 }
 
 function startInterview(key){
@@ -2453,8 +2422,6 @@ function startInterview(key){
   completed = 0;
 
   lastSubmitted = false;
-
-  sessionLog = [];
 
   // Rebuild controls that are replaced by the completion screen.
   // This makes every new/restarted interview a completely fresh session.
@@ -2496,6 +2463,14 @@ function renderQuestion(){
     q[1];
 
 
+  const guidance = interviewGuidance[selectedCareer]?.[qIndex];
+  if(guidance){
+    document.getElementById("doText").textContent = guidance.do;
+    document.getElementById("dontText").textContent = guidance.dont;
+    document.getElementById("interviewGuidance").style.display = "grid";
+  }
+
+
   document.getElementById("answer").value = "";
 
   document.getElementById("answer").disabled = false;
@@ -2508,172 +2483,213 @@ function renderQuestion(){
   document.getElementById("feedback")
     .classList.remove("show");
 
-  hideSummary();
-
   lastSubmitted = false;
 
 }
 
 
-function submitAnswer(){
+function interviewAnswerLooksEmpty(answer){
+  const normalized = answer.trim().toLowerCase().replace(/[.!?,\-]/g,' ');
+  if(!normalized) return true;
+  const tokens = normalized.split(/\s+/).filter(Boolean);
+  const idkPatterns = [
+    /^idk$/,
+    /^i don'?t know$/,
+    /^i have no idea$/,
+    /^not sure$/,
+    /^no idea$/,
+    /^i dont know$/,
+    /^i do not know$/,
+    /^n\/a$/,
+    /^na$/,
+    /^nothing$/,
+    /^skip$/
+  ];
+  return idkPatterns.some(p => p.test(normalized)) || tokens.length <= 2;
+}
 
-  const answer =
-    document.getElementById("answer")
-      .value
-      .trim();
+function interviewWordCount(answer){
+  return answer.trim().split(/\s+/).filter(Boolean).length;
+}
 
+function localInterviewFeedback(answer, q, guidance){
+  const words = interviewWordCount(answer);
+  const empty = interviewAnswerLooksEmpty(answer);
 
+  if(empty){
+    return {
+      score: 1,
+      good: "What worked: nothing substantive yet. This response is too empty to demonstrate a skill, understanding, example, or result. That's okay as a practice attempt, but I don't want to pretend there is something positive here when there isn't enough evidence.",
+      improve: `What to do next: actually answer the question. ${guidance?.do || q[4] || "Give a specific explanation or example."} Start with one direct sentence that answers the question, then add the detail the interviewer is looking for. For a behavioral question, give a real situation and explain what YOU did. For a technical question, explain the concept in your own words and give a simple example.`,
+      strong: `A strong response should: ${q[3]}`,
+      tip: `Your next attempt: ${q[4] || "Answer directly, then add a specific example or explanation."}`
+    };
+  }
+
+  if(words < 10){
+    return {
+      score: 2,
+      good: `What worked: you gave ${words} word${words === 1 ? "" : "s"} that can be built on, but there is not enough substance to identify a meaningful strength yet. I would not give credit for details you didn't actually provide.`,
+      improve: `The main problem is depth. ${guidance?.do || "Answer the question directly and give a specific example."} Add 2–3 concrete details: what happened or what the concept means, what you specifically did or would do, and what happened/resulted or why your approach makes sense. ${guidance?.dont ? "Avoid this: " + guidance.dont : ""}`.trim(),
+      strong: `A strong response should: ${q[3]}`,
+      tip: `Try this structure: ${q[4] || "Answer → explain → example/result."}`
+    };
+  }
+
+  const lower = answer.toLowerCase();
+  const technical = q[0] === "Technical";
+  const behavioral = q[0] === "Behavioral";
+  let good = `You provided a substantive ${words}-word response, which gives us enough material to evaluate specific strengths and gaps.`;
+  let improve = "";
+  let score = 3;
+
+  if(technical){
+    good = `You gave a ${words}-word technical response, so there is enough content to evaluate. `;
+    improve = `To make this stronger, connect your explanation to the question's target: ${q[2]}. ${guidance?.do || "Explain the concept, your reasoning, and a practical example."}`;
+
+    const explanation = /(because|so that|which|means|allows|used|helps|example|for example|when|if|while|therefore|why|reason)/i.test(answer);
+    const example = /(for example|example|such as|like when|in a situation|suppose)/i.test(answer);
+    if(explanation){ good += "You did more than simply name a term; your response includes some explanation or reasoning."; }
+    else { good += "The response does not yet clearly explain the reasoning behind the answer; it reads more like a statement than an explanation."; score = 2; }
+    if(example){ good += " You also included an example, which makes the concept easier for an interviewer to evaluate."; }
+    else { improve += " Add a concrete example or brief workplace scenario so the interviewer can see that you know how the concept is applied, not just defined."; }
+  } else if(behavioral){
+    good = `You gave a ${words}-word behavioral response with enough detail to look for evidence of your actions. `;
+    improve = `Build the story around the part you personally controlled. ${q[2]} ${guidance?.do || "Use a clear situation, your actions, and the result."}`;
+    const firstPerson = /\b(i|me|my|mine|myself)\b/i.test(answer);
+    const action = /\b(i|we)\s+(did|built|created|organized|led|handled|changed|solved|analyzed|designed|tested|communicated|decided|helped|fixed|worked|planned|asked|explained|learned|improved|resolved|completed|implemented|managed|coordinated|reviewed|investigated|prioritized)\b/i.test(answer);
+    const result = /\b(result|resulted|because|improved|increased|decreased|saved|completed|finished|learned|changed|resolved|achieved|outcome|impact|after|eventually)\b/i.test(answer);
+    if(firstPerson && action){ good += " You identify actions you personally took, which is important in an interview because the interviewer needs to know your contribution rather than only what the group did."; score = 4; }
+    else { good += " I can see the topic you are discussing, but I cannot clearly identify enough of your personal actions yet."; score = 2; improve += " Replace broad statements like 'we worked on it' with specific actions you personally took."; }
+    if(result){ good += " You also provide some indication of an outcome, consequence, or lesson."; }
+    else { improve += " Finish with the result: what changed, what you accomplished, what you learned, or what you would do differently now."; }
+  } else {
+    good += " The answer is long enough to evaluate, but the quality depends on how directly it addresses the question and supports its claims.";
+    improve = `Make the answer directly responsive to: ${q[2]}. ${guidance?.do || "Use specific evidence and keep the answer focused."}`;
+  }
+
+  const expected = q[2] || "";
+  const keyTerms = expected.toLowerCase().replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(w => w.length >= 5)
+    .filter(w => !["should","while","before","after","about","their","there","which","where","explain","mention","state","show","clear","specific","concrete","answer","strong","response","focus","result","question","demonstrates","describe"].includes(w));
+  const hits = [...new Set(keyTerms)].filter(term => lower.includes(term));
+  if(hits.length >= 2){ good += ` You directly touched on relevant ideas such as ${hits.slice(0,4).join(", ")}.`; score = Math.max(score, 4); }
+  else if(hits.length === 1){ good += ` You mentioned ${hits[0]}, which is relevant, but that is only one part of what the question is testing.`; improve += ` Expand beyond ${hits[0]} and address the other part(s) of the question. The target is: ${expected}`; score = Math.min(score,3); }
+  else { good += ` I do not see the key concept in the answer clearly enough to give you credit for it.`; improve += ` Directly address this missing target: ${expected}`; score = Math.min(score,2); }
+
+  if(guidance?.dont) improve += ` Avoid this specific mistake: ${guidance.dont}`;
+  if(words > 110) improve += " The response is fairly long. Do not cut useful evidence just to be shorter, but remove repeated points so the strongest evidence is easy for an interviewer to hear.";
+
+  return {score, good, improve, strong:`A strong response should: ${q[3]}`, tip:`Next attempt: ${q[4] || "Answer directly, support it with specific detail, and finish with a clear result or takeaway."}`};
+}
+
+async function getAIInterviewFeedback(answer, q, guidance){
+  if(!GEMINI_API_KEY) return null;
+
+  const prompt = `You are an expert interview coach grading a student practice-interview answer for the BYU IS Career Launchpad. Your feedback must be evidence-based, unusually specific, and useful for the student's NEXT attempt. Evaluate ONLY what the student actually wrote. Never invent strengths, examples, knowledge, actions, or results that are not present.
+
+CRITICAL CALIBRATION:
+- If the answer is empty, "idk", "I don't know", "no idea", "not sure", a single word, or otherwise has no meaningful content: score 1. "What worked" MUST explicitly say that there is no substantive evidence to praise. Do not manufacture a positive. Explain exactly what is missing and give a concrete starting structure.
+- If the answer is vague or very short: do NOT call it strong or say it "started with a relevant idea" unless the actual words demonstrate that. Identify exactly what the student said, what that did address, and what remains unsupported.
+- If the answer is genuinely strong: give genuinely strong feedback. Quote or reference the student's specific ideas/actions (without excessive quotation), explain WHY they worked for an interviewer, identify the skill demonstrated, and then give one or two refinements that would make an already-good answer even stronger. Do not force criticism just to have criticism.
+- Distinguish correctness from completeness. A correct definition with no example is different from a wrong definition. A behavioral story with a good action but no result is different from a complete PAR story.
+- For behavioral answers, evaluate Situation/Problem, the student's personal Actions, and Result/learning. Do not give credit for "we" as evidence of what the student personally did unless their individual contribution is clear.
+- For technical answers, evaluate accuracy, reasoning, application/example, and clarity. Do not give credit merely because the student named a technical buzzword.
+- Explicitly identify missing pieces when they matter. Tell the student exactly what to add, not merely "be more specific."
+- Use the provided DO and DON'T as coaching criteria, not as reasons to praise the student automatically.
+
+The student should leave the feedback knowing: (1) what they actually did well, (2) what specifically weakened the answer, (3) what content they should add/change, and (4) exactly what to try on the next attempt.
+
+Career: ${careers[selectedCareer]?.name || selectedCareer}
+Question type: ${q[0]}
+Question: ${q[1]}
+Key idea the question is testing: ${q[2]}
+What a strong answer includes: ${q[3]}
+Practical tip: ${q[4]}
+DO: ${guidance?.do || "Answer directly and specifically."}
+DON'T: ${guidance?.dont || "Avoid vague answers."}
+
+Student answer:
+${answer}
+
+Return ONLY valid JSON with exactly these fields:
+{
+  "score": 1,
+  "whatWorked": "Evidence-based assessment of what actually worked. If there is no meaningful content, explicitly say there is nothing substantive to praise yet.",
+  "improve": "Detailed, question-specific explanation of what is missing or what should change. Reference the student's actual response and the interview criterion.",
+  "nextStep": "A concrete instruction for the student's next attempt, ideally a mini-structure or specific detail they should add."
+}
+
+Scoring: 1 = no meaningful answer, 2 = weak/very incomplete, 3 = partially correct but missing important detail, 4 = solid interview answer with minor gaps, 5 = strong, specific, well-supported answer. Score the answer that was actually written, not what you think the student meant. Mention specific words, ideas, omissions, reasoning, examples, actions, or results from the student's response whenever possible. For strong answers, explain why those specific elements are persuasive to an interviewer. For weak answers, identify exactly what evidence is absent. For behavioral questions, distinguish the student's own actions from what a team did. For technical questions, distinguish a correct concept from a merely named term.`;
+
+  try{
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-goog-api-key':GEMINI_API_KEY},
+      body:JSON.stringify({
+        contents:[{role:'user',parts:[{text:prompt}]}],
+        generationConfig:{temperature:0.25,maxOutputTokens:500,responseMimeType:'application/json'}
+      })
+    });
+    if(!response.ok) throw new Error('Interview feedback API error '+response.status);
+    const data=await response.json();
+    const raw=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('').trim();
+    if(!raw) return null;
+    const parsed=JSON.parse(raw.replace(/^```json\s*/,'').replace(/\s*```$/,''));
+    if(!parsed || typeof parsed.score !== 'number') return null;
+    return {
+      score:Math.max(1,Math.min(5,Math.round(parsed.score))),
+      good:String(parsed.whatWorked || ''),
+      improve:String(parsed.improve || ''),
+      strong:q[3],
+      tip:String(parsed.nextStep || q[4])
+    };
+  }catch(err){
+    console.warn('AI interview feedback unavailable; using local rubric.',err);
+    return null;
+  }
+}
+
+async function submitAnswer(){
+  const answer=document.getElementById("answer").value.trim();
   if(!answer){
-
-    alert(
-      "Write a response before submitting."
-    );
-
+    alert("Write a response before submitting.");
     return;
-
   }
 
+  const q=questions[selectedCareer][qIndex];
+  const guidance=interviewGuidance[selectedCareer]?.[qIndex];
+  const submitBtn=document.getElementById("submitBtn");
+  const local=localInterviewFeedback(answer,q,guidance);
 
-  const q =
-    questions[selectedCareer][qIndex];
-
-
-  const words =
-    answer
-      .split(/\s+/)
-      .filter(Boolean)
-      .length;
-
-
-  let score =
-    words < 15
-      ? 2
-      : words < 35
-        ? 3
-        : 4;
-
-
-  if(
-    q[0] === "Technical" &&
-    /because|example|for example|however|difference|means|used|allows|helps/i
-      .test(answer)
-  ){
-
-    score =
-      Math.min(5, score + 1);
-
+  // Empty / "idk" responses are handled locally so the feedback is immediate and never falsely complimentary.
+  let feedback=local;
+  if(!interviewAnswerLooksEmpty(answer)){
+    submitBtn.disabled=true;
+    submitBtn.textContent="Reviewing...";
+    const ai=await getAIInterviewFeedback(answer,q,guidance);
+    if(ai) feedback=ai;
   }
 
+  document.getElementById("goodText").textContent=feedback.good;
+  document.getElementById("improveText").textContent=feedback.improve;
+  document.getElementById("strongText").textContent=feedback.strong;
+  document.getElementById("tipText").textContent=feedback.tip;
+  document.getElementById("feedback").classList.add("show");
 
-  if(
-    q[0] === "Behavioral" &&
-    /I |we |result|learn|improv|STAR|situation|task|action/i
-      .test(answer)
-  ){
-
-    score =
-      Math.min(5, score + 1);
-
-  }
-
-
-  const good =
-    score >= 4
-
-      ?
-
-      "Your response has useful substance and shows that you are engaging with the question."
-
-      :
-
-      "You started with a relevant idea. The next step is making your answer more specific and complete.";
-
-
-  const improve =
-    score >= 4
-
-      ?
-
-      "Make your strongest point first, then support it with a concrete example. Keep the answer focused and interview-ready."
-
-      :
-
-      "Add a clear explanation, a specific example, and the result or practical implication. Avoid one-sentence answers.";
-
-
-  document.getElementById("goodText").textContent =
-    good;
-
-
-  document.getElementById("improveText").textContent =
-    improve;
-
-
-  document.getElementById("strongText").textContent =
-    q[3];
-
-
-  document.getElementById("tipText").textContent =
-    q[4];
-
-
-  document.getElementById("feedback")
-    .classList.add("show");
-
-
-  document.getElementById("answer")
-    .disabled = true;
-
-
-  document.getElementById("submitBtn")
-    .style.display = "none";
-
-
-  sessionLog[qIndex] = {
-    type: q[0],
-    question: q[1],
-    answer: answer,
-    words: words,
-    score: score,
-    strong: q[3],
-    tip: q[4],
-    skipped: false
-  };
-
+  document.getElementById("answer").disabled=true;
+  submitBtn.disabled=false;
+  submitBtn.textContent="Submit Answer";
+  submitBtn.style.display="none";
 
   if(!lastSubmitted){
-
     completed++;
-
-    lastSubmitted = true;
-
-    document.getElementById("scoreText").textContent =
-      `${completed} completed`;
-
+    lastSubmitted=true;
+    document.getElementById("scoreText").textContent=`${completed} completed`;
   }
-
 }
 
 
 function nextQuestion(skipped){
-
-  if(!sessionLog[qIndex]){
-
-    const sq = questions[selectedCareer][qIndex];
-
-    sessionLog[qIndex] = {
-      type: sq[0],
-      question: sq[1],
-      answer: "",
-      words: 0,
-      score: 0,
-      strong: sq[3],
-      tip: sq[4],
-      skipped: true
-    };
-
-  }
-
 
   if(
     qIndex <
@@ -2711,9 +2727,6 @@ function nextQuestion(skipped){
       .style.display = "none";
 
 
-    renderSummary();
-
-
     document.querySelector(".actionRow").innerHTML = `
 
       <button
@@ -2749,145 +2762,6 @@ function nextQuestion(skipped){
       .style.width = "100%";
 
   }
-
-}
-
-
-const STRENGTH_BANDS = {
-  5: ["Well structured", "sumGood"],
-  4: ["Solid", "sumGood"],
-  3: ["Developing", "sumMid"],
-  2: ["Brief", "sumLow"]
-};
-
-
-function escapeHTML(str){
-
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-
-}
-
-
-function getSummaryBox(){
-
-  let box = document.getElementById("summaryBox");
-
-  if(!box){
-
-    box = document.createElement("div");
-    box.id = "summaryBox";
-    box.className = "summary";
-
-    const q = document.getElementById("question");
-    q.parentNode.insertBefore(box, q.nextSibling);
-
-  }
-
-  return box;
-
-}
-
-
-function hideSummary(){
-
-  const box = document.getElementById("summaryBox");
-
-  if(box) box.style.display = "none";
-
-}
-
-
-function renderSummary(){
-
-  const log = sessionLog;
-
-  const total = log.length;
-
-  const answered = log.filter(e => e && !e.skipped).length;
-
-  const skipped = total - answered;
-
-
-  const byType = {};
-
-  log.forEach(e => {
-
-    if(!e) return;
-
-    if(!byType[e.type]) byType[e.type] = { answered:0, total:0 };
-
-    byType[e.type].total++;
-
-    if(!e.skipped) byType[e.type].answered++;
-
-  });
-
-
-  const chips = Object.keys(byType).map(t =>
-    `<span class="sumChip">${escapeHTML(t)}: ${byType[t].answered} of ${byType[t].total} answered</span>`
-  ).join("");
-
-
-  const rows = log.map((e, i) => {
-
-    if(!e) return "";
-
-    const band = e.skipped
-      ? ["Skipped", "sumSkip"]
-      : (STRENGTH_BANDS[e.score] || ["Brief", "sumLow"]);
-
-    const yours = e.skipped
-      ? `<p class="sumEmpty">You skipped this one.</p>`
-      : `<p>${escapeHTML(e.answer)}</p><p class="sumMeta">${e.words} words</p>`;
-
-    return `
-      <div class="sumRow">
-        <div class="sumHead">
-          <span class="sumNum">Q${i+1}</span>
-          <span class="sumType">${escapeHTML(e.type)}</span>
-          <span class="sumBadge ${band[1]}">${band[0]}</span>
-        </div>
-        <div class="sumQ">${escapeHTML(e.question)}</div>
-        <details>
-          <summary>Compare with a strong answer</summary>
-          <div class="sumLabel">Your answer</div>
-          ${yours}
-          <div class="sumLabel">Suggested strong answer</div>
-          <p>${escapeHTML(e.strong)}</p>
-          <div class="sumLabel">Interview tip</div>
-          <p>${escapeHTML(e.tip)}</p>
-        </details>
-      </div>`;
-
-  }).join("");
-
-
-  const box = getSummaryBox();
-
-  box.innerHTML = `
-    <div class="sumStats">
-      <div class="sumStat"><strong>${answered}</strong><span>answered</span></div>
-      <div class="sumStat"><strong>${skipped}</strong><span>skipped</span></div>
-      <div class="sumStat"><strong>${total}</strong><span>questions</span></div>
-    </div>
-
-    <div class="sumChips">${chips}</div>
-
-    <p class="sumNote">
-      These labels describe how developed and well structured each response was —
-      its length, its specificity, and whether a behavioral answer named your own
-      actions and the result. They do not check whether what you said was correct.
-      Open any question to compare what you wrote against the suggested strong answer.
-    </p>
-
-    ${rows}
-  `;
-
-  box.style.display = "block";
 
 }
 
@@ -2944,6 +2818,17 @@ Examples: liking coding but not wanting to code all day can point toward Busines
 
 INTERVIEW HELP
 You can help students practice behavioral and technical questions for these six careers. Give realistic questions, evaluate answers constructively, and suggest specific improvements. Do not pretend to be an actual employer.
+
+INTERVIEW FRAMEWORKS
+For behavioral questions, encourage PAR (Problem → Action → Result) and emphasize what the student personally did. For “Tell me about yourself,” encourage Present–Benefit–Future and a focused 30–60 second answer. For technical questions, evaluate both correctness and reasoning, not jargon alone. For “Any questions?”, encourage thoughtful questions about team workflow, tools, stakeholders, onboarding, research, project structure, or how success is measured rather than easily searchable questions.
+
+ROLE-SPECIFIC DO/DON'T GUIDANCE
+Software Developer: DO explain real programming experience, debugging steps, tradeoffs, and prioritization. DON'T exaggerate skills, hide behind “I Google it,” or blame users/teammates.
+Data Analyst: DO connect analysis to the business question, verify data, explain reasoning, and communicate findings. DON'T invent expertise, alter inconvenient results, or collect data without purpose.
+Cybersecurity Analyst: DO investigate carefully, protect sensitive information, follow incident response, and communicate respectfully. DON'T assume, expose confidential details, or blame users.
+Business / Systems Analyst: DO clarify needs, listen to stakeholders, separate requirements from solutions, and explain technical ideas simply. DON'T ramble, overload with jargon, or choose based only on authority.
+UX Designer: DO demonstrate user research, reasoning, iteration, collaboration, and evidence. DON'T assume you know users, change designs for every comment, or focus only on aesthetics.
+IT Project Manager: DO show planning, communication, risk management, prioritization, and recovery planning. DON'T hide delays, blame people, or prioritize based on personal preference.
 
 STYLE
 Be conversational, concise, encouraging, and honest. Avoid walls of text and corporate jargon. Use Markdown naturally: **bold**, *italics*, bullets, numbered lists, and short headings when helpful. Most answers should be short unless the student asks for detail.
