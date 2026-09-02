@@ -608,6 +608,82 @@ footer{
     font-size:21px;
   }
 }
+
+
+/* ================================
+   FLOATING AI CAREER ADVISOR
+   ================================ */
+#aiAdvisorLauncher{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:58px;
+  height:58px;
+  border:0;
+  border-radius:50%;
+  background:var(--navy);
+  color:#fff;
+  font-size:25px;
+  box-shadow:0 8px 25px rgba(11,32,56,.25);
+  z-index:1000;
+  transition:.18s;
+}
+#aiAdvisorLauncher:hover{transform:translateY(-2px) scale(1.03);background:#07599B}
+#aiAdvisorPanel{
+  position:fixed;
+  right:22px;
+  bottom:92px;
+  width:min(390px,calc(100vw - 30px));
+  height:min(590px,calc(100vh - 115px));
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:0 18px 55px rgba(11,32,56,.22);
+  z-index:999;
+  overflow:hidden;
+  display:none;
+  flex-direction:column;
+}
+#aiAdvisorPanel.open{display:flex}
+.aiFloatHeader{
+  background:linear-gradient(135deg,#002E5D,#07599B);
+  color:#fff;
+  padding:16px 17px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+.aiFloatHeader .chatAvatar{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.15);display:grid;place-items:center;font-size:20px}
+.aiFloatTitle{flex:1;min-width:0}
+.aiFloatTitle strong{display:block;font-size:15px}
+.aiFloatTitle span{display:block;font-size:11px;color:#dceeff;margin-top:2px}
+.aiClose{border:0;background:transparent;color:#fff;font-size:24px;line-height:1;padding:2px 5px}
+.aiFloatMessages{flex:1;overflow-y:auto;padding:15px;background:#f8fafc}
+.aiFloatMessage{display:flex;margin-bottom:12px}
+.aiFloatMessage.user{justify-content:flex-end}
+.aiFloatBubble{max-width:88%;padding:10px 12px;border-radius:13px;line-height:1.5;font-size:14px;overflow-wrap:anywhere}
+.aiFloatMessage.bot .aiFloatBubble{background:#fff;border:1px solid var(--line);color:var(--ink);border-bottom-left-radius:4px}
+.aiFloatMessage.user .aiFloatBubble{background:var(--navy);color:#fff;border-bottom-right-radius:4px}
+.aiFloatBubble p{margin:0 0 8px}.aiFloatBubble p:last-child{margin-bottom:0}
+.aiFloatBubble ul,.aiFloatBubble ol{margin:6px 0 8px;padding-left:20px}
+.aiFloatBubble li{margin:3px 0}
+.aiFloatBubble h1,.aiFloatBubble h2,.aiFloatBubble h3{font-size:15px;margin:8px 0 5px;letter-spacing:0}
+.aiFloatBubble a{color:#1769aa;text-decoration:underline}
+.aiFloatMessage.user a{color:#fff}
+.aiTypingDots{display:inline-flex;align-items:center;gap:4px;padding:3px 2px;opacity:.8;font-style:normal}.aiTypingDots span{display:block;width:6px;height:6px;border-radius:50%;background:currentColor;animation:aiDotPulse 1.2s infinite ease-in-out}.aiTypingDots span:nth-child(1){animation-delay:0s}.aiTypingDots span:nth-child(2){animation-delay:.16s}.aiTypingDots span:nth-child(3){animation-delay:.32s}@keyframes aiDotPulse{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
+.aiFloatComposer{padding:10px;border-top:1px solid var(--line);background:#fff}
+.aiFloatRow{display:flex;gap:7px}
+#aiFloatInput{flex:1;min-height:42px;max-height:100px;resize:none;border:1px solid var(--line);border-radius:11px;padding:10px 11px;font:inherit;outline:none}
+#aiFloatInput:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,115,232,.1)}
+#aiFloatSend{border:0;border-radius:11px;background:var(--navy);color:#fff;padding:0 14px;font-weight:800}
+#aiFloatSend:disabled{opacity:.55}
+.aiFloatHints{display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:2px}
+.aiFloatHint{white-space:nowrap;border:1px solid var(--line);background:#f8fafc;border-radius:999px;padding:6px 9px;font-size:11px;color:#526275}
+@media(max-width:700px){
+  #aiAdvisorLauncher{right:15px;bottom:15px}
+  #aiAdvisorPanel{right:15px;bottom:84px;width:calc(100vw - 30px);height:min(560px,calc(100vh - 105px))}
+}
+
 </style>
 </head>
 
@@ -644,6 +720,9 @@ footer{
 
 
 <main>
+
+
+
 
 <!-- HOME -->
 
@@ -982,6 +1061,33 @@ footer{
 </section>
 
 </main>
+
+
+<!-- FLOATING AI CAREER ADVISOR -->
+<button id="aiAdvisorLauncher" type="button" aria-label="Open AI Career Advisor" onclick="toggleCareerAdvisor()">💬</button>
+
+<div id="aiAdvisorPanel" role="dialog" aria-label="AI Career Advisor" aria-hidden="true">
+  <div class="aiFloatHeader">
+    <div class="chatAvatar">💬</div>
+    <div class="aiFloatTitle">
+      <strong>BYU IS Career Advisor</strong>
+      <span>Ask about careers, BYU, or interviews</span>
+    </div>
+    <button class="aiClose" type="button" aria-label="Close" onclick="toggleCareerAdvisor(false)">×</button>
+  </div>
+  <div id="aiFloatMessages" class="aiFloatMessages"></div>
+  <div class="aiFloatComposer">
+    <div class="aiFloatRow">
+      <textarea id="aiFloatInput" placeholder="Ask me anything about IS careers..." aria-label="Career question"></textarea>
+      <button id="aiFloatSend" type="button" onclick="sendAIMessage()">Send</button>
+    </div>
+    <div class="aiFloatHints">
+      <button class="aiFloatHint" onclick="useAISuggestion('Which of these careers might fit me?')">Find my fit</button>
+      <button class="aiFloatHint" onclick="useAISuggestion('Compare Business Systems Analyst, UX Designer, and IT Project Manager.')">Compare careers</button>
+      <button class="aiFloatHint" onclick="useAISuggestion('How can I prepare for an IS internship at BYU?')">BYU internship</button>
+    </div>
+  </div>
+</div>
 
 
 <footer>
@@ -2167,6 +2273,24 @@ function setupSelector(){
 }
 
 
+const INTERVIEW_ACTIONS_HTML = `
+  <button id="submitBtn" class="darkBtn" onclick="submitAnswer()">Submit Answer</button>
+  <button class="ghost" onclick="nextQuestion(true)">Skip</button>
+`;
+
+function resetInterviewUI(){
+  const answer = document.getElementById("answer");
+  const actions = document.querySelector(".actionRow");
+  const feedback = document.getElementById("feedback");
+  if(actions) actions.innerHTML = INTERVIEW_ACTIONS_HTML;
+  if(answer){
+    answer.style.display = "block";
+    answer.disabled = false;
+    answer.value = "";
+  }
+  if(feedback) feedback.classList.remove("show");
+}
+
 function startInterview(key){
 
   selectedCareer = key;
@@ -2176,6 +2300,10 @@ function startInterview(key){
   completed = 0;
 
   lastSubmitted = false;
+
+  // Rebuild controls that are replaced by the completion screen.
+  // This makes every new/restarted interview a completely fresh session.
+  resetInterviewUI();
 
   setupSelector();
 
@@ -2440,6 +2568,174 @@ renderCards();
 setupSelector();
 
 renderQuestion();
+
+
+
+/* =========================================================
+   FLOATING AI CAREER ADVISOR — GEMINI
+   ========================================================= */
+const GEMINI_API_KEY = "AQ.Ab8RN6LOnF3wv4YrJyDeJHYmwagP3sCl2VDMf7wbbKxm5F-NZw";
+const GEMINI_MODEL = "gemini-3.7-flash";
+
+const CAREER_ADVISOR_SYSTEM_PROMPT = `You are the AI Career Advisor inside the BYU Information Systems Career Launchpad.
+
+PURPOSE
+Help students explore six IS-related career paths, understand what the work is actually like, prepare for internships and interviews, and connect their interests and strengths to realistic options. You are a friendly, practical career mentor—not a generic chatbot.
+
+THE SIX CAREERS
+1. Software Developer — builds, tests, debugs, and maintains software. Usually high coding intensity. Useful skills: programming, OOP, SQL/databases, Git, APIs, web fundamentals, problem solving. BLS May 2025 median wage: $135,980; projected growth 10% from 2025–2035.
+2. Data Analyst / Business Intelligence Analyst — turns data into reports, dashboards, trends, and recommendations. Common tools can include SQL, Excel, Power BI, Tableau, and Python. Coding varies, often low to moderate. Do not confuse Data Analyst with Data Scientist.
+3. Cybersecurity Analyst — monitors and protects systems, assesses vulnerabilities and risk, and responds to security issues. Coding varies widely. BLS Information Security Analysts May 2025 median wage: $129,180; projected growth 21% from 2025–2035.
+4. Business Systems Analyst — connects business problems with technology and systems solutions; analyzes requirements, improves systems, troubleshoots, tests, and works with stakeholders. Coding varies and is not necessarily central. BLS Computer Systems Analysts May 2025 median wage: $105,850; projected growth 8% from 2025–2035.
+5. UX Designer — focuses on users, usability, interfaces, prototypes, navigation, accessibility, and design collaboration. Coding varies and is not always required. BLS uses the broader Web and Digital Interface Designers category; May 2025 median wage for that category: $104,000. UX Designer is not a perfectly standardized job title, so duties vary by employer.
+6. IT Project Manager — coordinates technology projects, schedules, resources, stakeholders, risks, and deliverables. Coding is usually not central, but technical understanding is useful. BLS Project Management Specialists May 2025 median wage: $100,750; projected growth 7% from 2025–2035.
+
+BYU IS
+BYU Marriott describes Information Systems as combining business and technology. BYU IS career examples include Business Analytics, Cloud Infrastructure, IT Consultant, Programmer/Software Engineer, Security Analyst, UI Engineer, Web Developer, IT Business Analyst, Project Manager, Systems Analyst, and User Experience Designer. The BYU list is not comprehensive.
+Official BYU IS: https://marriott.byu.edu/infosys/
+Program overview: https://marriott.byu.edu/infosys/bsis/what-will-i-study/program-overview/
+Career tools: https://marriott.byu.edu/infosys/careers/career-tools/
+
+BYU CAREER RESOURCES
+BYU career resources include CareerLaunch, Handshake, Business Career Center resources, internships, field studies, and networking/alumni resources. Do not invent requirements or policies. For current admissions/curriculum details, tell students to verify official BYU pages because they can change.
+
+BYU PLACEMENT DATA
+BYU Marriott's BSIS placement profile for the Class of 2025 reported 123 graduates, 100 seeking full-time employment, 90% placed within three months, average salary $72,820, and median salary $74,000. These are BYU-specific results for that graduating class—not guaranteed starting salaries and not national IS salary figures.
+
+SOURCE RULES
+- Never invent statistics, BYU policies, course requirements, or admissions facts.
+- When discussing salary, identify the source and say whether it is a median. Never present a national median as an entry-level salary.
+- Explain that pay varies by location, experience, employer, industry, and role.
+- Distinguish national career statistics from BYU-specific placement information.
+- If the knowledge in this prompt does not establish a fact, say that rather than making it up.
+
+CAREER-MATCHING RULES
+When a student describes interests, strengths, dislikes, or goals, identify 2–4 plausible paths, explain why they fit, mention tradeoffs, and ask a useful follow-up question. Do not declare one career universally best.
+Examples: liking coding but not wanting to code all day can point toward Business Systems Analyst, UX Designer, Data Analyst, or IT Project Manager depending on what the student enjoys. Someone who loves investigation and risk may enjoy cybersecurity. Someone who likes organizing people and deadlines may enjoy IT project management.
+
+INTERVIEW HELP
+You can help students practice behavioral and technical questions for these six careers. Give realistic questions, evaluate answers constructively, and suggest specific improvements. Do not pretend to be an actual employer.
+
+STYLE
+Be conversational, concise, encouraging, and honest. Avoid walls of text and corporate jargon. Use Markdown naturally: **bold**, *italics*, bullets, numbered lists, and short headings when helpful. Most answers should be short unless the student asks for detail.
+`;
+
+let aiChatHistory=[];
+let aiAdvisorOpen=false;
+
+function escapeAIHTML(value){
+  return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function renderAIMarkdown(markdown){
+  let text=escapeAIHTML(markdown).replace(/\r\n/g,'\n');
+  const blocks=text.split(/\n\n+/);
+  const html=blocks.map(block=>{
+    let b=block.trim(); if(!b)return '';
+    if(/^[-*] /.test(b)){
+      const items=b.split('\n').filter(x=>/^[-*] /.test(x)).map(x=>'<li>'+formatAIInline(x.replace(/^[-*] /,''))+'</li>').join('');
+      return '<ul>'+items+'</ul>';
+    }
+    if(/^\d+\. /.test(b)){
+      const items=b.split('\n').filter(x=>/^\d+\. /.test(x)).map(x=>'<li>'+formatAIInline(x.replace(/^\d+\. /,''))+'</li>').join('');
+      return '<ol>'+items+'</ol>';
+    }
+    if(/^### /.test(b))return '<h3>'+formatAIInline(b.replace(/^### /,''))+'</h3>';
+    if(/^## /.test(b))return '<h2>'+formatAIInline(b.replace(/^## /,''))+'</h2>';
+    if(/^# /.test(b))return '<h1>'+formatAIInline(b.replace(/^# /,''))+'</h1>';
+    return '<p>'+formatAIInline(b).replace(/\n/g,'<br>')+'</p>';
+  }).join('');
+  return html || '<p>'+formatAIInline(markdown)+'</p>';
+}
+
+function formatAIInline(text){
+  return text
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/__([^_]+)__/g,'<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g,'<em>$1</em>')
+    .replace(/_([^_]+)_/g,'<em>$1</em>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>');
+}
+
+function addAITypingIndicator(){
+  const box=document.getElementById('aiFloatMessages');
+  if(!box)return null;
+  const row=document.createElement('div');
+  row.className='aiFloatMessage bot';
+  const bubble=document.createElement('div');
+  bubble.className='aiFloatBubble aiTypingBubble';
+  bubble.innerHTML='<span class="aiTypingDots" aria-label="Career Advisor is thinking"><span></span><span></span><span></span></span>';
+  row.appendChild(bubble);
+  box.appendChild(row);
+  box.scrollTop=box.scrollHeight;
+  return row;
+}
+
+function addAIMessage(text,sender){
+  const box=document.getElementById('aiFloatMessages'); if(!box)return null;
+  const row=document.createElement('div'); row.className='aiFloatMessage '+sender;
+  const bubble=document.createElement('div'); bubble.className='aiFloatBubble';
+  if(sender==='bot') bubble.innerHTML=renderAIMarkdown(text); else bubble.textContent=text;
+  row.appendChild(bubble); box.appendChild(row); box.scrollTop=box.scrollHeight; return row;
+}
+
+function currentCareerContext(){
+  try{
+    const active=document.querySelector('.view.active')?.id || 'home';
+    let career='';
+    if(typeof selectedCareer!=='undefined' && selectedCareer && typeof careers!=='undefined' && careers[selectedCareer]) career=careers[selectedCareer].name;
+    return `Current page: ${active}. Current selected career, if any: ${career || 'none'}.`;
+  }catch(e){return 'Current page information unavailable.';}
+}
+
+function initializeCareerAdvisor(){
+  const box=document.getElementById('aiFloatMessages'); if(!box)return;
+  if(!box.children.length){
+    addAIMessage("Hey! 👋 I'm your **BYU IS Career Advisor**. Tell me what you're interested in, what you're good at, what you don't want to do, or ask me about any of the six careers. I can also help with BYU IS and interview prep.", 'bot');
+  }
+}
+
+function toggleCareerAdvisor(force){
+  const panel=document.getElementById('aiAdvisorPanel'); if(!panel)return;
+  aiAdvisorOpen=typeof force==='boolean'?force:!aiAdvisorOpen;
+  panel.classList.toggle('open',aiAdvisorOpen); panel.setAttribute('aria-hidden',String(!aiAdvisorOpen));
+  if(aiAdvisorOpen){initializeCareerAdvisor();setTimeout(()=>document.getElementById('aiFloatInput')?.focus(),50);}
+}
+
+function useAISuggestion(text){const input=document.getElementById('aiFloatInput');if(!input)return;input.value=text;sendAIMessage();}
+
+async function sendAIMessage(){
+  const input=document.getElementById('aiFloatInput'), button=document.getElementById('aiFloatSend'); if(!input||!button)return;
+  const message=input.value.trim(); if(!message)return;
+  addAIMessage(message,'user'); input.value=''; button.disabled=true; button.textContent='...';
+  const typing=addAITypingIndicator();
+  try{
+    if(!GEMINI_API_KEY)throw new Error('Missing API key');
+    const contents=[...aiChatHistory,{role:'user',parts:[{text:currentCareerContext()+'\n\nStudent question: '+message}]}];
+    const response=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{
+      method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':GEMINI_API_KEY},
+      body:JSON.stringify({contents,systemInstruction:{parts:[{text:CAREER_ADVISOR_SYSTEM_PROMPT}]},generationConfig:{temperature:.65,maxOutputTokens:800}})
+    });
+    if(!response.ok)throw new Error(`Gemini API error ${response.status}: ${await response.text()}`);
+    const data=await response.json();
+    const answer=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('').trim();
+    if(!answer)throw new Error('Empty Gemini response');
+    typing?.remove(); addAIMessage(answer,'bot');
+    aiChatHistory.push({role:'user',parts:[{text:currentCareerContext()+'\n\nStudent question: '+message}]},{role:'model',parts:[{text:answer}]});
+    if(aiChatHistory.length>16)aiChatHistory=aiChatHistory.slice(-16);
+  }catch(error){
+    console.error(error); typing?.remove();
+    addAIMessage('I could not connect to Gemini right now. Check the API key, API access, and your browser console for the exact error.', 'bot');
+  }finally{button.disabled=false;button.textContent='Send';input.focus();}
+}
+
+document.getElementById('aiFloatInput')?.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendAIMessage();}
+});
+
+initializeCareerAdvisor();
 
 </script>
 
