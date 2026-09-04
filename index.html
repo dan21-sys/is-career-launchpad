@@ -2582,7 +2582,7 @@ function localInterviewFeedback(answer, q, guidance){
 }
 
 async function getAIInterviewFeedback(answer, q, guidance){
-  if(!GEMINI_KEY) return null;
+  if(!GEMINI_API_KEY) return null;
 
   const prompt = `You are an expert interview coach grading a student practice-interview answer for the BYU IS Career Launchpad. Your feedback must be evidence-based, unusually specific, and useful for the student's NEXT attempt. Evaluate ONLY what the student actually wrote. Never invent strengths, examples, knowledge, actions, or results that are not present.
 
@@ -2623,7 +2623,7 @@ Scoring: 1 = no meaningful answer, 2 = weak/very incomplete, 3 = partially corre
   try{
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-goog-api-key':GEMINI_KEY},
+      headers:{'Content-Type':'application/json','x-goog-api-key':GEMINI_API_KEY},
       body:JSON.stringify({
         contents:[{role:'user',parts:[{text:prompt}]}],
         generationConfig:{temperature:0.25,maxOutputTokens:500,responseMimeType:'application/json'}
@@ -2776,7 +2776,7 @@ renderQuestion();
 /* =========================================================
    FLOATING AI CAREER ADVISOR — GEMINI
    ========================================================= */
-const GEMINI_API_KEY = "AQ.Ab8RN6IcdPrJE1q-ZlhBVc_clseyGwrGHjtB8MPTvf6XpKZCkg";
+const GEMINI_API_KEY = "AQ.Ab8RN6KlTaKGpwvTck7elMMuYQO6DvU7T-hmXGHXz0T1lJbzzg";
 const GEMINI_MODEL = "gemini-3.7-flash";
 
 const CAREER_ADVISOR_SYSTEM_PROMPT = `You are the AI Career Advisor inside the BYU Information Systems Career Launchpad.
@@ -2920,73 +2920,28 @@ function toggleCareerAdvisor(force){
 function useAISuggestion(text){const input=document.getElementById('aiFloatInput');if(!input)return;input.value=text;sendAIMessage();}
 
 async function sendAIMessage(){
-  const input=document.getElementById('aiFloatInput'), button=document.getElementById('aiFloatSend');
-  if(!input||!button)return;
-  const message=input.value.trim();
-  if(!message)return;
-
-  addAIMessage(message,'user');
-  input.value='';
-  button.disabled=true;
-  button.textContent='...';
+  const input=document.getElementById('aiFloatInput'), button=document.getElementById('aiFloatSend'); if(!input||!button)return;
+  const message=input.value.trim(); if(!message)return;
+  addAIMessage(message,'user'); input.value=''; button.disabled=true; button.textContent='...';
   const typing=addAITypingIndicator();
-
   try{
-    if(!GEMINI_API_KEY) throw new Error('Missing API key');
-
-    const historyMessages=aiChatHistory.map(item=>{
-      const text=item?.parts?.map(p=>p.text||'').join('').trim();
-      return {
-        role:item.role==='model'?'assistant':'user',
-        content:text || ''
-      };
-    }).filter(m=>m.content);
-
-    const response=await fetch('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+GEMINI_API_KEY
-      },
-      body:JSON.stringify({
-        model:GEMINI_MODEL,
-        messages:[
-          {role:'system',content:CAREER_ADVISOR_SYSTEM_PROMPT},
-          ...historyMessages,
-          {role:'user',content:currentCareerContext()+'\n\nStudent question: '+message}
-        ],
-        temperature:0.65,
-        max_tokens:800
-      })
+    if(!GEMINI_API_KEY)throw new Error('Missing API key');
+    const contents=[...aiChatHistory,{role:'user',parts:[{text:currentCareerContext()+'\n\nStudent question: '+message}]}];
+    const response=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,{
+      method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':GEMINI_API_KEY},
+      body:JSON.stringify({contents,systemInstruction:{parts:[{text:CAREER_ADVISOR_SYSTEM_PROMPT}]},generationConfig:{temperature:.65,maxOutputTokens:800}})
     });
-
-    if(!response.ok){
-      const errorText=await response.text();
-      throw new Error(`Gemini API error ${response.status}: ${errorText}`);
-    }
-
+    if(!response.ok)throw new Error(`Gemini API error ${response.status}: ${await response.text()}`);
     const data=await response.json();
-    const answer=data?.choices?.[0]?.message?.content?.trim();
-    if(!answer) throw new Error('Empty Gemini response');
-
-    typing?.remove();
-    addAIMessage(answer,'bot');
-
-    aiChatHistory.push(
-      {role:'user',parts:[{text:currentCareerContext()+'\n\nStudent question: '+message}]},
-      {role:'model',parts:[{text:answer}]}
-    );
-    if(aiChatHistory.length>16) aiChatHistory=aiChatHistory.slice(-16);
-
+    const answer=data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('').trim();
+    if(!answer)throw new Error('Empty Gemini response');
+    typing?.remove(); addAIMessage(answer,'bot');
+    aiChatHistory.push({role:'user',parts:[{text:currentCareerContext()+'\n\nStudent question: '+message}]},{role:'model',parts:[{text:answer}]});
+    if(aiChatHistory.length>16)aiChatHistory=aiChatHistory.slice(-16);
   }catch(error){
-    console.error(error);
-    typing?.remove();
-    addAIMessage('I could not connect to the AI Career Advisor right now. Please try again.', 'bot');
-  }finally{
-    button.disabled=false;
-    button.textContent='Send';
-    input.focus();
-  }
+    console.error(error); typing?.remove();
+    addAIMessage('I could not connect to Gemini right now. Check the API key, API access, and your browser console for the exact error.', 'bot');
+  }finally{button.disabled=false;button.textContent='Send';input.focus();}
 }
 
 document.getElementById('aiFloatInput')?.addEventListener('keydown',e=>{
@@ -2999,3 +2954,4 @@ initializeCareerAdvisor();
 
 </body>
 </html>
+Displaying IS_Career_Launchpad_FIINAL.html.
